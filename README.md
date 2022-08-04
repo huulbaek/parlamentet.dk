@@ -5,3 +5,8 @@ Parlamentet.dk var engang et større projekt – et *for stort* projekt – og d
 Indtil videre er det kun *Den Historiske Valgtest*, som er kommet med.
 
 Sitet er bygget med [nuxt](https://v3.nuxtjs.org)
+
+## Den Historiske Valgtest
+Den er lavet hurtigt og simpelt – der er kun to spørgsmål lige nu, men alle data ligger i filerne ```assets/data/electionData.json``` og ```assets/data/metaData.json```.
+
+Ja – du må **meget gerne** tilføje flere spørgsmål. Tænk over hvordan spørgsmålet stilles og om det passer godt på lov- eller beslutningsforslaget.

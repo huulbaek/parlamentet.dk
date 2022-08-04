@@ -1,0 +1,41 @@
+[
+  {
+    "ftid": "B 30",
+    "samling": "2013-14",
+    "link": "https://www.ft.dk/samling/20131/beslutningsforslag/b30/index.htm",
+    "title": "Skulle vi have stoppet for salget af DONG?",
+    "yay": [
+      "DF",
+      "EL",
+      "ALT"
+    ],
+    "nay": [
+      "V",
+      "S",
+      "RV",
+      "SF",
+      "LA",
+      "KF"
+    ],
+    "answer": ""
+  },
+  {
+    "ftid": "B 69",
+    "samling": "2013-14",
+    "link": "https://www.ft.dk/samling/20131/beslutningsforslag/b69/index.htm",
+    "title": "Skulle vi tilbyde Edward Snowden opholdstilladelse?",
+    "yay": [
+      "EL"
+    ],
+    "nay": [
+      "V",
+      "S",
+      "DF",
+      "RV",
+      "SF",
+      "LA",
+      "KF"
+    ],
+    "answer":""
+  }
+]

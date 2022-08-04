@@ -1,0 +1,58 @@
+{
+  "parties": [
+    {
+      "initials": "V",
+      "color": "#0092d5",
+      "logo": "/V.png",
+      "agreements": 0
+    },
+    {
+      "initials": "S",
+      "color": "#c00b1f",
+      "logo": "/S.png",
+      "agreements": 0
+    },
+    {
+      "initials": "ALT",
+      "color": "#00ff00",
+      "logo": "/ALT.png",
+      "agreements": 0
+    },
+    {
+      "initials": "DF",
+      "color": "#035387",
+      "logo": "/DF.png",
+      "agreements": 0
+    },
+    {
+      "initials": "RV",
+      "color": "#ed008c",
+      "logo": "/RV.png",
+      "agreements": 0
+    },
+    {
+      "initials": "SF",
+      "color": "#035387",
+      "logo": "/SF.png",
+      "agreements": 0
+    },
+    {
+      "initials": "EL",
+      "color": "#ca2146",
+      "logo": "/EL.png",
+      "agreements": 0
+    },
+    {
+      "initials": "LA",
+      "color": "#f68920",
+      "logo": "/LA.png",
+      "agreements": 0
+    },
+    {
+      "initials": "KF",
+      "color": "#0e4d3d",
+      "logo": "/KF.png",
+      "agreements": 0
+    }
+  ]
+}

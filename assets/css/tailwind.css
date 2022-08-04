@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+div#__nuxt {
+  min-height: 100%;
+}
+
+.router-link-active {
+  @apply bg-gray-900 text-white;
+}
