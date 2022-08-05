@@ -18,7 +18,7 @@
     <p class="mt-5">
       Det led af forfald og den tekniske gæld blev for stor. I dag er det et
       open source projekt, hvor tanken er at tage det bedste med videre – til at
-      starte med er det den historiske valgtest.
+      starte med er det den historiske valgquiz.
     </p>
     <p class="mt-5">
       Hvis du vil arbejde på projektet, så kan du finde det her:

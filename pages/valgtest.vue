@@ -23,10 +23,10 @@ const electionQuizStore = useElectionQuizStore()
 const mainStore = useMainStore()
 
 useHead({
-  title: 'Den Historiske Valgtest – Parlamentet.dk',
+  title: 'Den Historiske Valgquiz – Parlamentet.dk',
 })
 
 onMounted(() => {
-  mainStore.updateHeaderTitle('Den Historiske Valgtest')
+  mainStore.updateHeaderTitle('Den Historiske Valgquiz')
 })
 </script>
