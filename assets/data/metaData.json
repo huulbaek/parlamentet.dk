@@ -53,6 +53,18 @@
       "color": "#0e4d3d",
       "logo": "/KF.png",
       "agreements": 0
+    },
+    {
+      "initials": "FG",
+      "color": "#f2e3d0",
+      "logo": "/FG.png",
+      "agreements": 0
+    },
+    {
+      "initials": "NB",
+      "color": "#00424f",
+      "logo": "/NB.png",
+      "agreements": 0
     }
   ]
 }

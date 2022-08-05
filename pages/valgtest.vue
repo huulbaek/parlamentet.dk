@@ -9,7 +9,7 @@
       >
     </div>
     <div class="grid sm:grid-rows-2 md:grid-cols-2">
-      <Parties class="order-last md:order-first" />
+      <Parties class="order-last md:order-first" :party-counts="partyCounts" />
       <Question class="mb-10" />
     </div>
   </div>
@@ -19,8 +19,13 @@
 import { useElectionQuizStore } from '@/stores/electionQuiz'
 import { useMainStore } from '@/stores/main'
 
+interface IObjectKeys {
+  [key: string]: any
+}
+
 const electionQuizStore = useElectionQuizStore()
 const mainStore = useMainStore()
+const partyCounts = ref({} as IObjectKeys)
 
 useHead({
   title: 'Den Historiske Valgtest – Parlamentet.dk',
@@ -28,5 +33,14 @@ useHead({
 
 onMounted(() => {
   mainStore.updateHeaderTitle('Den Historiske Valgtest')
+  // Update participation counts for parties
+  const present = electionQuizStore.quiz.flatMap((item) =>
+    item.yay.concat(item.nay).concat(item.absent_or_maybe)
+  )
+  for (const initial of present) {
+    partyCounts.value[initial] = partyCounts.value[initial]
+      ? partyCounts.value[initial] + 1
+      : 1
+  }
 })
 </script>

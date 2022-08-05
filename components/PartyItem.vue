@@ -15,7 +15,7 @@
         }"
       >
         <span
-          >{{ party.agreements }} / {{ electionQuizStore.quiz.length }} ({{
+          >{{ party.agreements }} / {{ presentCount }} ({{
             computedPct
           }}%)</span
         >
@@ -25,9 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { useElectionQuizStore } from '@/stores/electionQuiz'
-const electionQuizStore = useElectionQuizStore()
-
 const props = defineProps({
   party: {
     type: Object,
@@ -37,12 +34,15 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  presentCount: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
 })
 
 const computedPct = computed(() => {
-  return parseInt(
-    ((props.agreements / electionQuizStore.quiz.length) * 100).toFixed(0)
-  )
+  return parseInt(((props.agreements / props.presentCount) * 100).toFixed(0))
 })
 </script>
 

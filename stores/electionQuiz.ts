@@ -20,6 +20,7 @@ interface Election extends IObjectKeys {
   title: string
   yay: Array<string>
   nay: Array<string>
+  absent_or_maybe: Array<string>
   answer: string
 }
 
