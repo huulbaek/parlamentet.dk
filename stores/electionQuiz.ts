@@ -7,6 +7,7 @@ interface Party {
   color: string
   logo: string
   agreements: number
+  disagreements: number
 }
 
 interface IObjectKeys {
@@ -41,11 +42,19 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
   }),
   actions: {
     reply(answer: string) {
-      this.quiz[this.step].answer = answer
-      const initials: Array<string> = this.quiz[this.step][answer]
+      const quizStep = this.quiz[this.step]
+      quizStep.answer = answer
+      const initials: Array<string> = quizStep[answer]
       this.parties.forEach((party) => {
         if (initials.includes(party.initials)) {
           party.agreements++
+        } else {
+          const present = quizStep.yay
+            .concat(quizStep.nay)
+            .concat(quizStep.absent_or_maybe)
+          if (present.includes(party.initials)) {
+            party.disagreements++
+          }
         }
       })
       if (this.step < this.quiz.length - 1) {

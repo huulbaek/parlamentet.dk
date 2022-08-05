@@ -5,11 +5,7 @@
       :key="party.initials"
       class="h-10"
     >
-      <PartyItem
-        :party="party"
-        :agreements="party.agreements"
-        :present-count="partyCounts[party.initials]"
-      />
+      <PartyItem :party="party" :agreements="party.agreements" />
     </div>
   </div>
 </template>
@@ -17,11 +13,4 @@
 <script setup lang="ts">
 import { useElectionQuizStore } from '@/stores/electionQuiz'
 const electionQuizStore = useElectionQuizStore()
-
-defineProps({
-  partyCounts: {
-    type: Object,
-    required: true,
-  },
-})
 </script>

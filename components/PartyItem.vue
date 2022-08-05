@@ -15,7 +15,8 @@
         }"
       >
         <span
-          >{{ party.agreements }} / {{ presentCount }} ({{
+          >{{ party.agreements }} /
+          {{ party.agreements + party.disagreements }} ({{
             computedPct
           }}%)</span
         >
@@ -34,15 +35,19 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  presentCount: {
-    type: Number,
-    required: true,
-    default: 1,
-  },
 })
 
 const computedPct = computed(() => {
-  return parseInt(((props.agreements / props.presentCount) * 100).toFixed(0))
+  if (props.party.agreements + props.party.disagreements === 0) {
+    return 0
+  }
+  return parseInt(
+    (
+      (props.agreements /
+        (props.party.agreements + props.party.disagreements)) *
+      100
+    ).toFixed(0)
+  )
 })
 </script>
 
