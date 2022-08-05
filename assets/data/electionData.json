@@ -1,22 +1,11 @@
 [
   {
-    "ftid": "B 30",
-    "samling": "2013-14",
-    "link": "https://www.ft.dk/samling/20131/beslutningsforslag/b30/index.htm",
-    "title": "Skulle vi have stoppet for salget af DONG?",
-    "yay": [
-      "DF",
-      "EL",
-      "ALT"
-    ],
-    "nay": [
-      "V",
-      "S",
-      "RV",
-      "SF",
-      "LA",
-      "KF"
-    ],
+    "ftid": "B 189",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/beslutningsforslag/b189/index.htm",
+    "title": "Det skal være gratis at køre over Storebæltsbroen",
+    "yay": ["NB"],
+    "nay": ["S", "V", "SF", "RV", "EL", "KF", "DF", "LA", "FG"],
     "absent_or_maybe": [],
     "answer": ""
   },
@@ -38,7 +27,7 @@
       "KF"
     ],
     "absent_or_maybe": ["ALT"],
-    "answer":""
+    "answer": ""
   },
   {
     "ftid": "B 15",
@@ -58,7 +47,7 @@
       "LA"
     ],
     "absent_or_maybe": ["ALT"],
-    "answer":""
+    "answer": ""
   },
   {
     "ftid": "B 4",
@@ -73,6 +62,34 @@
       "LA"
     ],
     "absent_or_maybe": [],
-    "answer":""
+    "answer": ""
+  },
+  {
+    "ftid": "B 179",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/beslutningsforslag/b179/index.htm",
+    "title": "Skal vi have en folkeafstemning om legalisering af cannabis?",
+    "yay": [
+      "ALT", "FG", "NB"
+    ],
+    "nay": [
+      "S", "V", "SF", "RV", "KF", "DF", "LA"
+    ],
+    "absent_or_maybe": ["EL"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 174",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/beslutningsforslag/b174/index.htm",
+    "title": "Skal der være et årligt loft over antallet af tildelte permanente opholdstilladelser?",
+    "yay": [
+      "KF", "DF", "NB"
+    ],
+    "nay": [
+      "S", "V", "SF", "RV", "EL", "LA", "FG", "ALT"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
   }
 ]
