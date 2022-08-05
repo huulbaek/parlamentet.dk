@@ -61,7 +61,7 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
   },
   getters: {
     quizResult(): Array<Party> {
-      const parties = metaData.parties
+      const parties = this.parties
       parties.forEach((party) => {
         party.agreements = 0
       })
