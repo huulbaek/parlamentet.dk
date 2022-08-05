@@ -4,9 +4,11 @@
       {{ question.title }}
     </h1>
     <div class="mb-10 flex w-full items-center justify-center">
-      <button v-if="electionQuizStore.step !== 0" @click="previousStep">
-        <RewindIcon class="block h-20 w-20 text-yellow-600" />
-      </button>
+      <div class="h-20 w-20">
+        <button v-if="electionQuizStore.step !== 0" @click="previousStep">
+          <RewindIcon class="block h-20 w-20 text-yellow-600" />
+        </button>
+      </div>
       <button>
         <ThumbUpIcon
           class="block h-20 w-20 text-green-500"
@@ -19,12 +21,14 @@
           @click="updateAnswer('nay')"
         />
       </button>
-      <button
-        v-if="electionQuizStore.step < electionQuizStore.quiz.length - 1"
-        @click="nextStep"
-      >
-        <FastForwardIcon class="block h-20 w-20 text-yellow-600" />
-      </button>
+      <div class="h-20 w-20">
+        <button
+          v-if="electionQuizStore.step < electionQuizStore.quiz.length - 1"
+          @click="nextStep"
+        >
+          <FastForwardIcon class="block h-20 w-20 text-yellow-600" />
+        </button>
+      </div>
     </div>
     <div>
       <a
