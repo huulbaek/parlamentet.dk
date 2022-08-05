@@ -42,8 +42,8 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
   }),
   actions: {
     reply(answer: string) {
-      const quizStep = this.quiz[this.step]
-      quizStep.answer = answer
+      this.quiz[this.step].answer = answer
+      /*
       const initials: Array<string> = quizStep[answer]
       this.parties.forEach((party) => {
         if (initials.includes(party.initials)) {
@@ -57,6 +57,7 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
           }
         }
       })
+      */
       if (this.step < this.quiz.length - 1) {
         this.step++
       }
@@ -73,15 +74,20 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
       const parties = this.parties
       parties.forEach((party) => {
         party.agreements = 0
+        party.disagreements = 0
       })
       this.quiz.forEach((item) => {
         if (item.answer !== '') {
-          item[item.answer].forEach((initial: string) => {
-            parties.forEach((party) => {
-              if (party.initials === initial) {
-                party.agreements++
-              }
-            })
+          const agreedInitials = item[item.answer]
+          const allInitials = item.yay
+            .concat(item.nay)
+            .concat(item.absent_or_maybe)
+          parties.forEach((party) => {
+            if (agreedInitials.includes(party.initials)) {
+              party.agreements++
+            } else if (allInitials.includes(party.initials)) {
+              party.disagreements++
+            }
           })
         }
       })
