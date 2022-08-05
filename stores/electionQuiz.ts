@@ -24,11 +24,20 @@ interface Election extends IObjectKeys {
   answer: string
 }
 
+function shuffleArray(arr: Party[]): Party[] {
+  const array = arr
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[array[i], array[j]] = [array[j], array[i]]
+  }
+  return array
+}
+
 export const useElectionQuizStore = defineStore('electionQuiz', {
   state: () => ({
     quiz: electionData as Election[],
     step: 0,
-    parties: metaData.parties,
+    parties: shuffleArray(metaData.parties),
   }),
   actions: {
     reply(answer: string) {
