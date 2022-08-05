@@ -9,3 +9,11 @@ div#__nuxt {
 .router-link-active {
   @apply bg-gray-900 text-white;
 }
+
+h1 {
+  @apply text-3xl;
+}
+
+p {
+  @apply mt-5;
+}

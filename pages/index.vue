@@ -1,26 +1,26 @@
 <template>
   <div>
-    <h1 class="text-3xl">Velkommen til Parlamentet.dk</h1>
-    <p class="mt-5">
+    <h1>Velkommen til Parlamentet.dk</h1>
+    <p>
       Her finder du det nye <em>Parlamentet.dk</em>, som er noget, som vi ikke
       helt ved, hvad skal være endnu.
     </p>
-    <p class="mt-5">
+    <p>
       Det gamle Parlamentet.dk var en applikation, hvor alle lov- og
       beslutningsforslag fra Folketinget var tilgængelige for alle, så
       kompetente mennesker kunne skrive resumeer af dem og de kunne debatteres
       og til sidst stemmes om.
     </p>
-    <p class="mt-5">
+    <p>
       Det var også et system, hvor man kunne fremsætte egne forslag, som så blev
       sendt videre til Folketingets medlemmer, hvis de blev vedtaget.
     </p>
-    <p class="mt-5">
+    <p>
       Det led af forfald og den tekniske gæld blev for stor. I dag er det et
       open source projekt, hvor tanken er at tage det bedste med videre – til at
       starte med er det den historiske valgquiz.
     </p>
-    <p class="mt-5">
+    <p>
       Hvis du vil arbejde på projektet, så kan du finde det her:
       <a
         class="text-blue-500 hover:text-blue-700"
