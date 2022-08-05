@@ -59,5 +59,20 @@
     ],
     "absent_or_maybe": ["ALT"],
     "answer":""
+  },
+  {
+    "ftid": "B 4",
+    "samling": "2019-20",
+    "link": "https://www.ft.dk/samling/20191/beslutningsforslag/b4/index.htm",
+    "title": "Skal vi have en klimalov?",
+    "yay": [
+      "S", "V", "DF", "RV", "SF", "EL", "KF", "ALT", "FG"
+    ],
+    "nay": [
+      "NB",
+      "LA"
+    ],
+    "absent_or_maybe": [],
+    "answer":""
   }
 ]
