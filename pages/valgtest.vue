@@ -24,6 +24,13 @@ const mainStore = useMainStore()
 
 useHead({
   title: 'Folketingsvalg 2022 – Den Historiske Valgtest – Parlamentet.dk',
+  meta: [
+    {
+      hid: 'og:image',
+      property: 'og:image',
+      content: process.client ? `${window.location.origin}/valgtest.jpg` : '',
+    },
+  ],
 })
 
 onMounted(() => {
