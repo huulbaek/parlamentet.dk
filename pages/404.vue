@@ -9,11 +9,7 @@
       </p>
       <p>
         Det kan være, at den kommer igen engang; tjek planerne på
-        <a
-          class="text-blue-500 hover:text-blue-700"
-          href="https://github.com/huulbaek/parlamentet.dk"
-          >GitHub</a
-        >
+        <a href="https://github.com/huulbaek/parlamentet.dk">GitHub</a>
       </p>
     </div>
   </div>

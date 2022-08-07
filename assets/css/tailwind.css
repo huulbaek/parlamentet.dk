@@ -17,3 +17,10 @@ h1 {
 p {
   @apply mt-5;
 }
+
+a {
+  color: #47c691;
+}
+a:hover {
+  text-decoration: underline;
+}

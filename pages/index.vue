@@ -18,15 +18,11 @@
     <p>
       Det led af forfald og den tekniske gæld blev for stor. I dag er det et
       open source projekt, hvor tanken er at tage det bedste med videre – til at
-      starte med er det den historiske valgquiz.
+      starte med er det den historiske valgtest.
     </p>
     <p>
       Hvis du vil arbejde på projektet, så kan du finde det her:
-      <a
-        class="text-blue-500 hover:text-blue-700"
-        href="https://github.com/huulbaek/parlamentet.dk"
-        >GitHub</a
-      >
+      <a href="https://github.com/huulbaek/parlamentet.dk">GitHub</a>
     </p>
   </div>
 </template>

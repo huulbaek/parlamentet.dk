@@ -1,8 +1,12 @@
 <template>
-  <div class="bg-gray-800 pb-32">
-    <Disclosure v-slot="{ open }" as="nav" class="bg-gray-800">
+  <div class="bg-gradient-to-r from-gray-700 via-gray-900 to-black pb-32">
+    <Disclosure
+      v-slot="{ open }"
+      as="nav"
+      class="bg-gradient-to-r from-gray-700 via-gray-900 to-black"
+    >
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div class="border-b border-gray-700">
+        <div class="border-b border-gray-200">
           <div class="flex h-16 items-center justify-between px-4 sm:px-0">
             <div class="flex items-center">
               <div class="flex-shrink-0">
@@ -58,7 +62,9 @@
     </Disclosure>
     <header class="py-10">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-white">
+        <h1
+          class="tracking-tighest mt-1 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-4xl font-extrabold uppercase text-transparent sm:text-5xl lg:text-7xl"
+        >
           {{ mainStore.headerTitle }}
         </h1>
       </div>
@@ -74,6 +80,6 @@ const mainStore = useMainStore()
 
 const navigation = [
   { name: 'Om Parlamentet', href: '/' },
-  { name: 'Valgquiz', href: '/valgtest' },
+  { name: 'Valgtest', href: '/valgtest' },
 ]
 </script>

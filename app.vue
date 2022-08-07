@@ -19,7 +19,7 @@ useHead({
     class: 'h-full',
   },
   htmlAttrs: {
-    class: 'h-full bg-gray-100',
+    class: 'h-full bg-gradient-to-r from-gray-100 to-gray-300',
   },
 })
 </script>

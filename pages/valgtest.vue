@@ -38,6 +38,6 @@ useHead({
 })
 
 onMounted(() => {
-  mainStore.updateHeaderTitle('Folketingsvalg 2022 – Den Historiske Valgquiz')
+  mainStore.updateHeaderTitle('Folketingsvalg 2022 – Den Historiske Valgtest')
 })
 </script>
