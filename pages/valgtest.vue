@@ -27,7 +27,7 @@ useHead({
   meta: [
     {
       property: 'og:image',
-      content: 'https://parlamentet-dk.vercel.app//valgtest.jpg',
+      content: 'https://parlamentet-dk.vercel.app/valgtest.jpg',
     },
     {
       property: 'description',
