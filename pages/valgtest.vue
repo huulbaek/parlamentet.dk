@@ -26,9 +26,13 @@ useHead({
   title: 'Folketingsvalg 2022 – Den Historiske Valgtest – Parlamentet.dk',
   meta: [
     {
-      hid: 'og:image',
       property: 'og:image',
-      content: process.client ? `${window.location.origin}/valgtest.jpg` : '',
+      content: 'https://parlamentet-dk.vercel.app//valgtest.jpg',
+    },
+    {
+      property: 'description',
+      content:
+        'Du kan på denne side afgive din stemme til udvalgte forslag fra folketinget. Folketingets medlemmer har allerede afgivet deres stemme til forslagene, så når du har afgivet dine stemmer, kan du se, hvor enig du i virkeligheden er med folketingets partier.',
     },
   ],
 })
