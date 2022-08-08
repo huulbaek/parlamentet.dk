@@ -71,8 +71,9 @@ const updateAnswer = (answer: string) => {
   if (!electionQuizStore.hasScrolled) {
     electionQuizStore.setScroll(true)
     window.scrollTo(0, 0)
-    const element = document.getElementsByTagName('main')[0]
-    element.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+    document
+      .getElementById('quiz-progress')
+      ?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   }
 }
 </script>
