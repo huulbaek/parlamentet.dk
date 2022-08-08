@@ -39,6 +39,7 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
     quiz: electionData as Election[],
     step: 0,
     parties: shuffleArray(metaData.parties),
+    hasScrolled: false,
   }),
   actions: {
     reply(answer: string) {
@@ -52,6 +53,9 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
     },
     previousStep() {
       this.step--
+    },
+    setScroll(val: boolean) {
+      this.hasScrolled = val
     },
   },
   getters: {

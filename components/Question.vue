@@ -68,5 +68,11 @@ const previousStep = () => {
 
 const updateAnswer = (answer: string) => {
   electionQuizStore.reply(answer)
+  if (!electionQuizStore.hasScrolled) {
+    electionQuizStore.setScroll(true)
+    window.scrollTo(0, 0)
+    const element = document.getElementsByTagName('main')[0]
+    element.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }
 }
 </script>
