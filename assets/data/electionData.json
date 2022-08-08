@@ -91,5 +91,47 @@
     ],
     "absent_or_maybe": [],
     "answer": ""
+  },
+  {
+    "ftid": "B 179",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/beslutningsforslag/b179/index.htm",
+    "title": "Skal vi have en folkeafstemning om legalisering af cannabis?",
+    "yay": [
+      "ALT", "FG", "NB"
+    ],
+    "nay": [
+      "S", "V", "SF", "RV", "KF", "DF", "LA"
+    ],
+    "absent_or_maybe": ["EL"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 71",
+    "samling": "2015-16",
+    "link": "https://www.ft.dk/samling/20151/beslutningsforslag/B71/index.htm",
+    "title": "Skal sommerhusreglen afskaffes?",
+    "yay": [
+      "LA", "ALT"
+    ],
+    "nay": [
+      "S", "DF", "V", "EL", "RV", "SF", "KF"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "L 50",
+    "samling": "2014-165",
+    "link": "https://www.ft.dk/samling/20141/lovforslag/L50/index.htm",
+    "title": "Skal der gøres øget brug af samfundstjeneste i stedet for fængsel?",
+    "yay": [
+      "S", "RV", "SF", "EL", "ALT"
+    ],
+    "nay": [
+      "V", "DF", "LA", "KF"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
   }
 ]
