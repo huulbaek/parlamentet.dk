@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
-  buildModules: ['@pinia/nuxt', '@vueuse/nuxt'],
+  buildModules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxtjs/web-vitals'],
   vueuse: {
     ssrHandlers: true,
   },
