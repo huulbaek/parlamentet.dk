@@ -119,5 +119,47 @@
     ],
     "absent_or_maybe": [],
     "answer": ""
+  },
+  {
+    "ftid": "L 121",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/lovforslag/L121/index.htm",
+    "title": "Skulle fradragsret for håndværksydelser efter boligjobordningen afskaffes?",
+    "yay": [
+      "S", "SF", "RV", "EL", "FG"
+    ],
+    "nay": [
+      "V", "KF", "DF"
+    ],
+    "absent_or_maybe": ["NB", "LA", "ALT"],
+    "answer": ""
+  },
+  {
+    "ftid": "L 104",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/lovforslag/l104/index.htm",
+    "title": "Skulle der indføres øremærket barsel til fædre?",
+    "yay": [
+      "S", "V", "SF", "RV", "EL", "FG", "ALT"
+    ],
+    "nay": [
+      "KF", "DF", "NB", "LA"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "L 192",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/lovforslag/l192/index.htm",
+    "title": "Skulle der være vederlagsfri tandpleje for 18-21-årige?",
+    "yay": [
+      "S", "SF", "RV", "EL", "DF", "FG", "ALT"
+    ],
+    "nay": [
+      "KF", "NB", "LA"
+    ],
+    "absent_or_maybe": ["V"],
+    "answer": ""
   }
 ]
