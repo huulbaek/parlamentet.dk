@@ -87,6 +87,6 @@ const mainStore = useMainStore()
 
 const navigation = [
   { name: 'Om Parlamentet', href: '/' },
-  { name: 'Valgtest', href: '/valgtest' },
+  { name: 'Valgtest', href: '/folketingsvalg-2022-valgtest' },
 ]
 </script>
