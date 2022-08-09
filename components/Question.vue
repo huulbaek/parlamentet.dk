@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full flex-col items-center justify-center">
-    <h1 class="mb-10 text-center text-3xl font-bold">
+    <h1 class="mb-10 text-center text-3xl font-bold italic">
       {{ question.title }}
     </h1>
     <div class="mb-10 flex w-full items-center justify-center">
