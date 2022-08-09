@@ -23,7 +23,7 @@
       </button>
       <div class="h-20 w-20">
         <button
-          v-if="electionQuizStore.step < electionQuizStore.quiz.length - 1"
+          v-if="electionQuizStore.step < electionQuizStore.quiz.length"
           @click="nextStep"
         >
           <FastForwardIcon class="block h-20 w-20 text-yellow-600" />

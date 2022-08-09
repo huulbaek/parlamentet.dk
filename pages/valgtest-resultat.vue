@@ -2,6 +2,12 @@
   <div>
     <div class="grid sm:grid-rows-2 md:grid-cols-2">
       <Parties class="order-last md:order-first" :parties="parties" />
+      <div class="lg:ml-4">
+        <h1>Lidt om data</h1>
+        <p>
+          Testen er i alt taget <strong>{{ meta.count }}</strong> gange.
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -12,9 +18,13 @@ import type { Party } from '@/stores/electionQuiz'
 
 const mainStore = useMainStore()
 const parties = ref([])
+const meta = ref({
+  count: 0,
+})
 
 useHead({
-  title: 'Resultat – Den Historiske Valgtest – Parlamentet.dk',
+  title:
+    'Resultat af Den Historiske Valgtest – Folketingsvalg 2022 – Parlamentet.dk',
   meta: [
     {
       property: 'og:image',
@@ -22,13 +32,13 @@ useHead({
     },
     {
       property: 'description',
-      content: 'Gennemsnitligt resultat af valgtesten',
+      content: 'Gennemsnitligt resultat af valgtesten for folketingsvalg 2022',
     },
   ],
 })
 
 onMounted(() => {
-  mainStore.updateHeaderTitle('Resultat – Den Historiske Valgtest')
+  mainStore.updateHeaderTitle('Resultat af Den Historiske Valgtest')
   getResults()
 })
 
@@ -40,7 +50,7 @@ const getResults = async () => {
     },
   })
   const json = await response.json()
-  json.sort((a: Party, b: Party) => {
+  json.parties.sort((a: Party, b: Party) => {
     let aaa = a.agreements / (a.disagreements + a.disagreements)
     let bbb = b.agreements / (b.disagreements + b.disagreements)
     if (a.agreements + a.disagreements === 0) {
@@ -51,6 +61,7 @@ const getResults = async () => {
     }
     return bbb - aaa
   })
-  parties.value = json
+  parties.value = json.parties
+  meta.value.count = json.count
 }
 </script>

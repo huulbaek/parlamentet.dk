@@ -44,7 +44,7 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
   actions: {
     reply(answer: string) {
       this.quiz[this.step].answer = answer
-      if (this.step < this.quiz.length - 1) {
+      if (this.step < this.quiz.length) {
         this.step++
       }
     },

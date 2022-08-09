@@ -11,18 +11,45 @@
     </div>
     <div class="grid sm:grid-rows-2 md:grid-cols-2">
       <Parties class="order-last md:order-first" />
-      <Question class="mb-10" />
+      <Question
+        v-if="electionQuizStore.step < electionQuizStore.quiz.length"
+        class="lg:ml-5"
+      />
+      <div
+        v-if="electionQuizStore.step === electionQuizStore.quiz.length"
+        class="text-xl lg:ml-5"
+      >
+        <h1>Færdig!</h1>
+        <p>
+          Du er nået til enden. Om du kan bruge denne test til noget, er helt op
+          til dig selv.
+        </p>
+        <p>
+          Du kan se det samlede
+          <NuxtLink to="/valgtest-resultat">resultat her.</NuxtLink>
+        </p>
+        <div class="h-20 w-20">
+          <button v-if="electionQuizStore.step !== 0" @click="previousStep">
+            <RewindIcon class="block h-20 w-20 text-yellow-600" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { RewindIcon } from '@heroicons/vue/solid/esm/index.js'
 import { useElectionQuizStore } from '@/stores/electionQuiz'
 import { useMainStore } from '@/stores/main'
 
 const electionQuizStore = useElectionQuizStore()
 const mainStore = useMainStore()
 const resultIsSaved = ref(false)
+
+const previousStep = () => {
+  electionQuizStore.previousStep()
+}
 
 useHead({
   title: 'Folketingsvalg 2022 – Den Historiske Valgtest – Parlamentet.dk',
@@ -53,14 +80,12 @@ electionQuizStore.$subscribe((_mutation, state) => {
 })
 
 const saveResult = async () => {
-  const response = await fetch('/api/election', {
+  await fetch('/api/election', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(electionQuizStore.quizResult),
   })
-  const json = await response.json()
-  console.log(json)
 }
 </script>

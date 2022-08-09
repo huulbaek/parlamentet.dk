@@ -3,6 +3,8 @@ import { PrismaClient } from '@prisma/client'
 export default defineEventHandler(async () => {
   const prisma = new PrismaClient()
 
+  const count = await prisma.quiz.count()
+
   const r = await prisma.quizResults.groupBy({
     by: ['initials', 'logo', 'color'],
     _sum: {
@@ -21,5 +23,8 @@ export default defineEventHandler(async () => {
     }
   })
 
-  return parties
+  return {
+    parties,
+    count,
+  }
 })
