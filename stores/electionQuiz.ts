@@ -81,5 +81,20 @@ export const useElectionQuizStore = defineStore('electionQuiz', {
       })
       return parties
     },
+    sortedQuizResult(): Array<Party> {
+      return [...this.quizResult].sort((a, b) => {
+        let aaa = a.agreements / (a.disagreements + a.disagreements)
+        let bbb = b.agreements / (b.disagreements + b.disagreements)
+        if (a.agreements + a.disagreements === 0) {
+          aaa = 0
+        }
+        if (b.agreements + b.disagreements === 0) {
+          bbb = 0
+        }
+        return bbb - aaa
+      })
+    },
   },
 })
+
+export type { Party }

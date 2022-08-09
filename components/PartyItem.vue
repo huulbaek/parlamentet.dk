@@ -1,5 +1,5 @@
 <template>
-  <div class="my-2 flex">
+  <div class="my-2 flex h-10">
     <img
       :src="party.logo"
       class="h-10"
@@ -31,10 +31,6 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  agreements: {
-    type: Number,
-    required: true,
-  },
 })
 
 const computedPct = computed(() => {
@@ -43,7 +39,7 @@ const computedPct = computed(() => {
   }
   return parseInt(
     (
-      (props.agreements /
+      (props.party.agreements /
         (props.party.agreements + props.party.disagreements)) *
       100
     ).toFixed(0)

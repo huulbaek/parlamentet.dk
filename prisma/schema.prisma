@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./db.db"
+}
+
+model Quiz {
+  id Int        @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  quizResults   QuizResults[]
+}
+
+model QuizResults {
+  id Int        @id @default(autoincrement())
+  initials      String
+  color         String?
+  logo          String?
+  agreements    Int
+  disagreements Int
+  quizId        Int
+  quiz          Quiz @relation(fields: [quizId], references: [id])
+  createdAt     DateTime @default(now())
+}

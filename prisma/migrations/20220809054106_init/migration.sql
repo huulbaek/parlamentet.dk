@@ -1,0 +1,18 @@
+-- CreateTable
+CREATE TABLE "Quiz" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CreateTable
+CREATE TABLE "QuizResults" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "initials" TEXT NOT NULL,
+    "color" TEXT,
+    "logo" TEXT,
+    "agreements" INTEGER NOT NULL,
+    "disagreements" INTEGER NOT NULL,
+    "quizId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "QuizResults_quizId_fkey" FOREIGN KEY ("quizId") REFERENCES "Quiz" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);

@@ -22,6 +22,7 @@ import { useMainStore } from '@/stores/main'
 
 const electionQuizStore = useElectionQuizStore()
 const mainStore = useMainStore()
+const resultIsSaved = ref(false)
 
 useHead({
   title: 'Folketingsvalg 2022 – Den Historiske Valgtest – Parlamentet.dk',
@@ -41,4 +42,25 @@ useHead({
 onMounted(() => {
   mainStore.updateHeaderTitle('Folketingsvalg 2022 – Den Historiske Valgtest')
 })
+
+electionQuizStore.$subscribe((_mutation, state) => {
+  if (state.step === state.quiz.length - 1) {
+    if (!resultIsSaved.value) {
+      resultIsSaved.value = true
+      saveResult()
+    }
+  }
+})
+
+const saveResult = async () => {
+  const response = await fetch('/api/election', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(electionQuizStore.quizResult),
+  })
+  const json = await response.json()
+  console.log(json)
+}
 </script>
