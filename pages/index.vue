@@ -1,10 +1,7 @@
 <template>
   <div>
     <h1>Velkommen til Parlamentet.dk</h1>
-    <p>
-      Her finder du det nye <em>Parlamentet.dk</em>, som er noget, som vi ikke
-      helt ved, hvad skal være endnu.
-    </p>
+    <p>Her finder du det nye <em>Parlamentet.dk</em>.</p>
     <p>
       Det gamle Parlamentet.dk var en applikation, hvor alle lov- og
       beslutningsforslag fra Folketinget var tilgængelige for alle, så

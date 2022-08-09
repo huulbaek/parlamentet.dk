@@ -35,7 +35,7 @@
         :href="question.link"
         target="_blank"
         type="button"
-        class="inline-flex items-center rounded-full border border-transparent bg-blue-600 px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        class="inline-flex items-center rounded-full border border-transparent bg-gray-700 px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         LÆS MERE OM FORSLAGET
       </a>
