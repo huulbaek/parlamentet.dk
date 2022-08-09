@@ -70,7 +70,6 @@ const updateAnswer = (answer: string) => {
   electionQuizStore.reply(answer)
   if (!electionQuizStore.hasScrolled) {
     electionQuizStore.setScroll(true)
-    window.scrollTo(0, 0)
     document
       .getElementById('quiz-progress')
       ?.scrollIntoView({ block: 'start', behavior: 'smooth' })
