@@ -13,7 +13,7 @@
     "ftid": "B 69",
     "samling": "2013-14",
     "link": "https://www.ft.dk/samling/20131/beslutningsforslag/b69/index.htm",
-    "title": "Skulle vi tilbyde Edward Snowden opholdstilladelse?",
+    "title": "Skal vi tilbyde Edward Snowden opholdstilladelse?",
     "yay": [
       "EL"
     ],
@@ -152,7 +152,7 @@
     "ftid": "L 192",
     "samling": "2021-22",
     "link": "https://www.ft.dk/samling/20211/lovforslag/l192/index.htm",
-    "title": "Skulle der være vederlagsfri tandpleje for 18-21-årige?",
+    "title": "Skal der være vederlagsfri tandpleje for 18-21-årige?",
     "yay": [
       "S", "SF", "RV", "EL", "DF", "FG", "ALT"
     ],
@@ -160,6 +160,146 @@
       "KF", "NB", "LA"
     ],
     "absent_or_maybe": ["V"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 134",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b134/index.htm",
+    "title": "Skulle der rejses tiltale ved Rigsretten mod Inger Støjberg for overtrædelse af ministeransvarlighedsloven?",
+    "yay": [
+      "S", "V", "RV", "SF", "EL", "KF", "LA", "ALT", "FG"
+    ],
+    "nay": [
+      "DF", "NB"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "B 214",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b214/index.htm",
+    "title": "Skal feriepengesystemet afskaffes?",
+    "yay": [
+      "KF", "NB", "LA"
+    ],
+    "nay": [
+      "S", "V", "DF", "SF", "RV", "EL", "ALT", "KD", "FG"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "B 7",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b7/index.htm",
+    "title": "Skal der indføres af 18-årsmindstealder for omskæring af raske børn?",
+    "yay": [
+      "DF", "SF", "EL", "NB", "LA"
+    ],
+    "nay": [
+      "S", "V", "RV", "KF"
+    ],
+    "absent_or_maybe": ["ALT"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 19",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b19/index.htm",
+    "title": "Skal der indkales til forhandlinger om en natur- og biodiversitetspakke med bindende målsætninger?",
+    "yay": [
+      "V", "DF", "KF", "NB", "LA", "FG"
+    ],
+    "nay": [
+      "S", "SF", "RV", "EL"
+    ],
+    "absent_or_maybe": ["ALT"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 40",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b40/index.htm",
+    "title": "Skal der være en whistleblowerordning for ansatte i forsvarets og politiets efterretningstjenester?",
+    "yay": [
+      "RV", "SF", "EL", "LA", "ALT", "FG"
+    ],
+    "nay": [
+      "S", "V", "DF", "KF", "NB"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "B 45",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b45/index.htm",
+    "title": "Skal der være en grøn valgmulighed i alle offentlige køkkener?",
+    "yay": [
+      "SF", "EL", "ALT", "FG"
+    ],
+    "nay": [
+      "S", "V", "DF", "KF", "NB", "LA"
+    ],
+    "absent_or_maybe": ["RV", "KD"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 47",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b47/index.htm",
+    "title": "Skal det være forbudt at bære islamisk tørklæde i offentlige institutioner?",
+    "yay": [
+      "DF", "NB"
+    ],
+    "nay": [
+      "S", "V", "SF", "RV", "EL", "KF", "LA", "ALT", "FG"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "B 94",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b94/index.htm",
+    "title": "Skal selskabsskatten sænkes med 1%?",
+    "yay": [
+      "DF", "KF", "NB", "LA"
+    ],
+    "nay": [
+      "S", "V", "SF", "RV", "EL"
+    ],
+    "absent_or_maybe": ["ALT"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 132",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b132/index.htm",
+    "title": "Skal det være forbudt for private at købe fyrværkeri?",
+    "yay": [
+      "ALT", "FG"
+    ],
+    "nay": [
+      "S", "V", "DF", "SF", "RV", "KF", "NB", "LA", "KD"
+    ],
+    "absent_or_maybe": ["EL"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 173",
+    "samling": "2020-21",
+    "link": "https://www.ft.dk/samling/20201/beslutningsforslag/b173/index.htm",
+    "title": "Skal der være gratis adgang til menstruationsprodukter?",
+    "yay": [
+      "ALT", "FG"
+    ],
+    "nay": [
+      "S", "V", "DF", "SF", "RV", "KF", "NB", "LA", "KD"
+    ],
+    "absent_or_maybe": ["EL"],
     "answer": ""
   }
 ]
