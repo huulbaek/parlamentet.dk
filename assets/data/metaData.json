@@ -76,6 +76,13 @@
       "logo": "/NB.png",
       "agreements": 0,
       "disagreements": 0
+    },
+    {
+      "initials": "KD",
+      "color": "#515e95",
+      "logo": "/KD.png",
+      "agreements": 0,
+      "disagreements": 0
     }
   ]
 }
