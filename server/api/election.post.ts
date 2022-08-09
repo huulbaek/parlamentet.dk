@@ -16,20 +16,7 @@ export default defineEventHandler(async (event) => {
   const quiz = await prisma.quiz.create({
     data: {},
   })
-
-  const results = [] as QuizResults[]
-
-  /*
-  body.forEach(async (item: QuizResults) => {
-    item.quizId = quiz.id
-    const what = await prisma.quizResults.create({
-      data: item,
-    })
-    results.push(what)
-  })
-  */
-
-  const test = await prisma.quizResults.createMany({
+  const r = await prisma.quizResults.createMany({
     data: body.map((item: QuizResults) => {
       return {
         ...item,
@@ -39,8 +26,6 @@ export default defineEventHandler(async (event) => {
   })
 
   return {
-    result: quiz,
-    results,
-    test,
+    result: r,
   }
 })
