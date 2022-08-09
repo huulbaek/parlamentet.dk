@@ -4,8 +4,8 @@ type QuizResults = {
   initials: string
   agreements: number
   disagreements: number
-  logo?: string
-  color?: string
+  logo: string | null
+  color: string | null
   quizId: number
 }
 
@@ -17,15 +17,18 @@ export default defineEventHandler(async (event) => {
     data: {},
   })
 
+  const results = [] as QuizResults[]
+
   body.forEach(async (item: QuizResults) => {
     item.quizId = quiz.id
     const what = await prisma.quizResults.create({
       data: item,
     })
-    console.log(what)
+    results.push(what)
   })
 
   return {
-    result: 'success',
+    result: quiz,
+    results,
   }
 })
