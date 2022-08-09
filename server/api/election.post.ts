@@ -19,9 +19,10 @@ export default defineEventHandler(async (event) => {
 
   body.forEach(async (item: QuizResults) => {
     item.quizId = quiz.id
-    await prisma.quizResults.create({
+    const what = await prisma.quizResults.create({
       data: item,
     })
+    console.log(what)
   })
 
   return {
