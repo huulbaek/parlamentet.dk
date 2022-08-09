@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./db.db"
+  provider = "postgresql"
+  url      = env("DB_URL")
 }
 
 model Quiz {

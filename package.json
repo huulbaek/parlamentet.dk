@@ -14,7 +14,7 @@
     "format-write": "npx prettier --write ./",
     "test": "vitest",
     "test:e2e": "testcafe chrome tests/e2e/",
-    "vercel-build": "npx prisma generate && npx prisma migrate deploy && nuxt build",
+    "vercel-build": "prisma generate && npx prisma migrate deploy && nuxt build",
     "prisma:generate": "npx prisma generate"
   },
   "lint-staged": {
