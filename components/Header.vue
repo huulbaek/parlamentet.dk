@@ -14,7 +14,7 @@
                   <img
                     class="h-8 w-8"
                     src="/favicon.png"
-                    alt="Parlamentet.dk"
+                    alt="Parlamentet.dk logo"
                   />
                 </NuxtLink>
               </div>
@@ -28,6 +28,13 @@
                     >{{ item.name }}</NuxtLink
                   >
                 </div>
+              </div>
+            </div>
+            <div class="hidden md:block">
+              <div class="ml-4 flex items-center md:ml-6">
+                <a href="https://github.com/huulbaek/parlamentet.dk">
+                  <img src="/github.png" class="h-8" alt="Github logo" />
+                </a>
               </div>
             </div>
             <div class="-mr-2 flex md:hidden">
