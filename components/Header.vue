@@ -69,11 +69,14 @@
     </Disclosure>
     <header class="py-10">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h1
-          class="tracking-tighest mt-1 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-4xl font-extrabold uppercase text-transparent sm:text-5xl lg:text-7xl"
-        >
-          {{ mainStore.headerTitle }}
-        </h1>
+        <Transition name="title" mode="out-in">
+          <h1
+            :key="mainStore.headerTitle"
+            class="tracking-tighest mt-1 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-4xl font-extrabold uppercase text-transparent sm:text-5xl lg:text-7xl"
+          >
+            <span>{{ mainStore.headerTitle }}</span>
+          </h1>
+        </Transition>
       </div>
     </header>
   </div>
@@ -90,3 +93,20 @@ const navigation = [
   { name: 'Valgtest', href: '/folketingsvalg-2022-valgtest' },
 ]
 </script>
+
+<style>
+.title-enter-active {
+  animation: title-in 0.5s;
+}
+.title-leave-active {
+  animation: title-in 0.5s reverse;
+}
+@keyframes title-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+</style>
