@@ -32,6 +32,12 @@ const mainStore = useMainStore()
 
 useHead({
   title: 'Parlamentet.dk – deltagende demokrati',
+  meta: [
+    {
+      property: 'description',
+      content: 'Vær med til at udvikle nye demokratiske værktøj.',
+    },
+  ],
 })
 
 onMounted(() => {

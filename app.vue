@@ -23,6 +23,7 @@ useHead({
   },
   htmlAttrs: {
     class: 'h-full bg-gradient-to-r from-gray-100 to-gray-300',
+    lang: 'da',
   },
 })
 </script>
