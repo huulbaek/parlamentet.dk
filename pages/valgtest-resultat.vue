@@ -3,8 +3,8 @@
     <div class="grid sm:grid-rows-2 md:grid-cols-2">
       <Parties class="order-last md:order-first" :parties="parties" />
       <div class="lg:ml-4">
-        <h1>Lidt om data</h1>
-        <p>
+        <h1 class="hidden md:block">Lidt om data</h1>
+        <p class="mb-5">
           Testen er i alt taget <strong>{{ meta.count }}</strong> gange.
         </p>
       </div>
