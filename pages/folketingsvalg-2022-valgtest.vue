@@ -9,7 +9,7 @@
         {{ electionQuizStore.quiz.length }}</span
       >
     </div>
-    <div class="grid sm:grid-rows-2 md:grid-cols-2">
+    <div class="grid md:grid-cols-2">
       <Parties class="order-last md:order-first" />
       <Question
         v-if="electionQuizStore.step < electionQuizStore.quiz.length"
