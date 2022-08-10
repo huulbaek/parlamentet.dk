@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full flex-col items-center justify-center">
-    <h1 class="mb-10 text-center text-3xl font-bold italic">
+    <h1 class="mb-10 mt-8 text-center text-3xl font-bold italic md:mt-0">
       {{ question.title }}
     </h1>
     <div class="mb-10 flex w-full items-center justify-center">
@@ -30,7 +30,7 @@
         </button>
       </div>
     </div>
-    <div>
+    <div class="hidden md:block">
       <a
         :href="question.link"
         target="_blank"
