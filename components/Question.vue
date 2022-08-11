@@ -71,11 +71,25 @@ const previousStep = () => {
 
 const updateAnswer = (answer: string) => {
   electionQuizStore.reply(answer)
+  saveAnswer(answer)
   if (!electionQuizStore.hasScrolled) {
     electionQuizStore.setScroll(true)
     document
       .getElementById('quiz-progress')
       ?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   }
+}
+
+const saveAnswer = (answer: string) => {
+  fetch('/api/vote', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      title: electionQuizStore.quiz[electionQuizStore.step].title,
+      vote: answer,
+    }),
+  })
 }
 </script>
