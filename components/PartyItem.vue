@@ -47,7 +47,7 @@ const computedPct = computed(() => {
 })
 </script>
 
-<style scoped>
+<style>
 .progress-bar {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
