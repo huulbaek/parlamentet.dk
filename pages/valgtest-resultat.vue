@@ -38,7 +38,7 @@ type Vote = {
   id: string
   title: string
   yay: string
-  nay: number
+  nay: string
 }
 
 const mainStore = useMainStore()
@@ -85,6 +85,7 @@ const getVotes = async () => {
     },
   })
   const json = await response.json()
+  json.sort((a: Vote, b: Vote) => Number(a.yay) - Number(b.yay))
   votes.value = json
 }
 

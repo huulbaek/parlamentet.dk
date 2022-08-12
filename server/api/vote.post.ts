@@ -6,12 +6,17 @@ export default defineEventHandler(async (event) => {
 
   const question = await prisma.question.upsert({
     where: {
-      title: body.title,
+      ftid_samling: {
+        ftid: body.ftid,
+        samling: body.samling,
+      },
     },
     update: {
       title: body.title,
     },
     create: {
+      ftid: body.ftid,
+      samling: body.samling,
       title: body.title,
     },
   })

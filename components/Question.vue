@@ -88,6 +88,8 @@ const saveAnswer = (answer: string) => {
     },
     body: JSON.stringify({
       title: electionQuizStore.quiz[electionQuizStore.step].title,
+      ftid: electionQuizStore.quiz[electionQuizStore.step].ftid,
+      samling: electionQuizStore.quiz[electionQuizStore.step].samling,
       vote: answer,
     }),
   })
