@@ -33,6 +33,10 @@ import { useMainStore } from '@/stores/main'
 
 const mainStore = useMainStore()
 
+onMounted(() => {
+  mainStore.updateHeaderTitle('Parlamentet.dk – deltagende demokrati')
+})
+
 useHead({
   title: 'Parlamentet.dk – deltagende demokrati',
   meta: [
@@ -40,10 +44,10 @@ useHead({
       property: 'description',
       content: 'Vær med til at udvikle nye demokratiske værktøj.',
     },
+    {
+      property: 'og:description',
+      content: 'Vær med til at udvikle nye demokratiske værktøj.',
+    },
   ],
-})
-
-onMounted(() => {
-  mainStore.updateHeaderTitle('Parlamentet.dk – deltagende demokrati')
 })
 </script>

@@ -48,21 +48,6 @@ const meta = ref({
 })
 const votes = ref<Vote[]>([])
 
-useHead({
-  title:
-    'Resultat af Den Historiske Valgtest – Folketingsvalg 2022 – Parlamentet.dk',
-  meta: [
-    {
-      property: 'og:image',
-      content: 'https://parlamentet-dk.vercel.app/valgtest.jpg',
-    },
-    {
-      property: 'description',
-      content: 'Gennemsnitligt resultat af valgtesten for folketingsvalg 2022',
-    },
-  ],
-})
-
 onMounted(() => {
   mainStore.updateHeaderTitle('Resultat af Den Historiske Valgtest')
   getResults()
@@ -114,4 +99,23 @@ const voteWidth = (vote: Vote, type: string): string => {
   }
   return `${width}%`
 }
+
+useHead({
+  title:
+    'Resultat af Den Historiske Valgtest – Folketingsvalg 2022 – Parlamentet.dk',
+  meta: [
+    {
+      property: 'og:image',
+      content: 'https://parlamentet-dk.vercel.app/valgtest.jpg',
+    },
+    {
+      property: 'description',
+      content: 'Gennemsnitligt resultat af valgtesten for folketingsvalg 2022',
+    },
+    {
+      property: 'og:description',
+      content: 'Gennemsnitligt resultat af valgtesten for folketingsvalg 2022',
+    },
+  ],
+})
 </script>

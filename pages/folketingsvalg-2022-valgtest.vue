@@ -51,21 +51,6 @@ const previousStep = () => {
   electionQuizStore.previousStep()
 }
 
-useHead({
-  title: 'Folketingsvalg 2022 – Den Historiske Valgtest – Parlamentet.dk',
-  meta: [
-    {
-      property: 'og:image',
-      content: 'https://parlamentet-dk.vercel.app/valgtest.jpg',
-    },
-    {
-      property: 'description',
-      content:
-        'Du kan på denne side afgive din stemme til udvalgte forslag fra folketinget. Folketingets medlemmer har allerede afgivet deres stemme til forslagene, så når du har afgivet dine stemmer, kan du se, hvor enig du i virkeligheden er med folketingets partier.',
-    },
-  ],
-})
-
 onMounted(() => {
   mainStore.updateHeaderTitle('Folketingsvalg 2022 – Den Historiske Valgtest')
 })
@@ -88,4 +73,24 @@ const saveResult = async () => {
     body: JSON.stringify(electionQuizStore.quizResult),
   })
 }
+
+useHead({
+  title: 'Folketingsvalg 2022 – Den Historiske Valgtest – Parlamentet.dk',
+  meta: [
+    {
+      property: 'og:image',
+      content: 'https://parlamentet-dk.vercel.app/valgtest.jpg',
+    },
+    {
+      property: 'description',
+      content:
+        'Du kan på denne side afgive din stemme til udvalgte forslag fra folketinget. Folketingets medlemmer har allerede afgivet deres stemme til forslagene, så når du har afgivet dine stemmer, kan du se, hvor enig du i virkeligheden er med folketingets partier.',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Du kan på denne side afgive din stemme til udvalgte forslag fra folketinget. Folketingets medlemmer har allerede afgivet deres stemme til forslagene, så når du har afgivet dine stemmer, kan du se, hvor enig du i virkeligheden er med folketingets partier.',
+    },
+  ],
+})
 </script>
