@@ -16,7 +16,10 @@
       Det led af forfald og den
       <a href="https://en.wikipedia.org/wiki/Technical_debt">tekniske gæld</a>
       blev for stor. I dag er det et open source projekt, hvor tanken er at tage
-      det bedste med videre – til at starte med er det den historiske valgtest.
+      det bedste med videre – til at starte med er det
+      <NuxtLink to="/folketingsvalg-2022-valgtest"
+        >den historiske valgtest</NuxtLink
+      >.
     </p>
     <p>
       Hvis du vil arbejde på projektet, så kan du finde det her:
