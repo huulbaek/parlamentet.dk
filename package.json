@@ -25,7 +25,7 @@
   "devDependencies": {
     "@nuxt/test-utils": "^3.0.0-rc.3",
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
-    "@pinia/nuxt": "^0.1.8",
+    "@pinia/nuxt": "^0.4.0",
     "@vueuse/nuxt": "^8.3.1",
     "axios": "^0.27.2",
     "cz-conventional-changelog": "3.3.0",
@@ -36,7 +36,7 @@
     "husky": "^7.0.0",
     "lint-staged": "^12.4.1",
     "msw": "^0.39.2",
-    "nuxt": "3.0.0-rc.1",
+    "nuxt": "npm:nuxt3@latest",
     "pinia": "^2.0.13",
     "prettier": "^2.6.2",
     "prettier-plugin-tailwindcss": "^0.1.10",
