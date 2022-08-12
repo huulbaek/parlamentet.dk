@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../prisma/client'
 
 type QuizResults = {
   initials: string
@@ -11,7 +11,6 @@ type QuizResults = {
 
 export default defineEventHandler(async (event) => {
   const body = await useBody(event)
-  const prisma = new PrismaClient()
 
   const quiz = await prisma.quiz.create({
     data: {},

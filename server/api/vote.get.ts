@@ -1,12 +1,11 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../prisma/client'
+
 // Fix for faulty bigint serialization
 ;(BigInt.prototype as any).toJSON = function () {
   return this.toString()
 }
 
 export default defineEventHandler(async () => {
-  const prisma = new PrismaClient()
-
   const result: Array<Object> =
     await prisma.$queryRaw`SELECT "Question".id, title,
     COUNT("Answers".id) FILTER (WHERE "Answers".vote = 'yay') as Yay, 

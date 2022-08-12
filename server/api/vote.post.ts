@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../prisma/client'
 
 export default defineEventHandler(async (event) => {
   const body = await useBody(event)
-  const prisma = new PrismaClient()
 
   const question = await prisma.question.upsert({
     where: {

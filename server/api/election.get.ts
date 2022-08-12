@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../prisma/client'
 
 export default defineEventHandler(async () => {
-  const prisma = new PrismaClient()
-
   const count = await prisma.quiz.count()
 
   const r = await prisma.quizResults.groupBy({
