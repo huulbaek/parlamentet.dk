@@ -85,7 +85,6 @@ const getVotes = async () => {
     },
   })
   const json = await response.json()
-  // json.sort((a: Vote, b: Vote) => Number(a.yay) - Number(b.yay))
   votes.value = json
 }
 
