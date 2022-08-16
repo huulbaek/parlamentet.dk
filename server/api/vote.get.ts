@@ -22,7 +22,8 @@ export default defineEventHandler(async () => {
     GROUP BY "Question".id, title`
 
   result.sort(
-    (a: Vote, b: Vote) => Number(a.yay - a.nay) - Number(b.yay - b.nay)
+    (a: Vote, b: Vote) =>
+      Number(a.yay / (a.yay + a.nay)) - Number(b.yay / (b.yay + b.nay))
   )
 
   return result
