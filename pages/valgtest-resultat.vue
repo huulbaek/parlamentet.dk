@@ -4,8 +4,19 @@
       <Parties class="order-last md:order-first" :parties="parties" />
       <div class="lg:ml-4">
         <h1 class="hidden md:block">Lidt om data</h1>
+        <p>
+          Tallene <span class="hidden md:inline">til venstre</span>
+          <span class="inline md:hidden">herunder</span> illustrerer, hvor mange
+          enige svar der har været ud af antallet af spørgsmål.
+        </p>
+        <p>
+          Fx betyder <em>238 / 477</em>, at der 238 klikket <em>ja tak</em> ud
+          af <em>477</em> mulige. Den store forskel i antallet af mulige forslag
+          skyldes, at der er forskel på antallet af partier, der har stemt på de
+          forskellige forslag.
+        </p>
         <p class="mb-5">
-          Testen er i alt taget <strong>{{ meta.count }}</strong> gange.
+          Testen er i alt taget <b>{{ meta.count }}</b> gange.
         </p>
       </div>
     </div>
