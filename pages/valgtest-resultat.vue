@@ -113,7 +113,7 @@ const voteWidth = (vote: Vote, type: string): string => {
 
 useHead({
   title:
-    'Resultat af Den Historiske Valgtest – Folketingsvalg 2022 – Parlamentet.dk',
+    'Gennemsnit af Den Historiske Valgtest – Folketingsvalg 2022 – Parlamentet.dk',
   meta: [
     {
       property: 'og:image',
