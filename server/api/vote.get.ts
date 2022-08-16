@@ -21,10 +21,13 @@ export default defineEventHandler(async () => {
     INNER JOIN "Answers" ON "Answers"."questionId" = "Question".id
     GROUP BY "Question".id, title`
 
-  result.sort(
-    (a: Vote, b: Vote) =>
-      Number(a.yay / (a.yay + a.nay)) - Number(b.yay / (b.yay + b.nay))
-  )
+  result.sort((a: Vote, b: Vote) => {
+    const aYay = Number(a.yay)
+    const aNay = Number(a.nay)
+    const bYay = Number(b.yay)
+    const bNay = Number(b.nay)
+    return aYay / (aYay + aNay) - bYay / (bYay + bNay)
+  })
 
   return result
 })
