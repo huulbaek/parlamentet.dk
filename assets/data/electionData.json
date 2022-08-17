@@ -301,5 +301,61 @@
     ],
     "absent_or_maybe": ["EL"],
     "answer": ""
+  },
+  {
+    "ftid": "B 56",
+    "samling": "2019-20",
+    "link": "https://www.ft.dk/samling/20191/beslutningsforslag/b56/index.htm",
+    "title": "Skal der stilles krav om selvforsørgelse til alle udlændinge?",
+    "yay": [
+      "DF", "NB", "LA"
+    ],
+    "nay": [
+      "S", "V", "RV", "SF", "EL", "KF", "ALT", "FG"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "B 82",
+    "samling": "2019-20",
+    "link": "https://www.ft.dk/samling/20191/beslutningsforslag/b82/index.htm",
+    "title": "Skal forældre have kompetence til at udskyde deres barns skolestart med 1 år?",
+    "yay": [
+      "NB", "ALT"
+    ],
+    "nay": [
+      "S", "V", "DF", "RV", "SF", "EL", "KF", "LA", "FG"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "B 71",
+    "samling": "2019-20",
+    "link": "https://www.ft.dk/samling/20181/beslutningsforslag/b71/index.htm",
+    "title": "Skal minkavl være forbudt?",
+    "yay": [
+      "EL", "ALT", "SF"
+    ],
+    "nay": [
+      "S", "DF", "V", "LA", "RV", "KF"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
+  },
+  {
+    "ftid": "B 43",
+    "samling": "2019-20",
+    "link": "https://www.ft.dk/samling/20181/beslutningsforslag/b43/index.htm",
+    "title": "Skal det være forbudt at imporere varer fra israelske bosættelser?",
+    "yay": [
+      "EL", "ALT"
+    ],
+    "nay": [
+      "S", "DF", "V", "LA", "KF"
+    ],
+    "absent_or_maybe": ["RV", "SF"],
+    "answer": ""
   }
 ]
