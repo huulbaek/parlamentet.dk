@@ -15,6 +15,12 @@
           skyldes, at der er forskel på antallet af partier, der har stemt på de
           forskellige forslag.
         </p>
+        <p>
+          Hvis du har mod og snilde, kan du selv få
+          <a href="https://github.com/huulbaek/parlamentet.dk"
+            >forslag tilføjet her</a
+          >.
+        </p>
         <p class="mb-5">
           Testen er i alt taget <b>{{ meta.count }}</b> gange.
         </p>
