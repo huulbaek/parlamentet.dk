@@ -4,6 +4,7 @@
       :src="party.logo"
       class="h-10"
       :alt="`Partilogo for ${party.initials}`"
+      :title="party.title"
     />
     <div class="ml-3 w-full">
       <div

@@ -5,84 +5,96 @@
       "color": "#0092d5",
       "logo": "/V.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Venstre"
     },
     {
       "initials": "S",
       "color": "#c00b1f",
       "logo": "/S.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Socialdemokraterne"
     },
     {
       "initials": "ALT",
       "color": "#00ff00",
       "logo": "/ALT.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Alternativet"
     },
     {
       "initials": "DF",
       "color": "#035387",
       "logo": "/DF.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Dansk Folkeparti"
     },
     {
       "initials": "RV",
       "color": "#ed008c",
       "logo": "/RV.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Radikale Venstre"
     },
     {
       "initials": "SF",
       "color": "rgb(219, 95, 89)",
       "logo": "/SF.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Socialistisk Folkeparti"
     },
     {
       "initials": "EL",
       "color": "#ca2146",
       "logo": "/EL.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Enhedslisten"
     },
     {
       "initials": "LA",
       "color": "#f68920",
       "logo": "/LA.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Liberal Alliance"
     },
     {
       "initials": "KF",
       "color": "#0e4d3d",
       "logo": "/KF.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Konservative Folkeparti"
     },
     {
       "initials": "FG",
       "color": "#f2e3d0",
       "logo": "/FG.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Frie Grønne"
     },
     {
       "initials": "NB",
       "color": "#00424f",
       "logo": "/NB.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "Title": "Nye Borgerlige"
     },
     {
       "initials": "KD",
       "color": "#515e95",
       "logo": "/KD.png",
       "agreements": 0,
-      "disagreements": 0
+      "disagreements": 0,
+      "title": "Kristendemokraterne"
     }
   ]
 }
