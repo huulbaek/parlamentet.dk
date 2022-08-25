@@ -12,6 +12,16 @@ type Vote = {
   id: number
 }
 
+/*
+type QuizResult = {
+  initials: number
+  color: number
+  agreements: number
+  disagreements: number
+  quizId: number
+}
+*/
+
 export default defineEventHandler(async () => {
   const result: Array<Vote> =
     await prisma.$queryRaw`SELECT "Question".id, title,
@@ -28,6 +38,17 @@ export default defineEventHandler(async () => {
     const bNay = Number(b.nay)
     return aYay / (aYay + aNay) - bYay / (bYay + bNay)
   })
+
+  /*
+  const winners: Array<QuizResult> =
+    await prisma.$queryRaw`SEselect initials, color, count(initials) as counts FROM
+    (SELECT DISTINCT ON ("quizId") initials, color, agreements * 100 / (agreements + disagreements) as "pct"
+    FROM "QuizResults"
+    WHERE agreements + disagreements > 0
+    ORDER BY "quizId", pct DESC) test
+    GROUP BY initials, color
+    ORDER BY counts DESC`
+  */
 
   return result
 })
