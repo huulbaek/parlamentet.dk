@@ -30,18 +30,20 @@
       <h1 class="mb-3">Detaljeret</h1>
       <div v-for="vote in votes" :key="vote.title">
         <div class="text-xl">{{ vote.title }}</div>
-        <div
-          class="progress-bar inline-block h-10 items-center justify-center whitespace-nowrap bg-green-600 font-bold text-white transition-transform"
-          :style="{
-            width: voteWidth(vote, 'yay'),
-          }"
-        ></div>
-        <div
-          class="progress-bar inline-block h-10 items-center justify-center whitespace-nowrap bg-red-600 font-bold text-white transition-transform"
-          :style="{
-            width: voteWidth(vote, 'nay'),
-          }"
-        ></div>
+        <div class="relative">
+          <div
+            class="progress-bar inline-block h-10 items-center justify-center whitespace-nowrap bg-green-600 font-bold text-white transition-transform"
+            :style="{
+              width: voteWidth(vote, 'yay'),
+            }"
+          />
+          <div
+            class="progress-bar inline-block h-10 items-center justify-center whitespace-nowrap bg-red-600 font-bold text-white transition-transform"
+            :style="{
+              width: voteWidth(vote, 'nay'),
+            }"
+          />
+        </div>
       </div>
     </div>
   </div>
