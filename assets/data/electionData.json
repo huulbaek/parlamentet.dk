@@ -357,5 +357,47 @@
     ],
     "absent_or_maybe": ["RV", "SF"],
     "answer": ""
+  },
+  {
+    "ftid": "B 42",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/beslutningsforslag/B42/index.htm",
+    "title": "Personer, der af PET vurderes at være til fare for landets sikkerhed, skal aldrig kunne få dansk indfødsret.",
+    "yay": [
+      "V", "DF", "KF", "NB", "LA"
+    ],
+    "nay": [
+      "S", "SF", "RV", "EL", "FG", "KD"
+    ],
+    "absent_or_maybe": ["ALT"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 158",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/beslutningsforslag/B158/index.htm",
+    "title": "Skal statens advokatarbejde i udbud?",
+    "yay": [
+      "V", "EL", "LA", "FG", "ALT"
+    ],
+    "nay": [
+      "S", "RV", "KF", "DF", "NB"
+    ],
+    "absent_or_maybe": ["SF"],
+    "answer": ""
+  },
+  {
+    "ftid": "B 48",
+    "samling": "2021-22",
+    "link": "https://www.ft.dk/samling/20211/beslutningsforslag/B48/index.htm",
+    "title": "Skal borgere kunne forlange bindende kommunale folkeafstemninger?",
+    "yay": [
+      "EL", "DF", "NB", "FG", "ALT"
+    ],
+    "nay": [
+      "S", "V", "SF", "RV", "KF", "LA"
+    ],
+    "absent_or_maybe": [],
+    "answer": ""
   }
 ]
