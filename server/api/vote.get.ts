@@ -12,15 +12,14 @@ type Vote = {
   id: number
 }
 
-/*
 type QuizResult = {
   initials: number
   color: number
   agreements: number
   disagreements: number
   quizId: number
+  winCount: number
 }
-*/
 
 export default defineEventHandler(async () => {
   const result: Array<Vote> =
@@ -39,16 +38,22 @@ export default defineEventHandler(async () => {
     return aYay / (aYay + aNay) - bYay / (bYay + bNay)
   })
 
-  /*
-  const winners: Array<QuizResult> =
-    await prisma.$queryRaw`SEselect initials, color, count(initials) as counts FROM
-    (SELECT DISTINCT ON ("quizId") initials, color, agreements * 100 / (agreements + disagreements) as "pct"
+  const pctq: Array<QuizResult> =
+    await prisma.$queryRaw`SELECT initials, color, logo, count(initials) as "winCount" FROM
+    (SELECT DISTINCT ON ("quizId") initials, color, logo, agreements * 100 / (agreements + disagreements) as "pct"
     FROM "QuizResults"
     WHERE agreements + disagreements > 0
     ORDER BY "quizId", pct DESC) test
-    GROUP BY initials, color
-    ORDER BY counts DESC`
-  */
+    GROUP BY initials, color, logo
+    ORDER BY "winCount" DESC`
 
-  return result
+  const fullCount = await prisma.quiz.count()
+
+  const winners: Array<QuizResult> = pctq.map((winner: QuizResult) => {
+    winner.agreements = Number(winner.winCount)
+    winner.disagreements = fullCount - Number(winner.winCount)
+    return winner
+  })
+
+  return { result, winners }
 })

@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="mt-10">
-      <h1 class="mb-3">Detaljeret</h1>
+      <h1 class="mb-3">Fordeling på spørgsmål</h1>
       <div v-for="vote in votes" :key="vote.title">
         <div class="text-xl">{{ vote.title }}</div>
         <div class="relative">
@@ -46,6 +46,10 @@
         </div>
       </div>
     </div>
+    <div class="mt-10">
+      <h1 class="mb-3">Som meningsmåling (vindere)</h1>
+      <Parties class="order-last md:order-first" :parties="winners" />
+    </div>
   </div>
 </template>
 
@@ -62,6 +66,7 @@ type Vote = {
 
 const mainStore = useMainStore()
 const parties = ref([])
+const winners = ref([])
 const meta = ref({
   count: 0,
 })
@@ -104,7 +109,8 @@ const getVotes = async () => {
     },
   })
   const json = await response.json()
-  votes.value = json
+  votes.value = json.result
+  winners.value = json.winners
 }
 
 const voteWidth = (vote: Vote, type: string): string => {
