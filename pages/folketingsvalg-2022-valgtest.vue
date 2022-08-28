@@ -65,12 +65,17 @@ electionQuizStore.$subscribe((_mutation, state) => {
 })
 
 const saveResult = async () => {
+  // Remove title
+  const data = electionQuizStore.quizResult.map((item) => {
+    delete item.title
+    return item
+  })
   await fetch('/api/election', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(electionQuizStore.quizResult),
+    body: JSON.stringify(data),
   })
 }
 

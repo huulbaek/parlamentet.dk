@@ -8,6 +8,7 @@ interface Party {
   logo: string
   agreements: number
   disagreements: number
+  title?: string
 }
 
 interface IObjectKeys {
