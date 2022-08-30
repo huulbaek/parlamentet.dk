@@ -9,9 +9,9 @@
     <div class="ml-3 w-full">
       <div
         class="progress-bar flex h-full items-center justify-center whitespace-nowrap rounded-r-full font-bold text-white transition-transform"
-        style="min-width: 7rem"
+        style="min-width: 6rem"
         :style="{
-          width: `${computedPct !== 0 ? computedPct : 20}%`,
+          width: `${computedWidth}%`,
           backgroundColor: party.color,
         }"
       >
@@ -45,6 +45,10 @@ const computedPct = computed(() => {
       100
     ).toFixed(0)
   )
+})
+
+const computedWidth = computed(() => {
+  return computedPct.value + 5
 })
 </script>
 
