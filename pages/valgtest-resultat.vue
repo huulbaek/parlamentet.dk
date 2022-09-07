@@ -48,7 +48,11 @@
     </div>
     <div class="mt-10">
       <h1 class="mb-3">Som meningsmåling (vindere)</h1>
-      <Parties class="order-last md:order-first" :parties="winners" />
+      <Parties
+        class="order-last md:order-first"
+        :parties="winners"
+        :normalize="true"
+      />
     </div>
   </div>
 </template>

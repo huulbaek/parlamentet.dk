@@ -32,6 +32,11 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  normalize: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 
 const computedPct = computed(() => {
@@ -48,6 +53,9 @@ const computedPct = computed(() => {
 })
 
 const computedWidth = computed(() => {
+  if (props.normalize) {
+    return computedPct.value * 3 + 5
+  }
   return computedPct.value + 5
 })
 </script>

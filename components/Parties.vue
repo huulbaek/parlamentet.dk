@@ -7,7 +7,7 @@
     </transition-group>
     <transition-group v-else name="list" tag="ul">
       <li v-for="(party, idx) in parties" :key="idx">
-        <PartyItem :party="party" />
+        <PartyItem :party="party" :normalize="normalize" />
       </li>
     </transition-group>
   </div>
@@ -20,6 +20,7 @@ const electionQuizStore = useElectionQuizStore()
 
 defineProps<{
   parties?: Array<Party>
+  normalize?: boolean
 }>()
 </script>
 
