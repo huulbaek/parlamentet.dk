@@ -38,6 +38,7 @@ export default defineEventHandler(async () => {
     return aYay / (aYay + aNay) - bYay / (bYay + bNay)
   })
 
+  // This should be updated so not "random" winner
   const pctq: Array<QuizResult> =
     await prisma.$queryRaw`SELECT initials, color, logo, count(initials) as "winCount" FROM
     (SELECT DISTINCT ON ("quizId") initials, color, logo, agreements * 100 / (agreements + disagreements) as "pct"
