@@ -2,7 +2,7 @@
   <div class="relative">
     <div
       id="quiz-progress"
-      class="absolute -top-5 -right-4 h-8 w-20 rounded-lg bg-emerald-700 text-center text-xl font-bold text-white lg:-right-10 lg:-top-10"
+      class="absolute -right-4 -top-5 h-8 w-20 rounded-lg bg-emerald-700 text-center text-xl font-bold text-white lg:-right-10 lg:-top-10"
     >
       <span
         >{{ electionQuizStore.step + 1 }} /

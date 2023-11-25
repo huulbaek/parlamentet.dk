@@ -1,0 +1,3 @@
+load database
+     from mssql://prisma:1234AbAb@localhost:1433/ODA
+     into postgresql://postgres:root@localhost:5432/oda

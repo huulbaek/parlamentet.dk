@@ -3,6 +3,676 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlserver"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model afstemning {
+  id              Int              @id @default(autoincrement())
+  nummer          Int
+  konklusion      String?
+  vedtaget        Boolean
+  kommentar       String?
+  moedeid         Int
+  typeid          Int
+  sagstrinid      Int?
+  opdateringsdato DateTime
+  Stemme          Stemme[]
+  Afstemningstype Afstemningstype? @relation(map: "Afstemning_Afstemningstype_fkey", fields: [typeid], references: [id])
+  Moede           Moede?           @relation(map: "Afstemning_Moede_fkey", fields: [moedeid], references: [id])
+  Sagstrin        Sagstrin?        @relation(map: "Afstemning_Sagstrin_fkey", fields: [sagstrinid], references: [id])
+}
+
+model Afstemningstype {
+  id              Int          @id @default(autoincrement())
+  type            String?
+  opdateringsdato DateTime
+  afstemning      afstemning[]
+}
+
+model Aktstykke {
+  id                      Int       @id @default(autoincrement())
+  typeid                  Int
+  kategoriid              Int?
+  statusid                Int
+  titel                   String?
+  titelkort               String?
+  offentlighedskode       String?
+  nummer                  String?
+  nummerprefix            String?
+  nummernumerisk          String?
+  nummerpostfix           String?
+  resume                  String?
+  afstemningskonklusion   String?
+  periodeid               Int
+  afgoerelsesresultatkode String?
+  baggrundsmateriale      String?
+  opdateringsdato         DateTime
+  statsbudgetsag          Boolean?
+  begrundelse             String?
+  paragrafnummer          Int?
+  paragraf                String?
+  afgoerelsesdato         DateTime?
+  afgoerelse              String?
+  raadsmoededato          DateTime?
+  lovnummer               String?
+  lovnummerdato           DateTime?
+  retsinformationsurl     String?
+  fremsatundersagid       Int?
+  deltundersagid          Int?
+}
+
+model Aktoer {
+  id              Int              @id @default(autoincrement())
+  typeid          Int
+  gruppenavnkort  String?
+  navn            String?
+  fornavn         String?
+  efternavn       String?
+  biografi        String?
+  periodeid       Int?
+  opdateringsdato DateTime
+  startdato       DateTime?
+  slutdato        DateTime?
+  FraAktoerAktoer AktoerAktoer[]   @relation("FraAktoerToAktoerAktoer")
+  TilAktoerAktoer AktoerAktoer[]   @relation("TilAktoerToAktoerAktoer")
+  DokumentAktoer  DokumentAktoer[]
+  MoedeAktoer     MoedeAktoer[]
+  SagAktoer       SagAktoer[]
+  SagstrinAktoer  SagstrinAktoer[]
+  Stemme          Stemme[]
+  Aktoertype      Aktoertype?      @relation(fields: [typeid], references: [id])
+  Periode         Periode?         @relation(fields: [periodeid], references: [id])
+}
+
+model AktoerAktoer {
+  id                Int                @id @default(autoincrement())
+  fraaktoerid       Int
+  tilaktoerid       Int
+  startdato         DateTime?
+  slutdato          DateTime?
+  opdateringsdato   DateTime
+  rolleid           Int?
+  FraAktoer         Aktoer?            @relation("FraAktoerToAktoerAktoer", fields: [fraaktoerid], references: [id])
+  TilAktoer         Aktoer?            @relation("TilAktoerToAktoerAktoer", fields: [tilaktoerid], references: [id])
+  AktoerAktoerRolle AktoerAktoerRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model AktoerAktoerRolle {
+  id              Int            @id @default(autoincrement())
+  rolle           String?
+  opdateringsdato DateTime
+  AktoerAktoer    AktoerAktoer[]
+}
+
+model Aktoertype {
+  id              Int      @id @default(autoincrement())
+  type            String?
+  opdateringsdato DateTime
+  Aktoer          Aktoer[]
+}
+
+model Almdel {
+  id                      Int       @id @default(autoincrement())
+  typeid                  Int
+  kategoriid              Int?
+  statusid                Int
+  titel                   String?
+  titelkort               String?
+  offentlighedskode       String?
+  nummer                  String?
+  nummerprefix            String?
+  nummernumerisk          String?
+  nummerpostfix           String?
+  resume                  String?
+  afstemningskonklusion   String?
+  periodeid               Int
+  afgoerelsesresultatkode String?
+  baggrundsmateriale      String?
+  opdateringsdato         DateTime
+  statsbudgetsag          Boolean?
+  begrundelse             String?
+  paragrafnummer          Int?
+  paragraf                String?
+  afgoerelsesdato         DateTime?
+  afgoerelse              String?
+  raadsmoededato          DateTime?
+  lovnummer               String?
+  lovnummerdato           DateTime?
+  retsinformationsurl     String?
+  fremsatundersagid       Int?
+  deltundersagid          Int?
+}
+
+model Dagsordenspunkt {
+  id                      Int                       @id @default(autoincrement())
+  koerebemaerkning        String?
+  titel                   String?
+  kommentar               String?
+  nummer                  String?
+  forhandlingskode        String?
+  forhandling             String?
+  superid                 Int?
+  sagstrinid              Int?
+  moedeid                 Int
+  offentlighedskode       String?
+  opdateringsdato         DateTime?
+  Dagsordenspunktdelti    Dagsordenspunkt[]         @relation("DagsordenspunktHierarchy")
+  DagsordenspunktDokument DagsordenspunktDokument[]
+  DagsordenspunktSag      DagsordenspunktSag[]
+  DeltfraDagsordenspunkt  Dagsordenspunkt?          @relation("DagsordenspunktHierarchy", fields: [superid], references: [id])
+  Moede                   Moede?                    @relation(fields: [moedeid], references: [id])
+  Sagstrin                Sagstrin?                 @relation(fields: [sagstrinid], references: [id])
+}
+
+model DagsordenspunktDokument {
+  id                Int              @id @default(autoincrement())
+  dokumentid        Int
+  dagsordenspunktid Int
+  note              String?
+  opdateringsdato   DateTime
+  Dagsordenspunkt   Dagsordenspunkt? @relation(fields: [dagsordenspunktid], references: [id])
+  Dokument          Dokument?        @relation(fields: [dokumentid], references: [id])
+}
+
+model DagsordenspunktSag {
+  id                Int              @id @default(autoincrement())
+  dagsordenspunktid Int
+  sagid             Int
+  opdateringsdato   DateTime
+  Dagsordenspunkt   Dagsordenspunkt? @relation(fields: [dagsordenspunktid], references: [id])
+  Sag               Sag?             @relation(fields: [sagid], references: [id])
+}
+
+model Debat {
+  id                      Int       @id @default(autoincrement())
+  typeid                  Int
+  kategoriid              Int?
+  statusid                Int
+  titel                   String?
+  titelkort               String?
+  offentlighedskode       String?
+  nummer                  String?
+  nummerprefix            String?
+  nummernumerisk          String?
+  nummerpostfix           String?
+  resume                  String?
+  afstemningskonklusion   String?
+  periodeid               Int
+  afgoerelsesresultatkode String?
+  baggrundsmateriale      String?
+  opdateringsdato         DateTime
+  statsbudgetsag          Boolean?
+  begrundelse             String?
+  paragrafnummer          Int?
+  paragraf                String?
+  afgoerelsesdato         DateTime?
+  afgoerelse              String?
+  raadsmoededato          DateTime?
+  lovnummer               String?
+  lovnummerdato           DateTime?
+  retsinformationsurl     String?
+  fremsatundersagid       Int?
+  deltundersagid          Int?
+}
+
+model Dokument {
+  id                      Int                       @id @default(autoincrement())
+  typeid                  Int
+  kategoriid              Int
+  statusid                Int
+  offentlighedskode       String?
+  titel                   String?
+  dato                    DateTime
+  modtagelsesdato         DateTime?
+  frigivelsesdato         DateTime?
+  paragraf                String?
+  paragrafnummer          String?
+  spoergsmaalsordlyd      String?
+  spoergsmaalstitel       String?
+  spoergsmaalsid          Int?
+  procedurenummer         String?
+  grundnotatstatus        String?
+  dagsordenudgavenummer   String?
+  opdateringsdato         DateTime
+  DagsordenspunktDokument DagsordenspunktDokument[]
+  SvarDokumenter          Dokument[]                @relation("SvarSpoergsmaalRelation")
+  SpoergsmaalsDokument    Dokument?                 @relation("SvarSpoergsmaalRelation", fields: [spoergsmaalsid], references: [id])
+  DokumentAktoer          DokumentAktoer[]
+  EmneordDokument         EmneordDokument[]
+  Fil                     Fil[]
+  Omtryk                  Omtryk[]
+  SagDokument             SagDokument[]
+  SagstrinDokument        SagstrinDokument[]
+  Dokumentkategori        Dokumentkategori?         @relation(fields: [kategoriid], references: [id])
+  Dokumentstatus          Dokumentstatus?           @relation(fields: [statusid], references: [id])
+  Dokumenttype            Dokumenttype?             @relation(fields: [typeid], references: [id])
+}
+
+model DokumentAktoer {
+  id                  Int                  @id @default(autoincrement())
+  dokumentid          Int
+  aktoerid            Int
+  opdateringsdato     DateTime
+  rolleid             Int
+  Aktoer              Aktoer?              @relation(fields: [aktoerid], references: [id])
+  Dokument            Dokument?            @relation(fields: [dokumentid], references: [id])
+  DokumentAktoerRolle DokumentAktoerRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model DokumentAktoerRolle {
+  id              Int              @id @default(autoincrement())
+  rolle           String?
+  opdateringsdato DateTime
+  DokumentAktoer  DokumentAktoer[]
+}
+
+model Dokumentkategori {
+  id              Int        @id @default(autoincrement())
+  kategori        String?
+  opdateringsdato DateTime
+  Dokument        Dokument[]
+}
+
+model Dokumenttype {
+  id              Int        @id @default(autoincrement())
+  type            String?
+  opdateringsdato DateTime
+  Dokument        Dokument[]
+}
+
+model Dokumentstatus {
+  id              Int        @id @default(autoincrement())
+  status          String?
+  opdateringsdato DateTime
+  Dokument        Dokument[]
+}
+
+model Emneord {
+  id              Int               @id @default(autoincrement())
+  typeid          Int
+  emneord         String?
+  opdateringsdato DateTime
+  EmneordDokument EmneordDokument[]
+  EmneordSag      EmneordSag[]
+  Emneordstype    Emneordstype?     @relation(fields: [typeid], references: [id])
+}
+
+model EmneordDokument {
+  id              Int       @id @default(autoincrement())
+  emneordid       Int
+  dokumentid      Int
+  opdateringsdato DateTime
+  Dokument        Dokument? @relation(fields: [dokumentid], references: [id])
+  Emneord         Emneord?  @relation(fields: [emneordid], references: [id])
+}
+
+model EmneordSag {
+  id              Int      @id @default(autoincrement())
+  emneordid       Int
+  sagid           Int
+  opdateringsdato DateTime
+  Emneord         Emneord? @relation(fields: [emneordid], references: [id])
+  Sag             Sag?     @relation(fields: [sagid], references: [id])
+}
+
+model Emneordstype {
+  id              Int       @id @default(autoincrement())
+  type            String?
+  opdateringsdato DateTime
+  Emneord         Emneord[]
+}
+
+model EUsag {
+  id                      Int       @id @default(autoincrement())
+  typeid                  Int
+  kategoriid              Int?
+  statusid                Int
+  titel                   String?
+  titelkort               String?
+  offentlighedskode       String?
+  nummer                  String?
+  nummerprefix            String?
+  nummernumerisk          String?
+  nummerpostfix           String?
+  resume                  String?
+  afstemningskonklusion   String?
+  periodeid               Int
+  afgoerelsesresultatkode String?
+  baggrundsmateriale      String?
+  opdateringsdato         DateTime
+  statsbudgetsag          Boolean?
+  begrundelse             String?
+  paragrafnummer          Int?
+  paragraf                String?
+  afgoerelsesdato         DateTime?
+  afgoerelse              String?
+  raadsmoededato          DateTime?
+  lovnummer               String?
+  lovnummerdato           DateTime?
+  retsinformationsurl     String?
+  fremsatundersagid       Int?
+  deltundersagid          Int?
+}
+
+model Forslag {
+  id                      Int       @id @default(autoincrement())
+  typeid                  Int
+  kategoriid              Int?
+  statusid                Int
+  titel                   String?
+  titelkort               String?
+  offentlighedskode       String?
+  nummer                  String?
+  nummerprefix            String?
+  nummernumerisk          String?
+  nummerpostfix           String?
+  resume                  String?
+  afstemningskonklusion   String?
+  periodeid               Int
+  afgoerelsesresultatkode String?
+  baggrundsmateriale      String?
+  opdateringsdato         DateTime
+  statsbudgetsag          Boolean?
+  begrundelse             String?
+  paragrafnummer          Int?
+  paragraf                String?
+  afgoerelsesdato         DateTime?
+  afgoerelse              String?
+  raadsmoededato          DateTime?
+  lovnummer               String?
+  lovnummerdato           DateTime?
+  retsinformationsurl     String?
+  fremsatundersagid       Int?
+  deltundersagid          Int?
+}
+
+model Fil {
+  id              Int       @id @default(autoincrement())
+  dokumentid      Int
+  titel           String?
+  versionsdato    DateTime
+  filurl          String?
+  opdateringsdato DateTime
+  variantkode     String?
+  format          String?
+  Dokument        Dokument? @relation(fields: [dokumentid], references: [id])
+}
+
+model KolloneBeskrivelse {
+  id              Int       @id @default(autoincrement())
+  entitetnavn     String?
+  kollonenavn     String?
+  beskrivelse     String?
+  opdateringsdato DateTime?
+}
+
+model EntitetBeskrivelse {
+  id              Int       @id @default(autoincrement())
+  entitetnavn     String?
+  beskrivelse     String?
+  opdateringsdato DateTime?
+}
+
+model Moede {
+  id                   Int               @id @default(autoincrement())
+  titel                String?
+  lokale               String?
+  nummer               String?
+  dagsordenurl         String?
+  starttidsbemaerkning String?
+  offentlighedskode    String?
+  dato                 DateTime?
+  statusid             Int?
+  typeid               Int?
+  periodeid            Int
+  opdateringsdato      DateTime
+  afstemning           afstemning[]
+  Dagsordenspunkt      Dagsordenspunkt[]
+  MoedeAktoer          MoedeAktoer[]
+  Moedestatus          Moedestatus?      @relation(fields: [statusid], references: [id])
+  Moedetype            Moedetype?        @relation(fields: [typeid], references: [id])
+  Periode              Periode?          @relation(fields: [periodeid], references: [id])
+}
+
+model MoedeAktoer {
+  id              Int      @id @default(autoincrement())
+  moedeid         Int
+  aktoerid        Int
+  opdateringsdato DateTime
+  Aktoer          Aktoer?  @relation(fields: [aktoerid], references: [id])
+  Moede           Moede?   @relation(fields: [moedeid], references: [id])
+}
+
+model Moedestatus {
+  id              Int      @id @default(autoincrement())
+  status          String?
+  opdateringsdato DateTime
+  Moede           Moede[]
+}
+
+model Moedetype {
+  id              Int      @id @default(autoincrement())
+  type            String?
+  opdateringsdato DateTime
+  Moede           Moede[]
+}
+
+model Omtryk {
+  id              Int       @id @default(autoincrement())
+  dokumentid      Int
+  dato            DateTime?
+  begrundelse     String?
+  opdateringsdato DateTime
+  Dokument        Dokument? @relation(fields: [dokumentid], references: [id])
+}
+
+model Periode {
+  id              Int      @id(map: "PK_Periode")
+  startdato       DateTime
+  slutdato        DateTime
+  type            String
+  kode            String
+  titel           String
+  opdateringsdato DateTime
+  Aktoer          Aktoer[]
+  Moede           Moede[]
+  Sag             Sag[]
+
+  @@map("Periode")
+}
+
+model Sag {
+  id                      Int                  @id(map: "PK_Sag")
+  typeid                  Int
+  kategoriid              Int?
+  statusid                Int
+  titel                   String?
+  titelkort               String?
+  offentlighedskode       String?
+  nummer                  String?
+  nummerprefix            String?
+  nummernumerisk          String?
+  nummerpostfix           String?
+  resume                  String?
+  afstemningskonklusion   String?
+  periodeid               Int
+  afgoerelsesresultatkode String?
+  baggrundsmateriale      String?
+  opdateringsdato         DateTime
+  statsbudgetsag          Boolean?
+  begrundelse             String?
+  paragrafnummer          Int?
+  paragraf                String?
+  afgoerelsesdato         DateTime?
+  afgoerelse              String?
+  raadsmoededato          DateTime?
+  lovnummer               String?
+  lovnummerdato           DateTime?
+  retsinformationsurl     String?
+  fremsatundersagid       Int?
+  deltundersagid          Int?
+  DagsordenspunktSag      DagsordenspunktSag[]
+  EmneordSag              EmneordSag[]
+  Sagerdelti              Sag[]                @relation("SagerdeltiRelation")
+  Sagerfremsatunder       Sag[]                @relation("SagerfremsatunderRelation")
+  DeltfraSag              Sag?                 @relation("SagerdeltiRelation", fields: [deltundersagid], references: [id])
+  FremsatunderSag         Sag?                 @relation("SagerfremsatunderRelation", fields: [fremsatundersagid], references: [id])
+  SagAktoer               SagAktoer[]
+  SagDokument             SagDokument[]
+  Sagstrin                Sagstrin[]
+  Periode                 Periode?             @relation(fields: [periodeid], references: [id])
+  Sagskategori            Sagskategori?        @relation(fields: [kategoriid], references: [id])
+  Sagsstatus              Sagsstatus?          @relation(fields: [statusid], references: [id])
+  Sagstype                Sagstype?            @relation(fields: [typeid], references: [id])
+}
+
+model SagAktoer {
+  id              Int             @id @default(autoincrement())
+  aktoerid        Int
+  sagid           Int
+  opdateringsdato DateTime
+  rolleid         Int
+  Aktoer          Aktoer?         @relation(fields: [aktoerid], references: [id])
+  Sag             Sag?            @relation(fields: [sagid], references: [id])
+  SagAktoerRolle  SagAktoerRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model SagAktoerRolle {
+  id              Int         @id @default(autoincrement())
+  rolle           String?
+  opdateringsdato DateTime
+  SagAktoer       SagAktoer[]
+}
+
+model SagDokument {
+  id               Int               @id @default(autoincrement())
+  sagid            Int
+  dokumentid       Int
+  bilagsnummer     String?
+  frigivelsesdato  DateTime?
+  opdateringsdato  DateTime
+  rolleid          Int
+  Dokument         Dokument?         @relation(fields: [dokumentid], references: [id])
+  Sag              Sag?              @relation(fields: [sagid], references: [id])
+  SagDokumentRolle SagDokumentRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model SagDokumentRolle {
+  id              Int           @id @default(autoincrement())
+  rolle           String?
+  opdateringsdato DateTime
+  SagDokument     SagDokument[]
+}
+
+model Sagskategori {
+  id              Int       @id @default(autoincrement())
+  kategori        String?
+  opdateringsdato DateTime?
+  Sag             Sag[]
+}
+
+model Sagsstatus {
+  id              Int       @id @default(autoincrement())
+  status          String?
+  opdateringsdato DateTime?
+  Sag             Sag[]
+}
+
+model Sagstrin {
+  id                                Int                @id @default(autoincrement())
+  titel                             String?
+  dato                              DateTime?
+  sagid                             Int
+  typeid                            Int
+  folketingstidendeurl              String?
+  folketingstidende                 String?
+  folketingstidendesidenummer       String?
+  statusid                          Int
+  opdateringsdato                   DateTime?
+  afstemning                        afstemning[]
+  Dagsordenspunkt                   Dagsordenspunkt[]
+  SagstrinAktoer                    SagstrinAktoer[]
+  SagstrinDokument                  SagstrinDokument[]
+  Sambehandlinger_foerstesagstrinid Sambehandlinger[]  @relation("FoersteSagstrin", map: "FoersteSagstrin_fkey")
+  Sambehandlinger_andetsagstrinid   Sambehandlinger[]  @relation("AndetSagstrin", map: "AndetSagstrin_fkey")
+  Sag                               Sag?               @relation(fields: [sagid], references: [id])
+  Sagstrinsstatus                   Sagstrinsstatus?   @relation(fields: [statusid], references: [id])
+  Sagstrinstype                     Sagstrinstype?     @relation(fields: [typeid], references: [id])
+}
+
+model SagstrinAktoer {
+  id                  Int                  @id @default(autoincrement())
+  sagstrinid          Int
+  aktoerid            Int
+  opdateringsdato     DateTime
+  rolleid             Int
+  Aktoer              Aktoer?              @relation(fields: [aktoerid], references: [id])
+  Sagstrin            Sagstrin?            @relation(fields: [sagstrinid], references: [id])
+  SagstrinAktoerRolle SagstrinAktoerRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model SagstrinAktoerRolle {
+  id              Int              @id @default(autoincrement())
+  rolle           String?
+  opdateringsdato DateTime
+  SagstrinAktoer  SagstrinAktoer[]
+}
+
+model Sambehandlinger {
+  id                Int       @id @default(autoincrement())
+  foerstesagstrinid Int
+  andetsagstrinid   Int
+  opdateringsdato   DateTime
+  FoersteSagstrin   Sagstrin? @relation(name: "FoersteSagstrin", fields: [foerstesagstrinid], references: [id])
+  AndetSagstrin     Sagstrin? @relation(name: "AndetSagstrin", fields: [andetsagstrinid], references: [id])
+}
+
+model SagstrinDokument {
+  id              Int       @id @default(autoincrement())
+  sagstrinid      Int
+  dokumentid      Int
+  opdateringsdato DateTime
+  Dokument        Dokument? @relation(fields: [dokumentid], references: [id], map: "SagsstrinDokument_Dokument_fkey")
+  Sagstrin        Sagstrin? @relation(fields: [sagstrinid], references: [id], map: "SagstrinDokument_Sagstrin_fkey")
+}
+
+model Sagstrinsstatus {
+  id              Int        @id @default(autoincrement())
+  status          String?
+  opdateringsdato DateTime
+  Sagstrin        Sagstrin[]
+}
+
+model Sagstrinstype {
+  id              Int        @id @default(autoincrement())
+  type            String?
+  opdateringsdato DateTime
+  Sagstrin        Sagstrin[]
+}
+
+model Sagstype {
+  id              Int      @id @default(autoincrement())
+  type            String?
+  opdateringsdato DateTime
+  Sag             Sag[]
+}
+
+model Stemme {
+  id              Int         @id @default(autoincrement())
+  typeid          Int?
+  afstemningid    Int
+  aktoerid        Int
+  opdateringsdato DateTime
+  afstemning      afstemning? @relation(fields: [afstemningid], references: [id])
+  Aktoer          Aktoer?     @relation(fields: [aktoerid], references: [id])
+  Stemmetype      Stemmetype? @relation(fields: [typeid], references: [id])
+}
+
+model Stemmetype {
+  id              Int      @id @default(autoincrement())
+  type            String?
+  opdateringsdato DateTime
+  Stemme          Stemme[]
 }

@@ -1,0 +1,477 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model RefactorLog {
+  OperationKey String @id(map: "PK____Refact__D3AEFFDBAD8CBA18") @db.UniqueIdentifier
+
+  @@map("__RefactorLog")
+}
+
+model Afstemning {
+  id              Int      @id(map: "PK_Afstemning")
+  nummer          Int
+  konklusion      String?  @db.NVarChar(Max)
+  vedtaget        Boolean
+  kommentar       String?  @db.NVarChar(Max)
+  moedeid         Int      @map("mødeid")
+  typeid          Int
+  sagstrinid      Int?
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Afstemningstype {
+  id              Int      @id(map: "PK_Afstemningstype")
+  type            String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Aktoer {
+  id              Int       @id(map: "PK_Aktør")
+  typeid          Int
+  gruppenavnkort  String?   @db.NVarChar(Max)
+  navn            String?   @db.NVarChar(Max)
+  fornavn         String?   @db.NVarChar(Max)
+  efternavn       String?   @db.NVarChar(Max)
+  biografi        String?   @db.NVarChar(Max)
+  periodeid       Int?
+  opdateringsdato DateTime  @db.DateTime
+  startdato       DateTime? @db.DateTime
+  slutdato        DateTime? @db.DateTime
+
+  @@map("Aktør")
+}
+
+model AktoerAktoer {
+  id              Int       @id(map: "PK_AktørAktør") @default(autoincrement())
+  fraaktoerid     Int       @map("fraaktørid")
+  tilaktoerid     Int       @map("tilaktørid")
+  startdato       DateTime? @db.DateTime
+  slutdato        DateTime? @db.DateTime
+  opdateringsdato DateTime  @db.DateTime
+  rolleid         Int
+
+  @@map("AktørAktør")
+}
+
+model AktoerAktoerRolle {
+  id              Int      @id(map: "PK_AktørAktørRolle")
+  rolle           String   @db.VarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+
+  @@map("AktørAktørRolle")
+}
+
+model Aktoertype {
+  id              Int      @id(map: "PK_Aktørtype")
+  type            String?  @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+
+  @@map("Aktørtype")
+}
+
+model Dagsordenspunkt {
+  id                Int       @id(map: "PK_Dagsordenspunkt")
+  koerebemaerkning  String?   @map("kørebemærkning") @db.NVarChar(Max)
+  titel             String?   @db.NVarChar(Max)
+  kommentar         String?   @db.NVarChar(Max)
+  nummer            String?   @db.NVarChar(Max)
+  forhandlingskode  String?   @db.NVarChar(Max)
+  forhandling       String?   @db.NVarChar(Max)
+  superid           Int?
+  sagstrinid        Int?
+  moedeid           Int       @map("mødeid")
+  offentlighedskode String    @db.Char(1)
+  opdateringsdato   DateTime? @db.DateTime
+}
+
+model DagsordenspunktDokument {
+  id                Int      @id(map: "PK_DagsordenspunktDokument") @default(autoincrement())
+  dokumentid        Int
+  dagsordenspunktid Int
+  note              String?  @db.VarChar(Max)
+  opdateringsdato   DateTime @db.DateTime
+}
+
+model DagsordenspunktSag {
+  id                Int      @id(map: "PK_DagsordenspunktSag") @default(autoincrement())
+  dagsordenspunktid Int
+  sagid             Int
+  opdateringsdato   DateTime @db.DateTime
+}
+
+model Dokument {
+  id                    Int       @id(map: "PK_Dokument")
+  typeid                Int
+  kategoriid            Int
+  statusid              Int
+  offentlighedskode     String    @db.Char(1)
+  titel                 String    @db.NVarChar(Max)
+  dato                  DateTime  @db.DateTime
+  modtagelsesdato       DateTime? @db.DateTime
+  frigivelsesdato       DateTime? @db.DateTime
+  paragraf              String?   @db.NVarChar(Max)
+  paragrafnummer        String?   @db.NVarChar(Max)
+  spoergsmaalsordlyd    String?   @map("spørgsmålsordlyd") @db.NVarChar(Max)
+  spoergsmaalstitel     String?   @map("spørgsmålstitel") @db.NVarChar(Max)
+  spoergsmaalsid        Int?      @map("spørgsmålsid")
+  procedurenummer       String?   @db.NVarChar(Max)
+  grundnotatstatus      String?   @db.NVarChar(250)
+  dagsordenudgavenummer Int?      @db.SmallInt
+  opdateringsdato       DateTime  @db.DateTime
+}
+
+model DokumentAktoer {
+  id              Int      @id(map: "PK_DokumentAktør") @default(autoincrement())
+  dokumentid      Int
+  aktoerid        Int      @map("aktørid")
+  opdateringsdato DateTime @db.DateTime
+  rolleid         Int
+
+  @@map("DokumentAktør")
+}
+
+model DokumentAktoerRolle {
+  id              Int      @id(map: "PK_DokumentAktørRolle")
+  rolle           String   @db.VarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+
+  @@map("DokumentAktørRolle")
+}
+
+model Dokumentkategori {
+  id              Int      @id(map: "PK_DokumentKategori")
+  kategori        String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Dokumentstatus {
+  id              Int      @id(map: "PK_Dokumentstatus")
+  status          String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Dokumenttype {
+  id              Int      @id(map: "PK_DokumentType")
+  type            String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Emneord {
+  id              Int      @id(map: "PK_Emneord")
+  typeid          Int
+  emneord         String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+
+  @@index([typeid], map: "IX_FK_Emneord_Emneordstype")
+}
+
+model EmneordDokument {
+  id              Int      @id(map: "PK_EmneordDokument") @default(autoincrement())
+  emneordid       Int
+  dokumentid      Int
+  opdateringsdato DateTime @db.DateTime
+}
+
+model EmneordSag {
+  id              Int      @id(map: "PK_EmneordSag") @default(autoincrement())
+  emneordid       Int
+  sagid           Int
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Emneordstype {
+  id              Int      @id(map: "PK_Emneordstype")
+  type            String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model EntitetBeskrivelse {
+  id              Int       @id(map: "PK_EntitetBeskrivelse") @default(autoincrement())
+  entitetnavn     String?   @db.NVarChar(128)
+  beskrivelse     String?   @db.VarChar(Max)
+  opdateringsdato DateTime? @db.DateTime
+}
+
+model Fil {
+  id              Int      @id(map: "PK_Fil")
+  dokumentid      Int
+  titel           String?  @db.NVarChar(Max)
+  versionsdato    DateTime @db.DateTime
+  filurl          String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+  variantkode     String   @db.NVarChar(Max)
+  format          String   @db.NVarChar(Max)
+}
+
+model IdMap {
+  id         Int
+  originalid String @db.VarChar(8000)
+  entity     String @db.VarChar(50)
+
+  @@id([id, entity], map: "PK_IdMap")
+  @@unique([originalid, entity], map: "IX_Idmap_originalid_entity")
+}
+
+model KolloneBeskrivelse {
+  id              Int       @id(map: "PK_KolloneBeskrivelse") @default(autoincrement())
+  entitetnavn     String?   @db.NVarChar(128)
+  kollonenavn     String?   @db.NVarChar(128)
+  beskrivelse     String?   @db.VarChar(Max)
+  opdateringsdato DateTime? @db.DateTime
+}
+
+model Moede {
+  id                Int       @id(map: "PK_Møde")
+  titel             String    @db.NVarChar(Max)
+  lokale            String?   @db.NVarChar(Max)
+  nummer            String?   @db.NVarChar(Max)
+  dagsordenurl      String?   @db.NVarChar(Max)
+  starttidsbaekning String?   @map("starttidsbemærkning") @db.NVarChar(Max)
+  offentlighedskode String    @db.Char(1)
+  dato              DateTime? @db.DateTime
+  statusid          Int?
+  typeid            Int?
+  periodeid         Int
+  opdateringsdato   DateTime  @db.DateTime
+
+  @@map("Møde")
+}
+
+model MoedeAktoer {
+  id              Int      @id(map: "PK_MødeAktør") @default(autoincrement())
+  moedeid         Int      @map("mødeid")
+  aktoerid        Int      @map("aktørid")
+  opdateringsdato DateTime @db.DateTime
+
+  @@map("MødeAktør")
+}
+
+model Moedestatus {
+  id              Int      @id(map: "PK_Mødestatus")
+  status          String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+
+  @@map("Mødestatus")
+}
+
+model Moedetype {
+  id              Int      @id(map: "PK_Mødetype")
+  type            String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+
+  @@map("Mødetype")
+}
+
+model Omtryk {
+  id              Int       @id(map: "PK_Omtryk")
+  dokumentid      Int
+  dato            DateTime? @db.DateTime
+  begrundelse     String    @db.NVarChar(Max)
+  opdateringsdato DateTime  @db.DateTime
+}
+
+model Periode {
+  id              Int      @id(map: "PK_Periode")
+  startdato       DateTime @db.DateTime
+  slutdato        DateTime @db.DateTime
+  type            String   @db.VarChar(Max)
+  kode            String   @db.VarChar(Max)
+  titel           String   @db.VarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Sag {
+  id                      Int       @id(map: "PK_Sag")
+  typeid                  Int
+  kategoriid              Int?
+  statusid                Int
+  titel                   String    @db.NVarChar(Max)
+  titelkort               String    @db.NVarChar(Max)
+  offentlighedskode       String    @db.NVarChar(Max)
+  nummer                  String?   @db.NVarChar(Max)
+  nummerprefix            String?   @db.NVarChar(Max)
+  nummernumerisk          String?   @db.NVarChar(Max)
+  nummerpostfix           String?   @db.NVarChar(Max)
+  resume                  String?   @db.NVarChar(Max)
+  afstemningskonklusion   String?   @db.NVarChar(Max)
+  periodeid               Int
+  afgoerelsesresultatkode String?   @map("afgørelsesresultatkode") @db.NVarChar(20)
+  baggrundsmateriale      String?   @db.NVarChar(Max)
+  opdateringsdato         DateTime  @db.DateTime
+  statsbudgetsag          Boolean?
+  begrundelse             String?   @db.NVarChar(Max)
+  paragrafnummer          Int?
+  paragraf                String?   @db.NVarChar(Max)
+  afgoerelsesdato         DateTime? @map("afgørelsesdato") @db.DateTime
+  afgoerelse              String?   @map("afgørelse") @db.NVarChar(Max)
+  raadsmoededato          DateTime? @map("rådsmødedato") @db.DateTime
+  lovnummer               String?   @db.NVarChar(Max)
+  lovnummerdato           DateTime? @db.DateTime
+  retsinformationsurl     String?   @db.NVarChar(Max)
+  fremsatundersagid       Int?
+  deltundersagid          Int?
+
+  @@index([deltundersagid], map: "IX_FK_Deltundersag_Sag")
+  @@index([fremsatundersagid], map: "IX_FK_Fremsatundersag_Sag")
+  @@index([kategoriid], map: "IX_FK_Sag_Sagskategori")
+  @@index([statusid], map: "IX_FK_Sag_Sagsstatus")
+  @@index([typeid], map: "IX_FK_Sag_Sagstype")
+}
+
+model SagAktoer {
+  id              Int      @id(map: "PK_Sagaktør") @default(autoincrement())
+  aktoerid        Int      @map("aktørid")
+  sagid           Int
+  opdateringsdato DateTime @db.DateTime
+  rolleid         Int
+
+  @@map("SagAktør")
+}
+
+model SagAktoerRolle {
+  id              Int      @id(map: "PK_SagAktørRolle")
+  rolle           String   @db.VarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+
+  @@map("SagAktørRolle")
+}
+
+model SagDokument {
+  id              Int       @id(map: "PK_Sagdokument") @default(autoincrement())
+  sagid           Int
+  dokumentid      Int
+  bilagsnummer    String?   @db.NVarChar(Max)
+  frigivelsesdato DateTime? @db.DateTime
+  opdateringsdato DateTime  @db.DateTime
+  rolleid         Int
+}
+
+model SagDokumentRolle {
+  id              Int      @id(map: "PK_SagDokumentRolle")
+  rolle           String   @db.VarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Sagskategori {
+  id              Int      @id(map: "PK_SagskategoriSet")
+  kategori        String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Sagsstatus {
+  id              Int      @id(map: "PK_Sagsstatus")
+  status          String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Sagstrin {
+  id                          Int       @id(map: "PK_Sagstrin")
+  titel                       String    @db.NVarChar(Max)
+  dato                        DateTime? @db.DateTime
+  sagid                       Int
+  typeid                      Int
+  folketingstidendeurl        String?   @db.NVarChar(Max)
+  folketingstidende           String?   @db.NVarChar(Max)
+  folketingstidendesidenummer String?   @db.NVarChar(Max)
+  statusid                    Int
+  opdateringsdato             DateTime  @db.DateTime
+
+  @@index([sagid], map: "IX_FK_Sagstrin_Sag")
+  @@index([statusid], map: "IX_FK_Sagstrin_Sagstrinsstatus")
+  @@index([typeid], map: "IX_FK_Sagstrin_Sagstrinstype")
+}
+
+model SagstrinAktoer {
+  id              Int      @id(map: "PK_Sagstrinaktør") @default(autoincrement())
+  sagstrinid      Int
+  aktoerid        Int      @map("aktørid")
+  opdateringsdato DateTime @db.DateTime
+  rolleid         Int
+
+  @@map("SagstrinAktør")
+}
+
+model SagstrinAktoerRolle {
+  id              Int      @id(map: "PK_SagstrinAktørRolle")
+  rolle           String   @db.VarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+
+  @@map("SagstrinAktørRolle")
+}
+
+model SagstrinDokument {
+  id              Int      @id(map: "PK_SagstrinDokument") @default(autoincrement())
+  sagstrinid      Int
+  dokumentid      Int
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Sagstrinsstatus {
+  id              Int      @id(map: "PK_Sagstrinsstatus")
+  status          String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Sagstrinstype {
+  id              Int      @id(map: "PK_SagstrinstypeSet")
+  type            String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Sagstype {
+  id              Int      @id(map: "PK_SagstypeSet")
+  type            String   @db.NVarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Sambehandlinger {
+  id                Int      @id(map: "PK_SagstrinSagstrin") @default(autoincrement())
+  foerstesagstrinid Int      @map("førstesagstrinid")
+  andetsagstrinid   Int
+  opdateringsdato   DateTime @db.DateTime
+}
+
+model Slettet {
+  id              Int      @id(map: "PK_Slettet") @default(autoincrement())
+  slettetmapid    Int
+  opdateringsdato DateTime @db.DateTime
+  objektid        Int
+}
+
+model SlettetMap {
+  id              Int      @id(map: "PK_SlettetMap") @default(autoincrement())
+  datatype        String   @db.NVarChar(100)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model Stemme {
+  id              Int      @id(map: "PK_Stemmer") @default(autoincrement())
+  typeid          Int?
+  afstemningid    Int
+  aktoerid        Int      @map("aktørid")
+  opdateringsdato DateTime @db.DateTime
+
+  @@unique([afstemningid, aktoerid], map: "AfstemningAktør")
+}
+
+model Stemmetype {
+  id              Int      @id(map: "PK_stemmetype") @default(autoincrement())
+  type            String   @db.VarChar(Max)
+  opdateringsdato DateTime @db.DateTime
+}
+
+model SyncLogger {
+  id              Int       @id(map: "PK_MqaLog") @default(autoincrement())
+  entitet         String    @db.NVarChar(Max)
+  internId        Int
+  eksternId       String    @db.NVarChar(Max)
+  opdateringsdato DateTime  @db.DateTime
+  antal           Int
+  godkendtdato    DateTime? @db.DateTime
+}

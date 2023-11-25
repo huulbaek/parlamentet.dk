@@ -29,7 +29,7 @@ onMounted(async () => {
 })
 
 const fetchData = async () => {
-  const { data, error } = await useFetch('/api/oda').post().json()
+  const { data, error } = await useFetch('/api/sag').get().json()
   // Use the useFetch composable from VueUse to call the server route
 
   if (error.value) {
