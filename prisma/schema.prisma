@@ -3,40 +3,6 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlserver"
   url      = env("DATABASE_URL")
-}
-
-model Quiz {
-  id Int        @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  quizResults   QuizResults[]
-}
-
-model QuizResults {
-  id Int        @id @default(autoincrement())
-  initials      String
-  color         String?
-  logo          String?
-  agreements    Int
-  disagreements Int
-  quizId        Int
-  quiz          Quiz @relation(fields: [quizId], references: [id])
-  createdAt     DateTime @default(now())
-}
-
-model Question {
-  id          Int     @id @default(autoincrement())
-  title       String
-  ftid        String
-  samling     String
-  answers     Answers[]
-  @@unique([ftid, samling])
-}
-
-model Answers {
-  id          Int  @id @default(autoincrement())
-  vote        String
-  questionId  Int
-  question    Question @relation(fields: [questionId], references: [id])
 }

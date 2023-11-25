@@ -86,11 +86,13 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { MenuIcon, XIcon } from '@heroicons/vue/outline/esm/index.js'
 import { useMainStore } from '@/stores/main'
+
 const mainStore = useMainStore()
 
 const navigation = [
   { name: 'Om Parlamentet', href: '/' },
   { name: 'Valgtest', href: '/folketingsvalg-2022-valgtest' },
+  { name: 'Aktuelt', href: '/aktuelt' },
 ]
 </script>
 

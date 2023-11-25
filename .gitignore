@@ -8,3 +8,4 @@ node_modules
 yarn.lock
 dist
 prisma/db*
+.DS_Store

@@ -1,4 +1,4 @@
-import { defineNuxtConfig } from 'nuxt'
+import { defineNuxtConfig } from 'nuxt/config'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -10,19 +10,14 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
-  buildModules: ['@pinia/nuxt', '@vueuse/nuxt'],
-  vueuse: {
-    ssrHandlers: true,
-  },
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-        },
-      },
+  modules: ['@pinia/nuxt', '@vueuse/nuxt'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
   css: ['~/assets/css/tailwind.css'],
+
+  devtools: true,
 })

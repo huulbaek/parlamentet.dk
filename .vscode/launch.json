@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "configurations": [
+        {
+          "type": "chrome",
+          "request": "launch",
+          "name": "client: chrome",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}"
+        },
+        {
+          "type": "node",
+          "runtimeVersion": "18",
+          "request": "launch",
+          "name": "server: nuxt",
+          "program": "${workspaceFolder}/node_modules/.bin/nuxt",
+          "args": [
+            "dev",
+            "--inspect",
+          ],
+        },
+      ],
+      "compounds": [
+        {
+          "name": "fullstack: nuxt",
+          "configurations": [
+            "server: nuxt",
+            "client: chrome"
+          ]
+        }
+      ]
+}

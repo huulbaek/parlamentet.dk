@@ -1,0 +1,1772 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="FT.Domain.Models" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="Afstemning">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="nummer" Type="Edm.Int32" Nullable="false" />
+        <Property Name="konklusion" Type="Edm.String" />
+        <Property Name="vedtaget" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="kommentar" Type="Edm.String" />
+        <Property Name="mødeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="sagstrinid" Type="Edm.Int32" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Stemme" Relationship="FT.Domain.Models.FT_Domain_Models_Afstemning_Stemme_FT_Domain_Models_Stemme_StemmePartner" ToRole="Stemme" FromRole="StemmePartner" />
+        <NavigationProperty Name="Afstemningstype" Relationship="FT.Domain.Models.FT_Domain_Models_Afstemning_Afstemningstype_FT_Domain_Models_Afstemningstype_AfstemningstypePartner" ToRole="Afstemningstype" FromRole="AfstemningstypePartner" />
+        <NavigationProperty Name="Møde" Relationship="FT.Domain.Models.FT_Domain_Models_Afstemning_Møde_FT_Domain_Models_Møde_MødePartner" ToRole="Møde" FromRole="MødePartner" />
+        <NavigationProperty Name="Sagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_Afstemning_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner" ToRole="Sagstrin" FromRole="SagstrinPartner" />
+      </EntityType>
+      <EntityType Name="Afstemningstype">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Afstemning" Relationship="FT.Domain.Models.FT_Domain_Models_Afstemningstype_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner" ToRole="Afstemning" FromRole="AfstemningPartner" />
+      </EntityType>
+      <EntityType Name="Aktstykke">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategoriid" Type="Edm.Int32" />
+        <Property Name="statusid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="titelkort" Type="Edm.String" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="nummer" Type="Edm.String" />
+        <Property Name="nummerprefix" Type="Edm.String" />
+        <Property Name="nummernumerisk" Type="Edm.String" />
+        <Property Name="nummerpostfix" Type="Edm.String" />
+        <Property Name="resume" Type="Edm.String" />
+        <Property Name="afstemningskonklusion" Type="Edm.String" />
+        <Property Name="periodeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="afgørelsesresultatkode" Type="Edm.String" />
+        <Property Name="baggrundsmateriale" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="statsbudgetsag" Type="Edm.Boolean" />
+        <Property Name="begrundelse" Type="Edm.String" />
+        <Property Name="paragrafnummer" Type="Edm.Int32" />
+        <Property Name="paragraf" Type="Edm.String" />
+        <Property Name="afgørelsesdato" Type="Edm.DateTime" />
+        <Property Name="afgørelse" Type="Edm.String" />
+        <Property Name="rådsmødedato" Type="Edm.DateTime" />
+        <Property Name="lovnummer" Type="Edm.String" />
+        <Property Name="lovnummerdato" Type="Edm.DateTime" />
+        <Property Name="retsinformationsurl" Type="Edm.String" />
+        <Property Name="fremsatundersagid" Type="Edm.Int32" />
+        <Property Name="deltundersagid" Type="Edm.Int32" />
+      </EntityType>
+      <EntityType Name="Aktør">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="gruppenavnkort" Type="Edm.String" />
+        <Property Name="navn" Type="Edm.String" />
+        <Property Name="fornavn" Type="Edm.String" />
+        <Property Name="efternavn" Type="Edm.String" />
+        <Property Name="biografi" Type="Edm.String" />
+        <Property Name="periodeid" Type="Edm.Int32" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="startdato" Type="Edm.DateTime" />
+        <Property Name="slutdato" Type="Edm.DateTime" />
+        <NavigationProperty Name="FraAktørAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_FraAktørAktør_FT_Domain_Models_AktørAktør_FraAktørAktørPartner" ToRole="FraAktørAktør" FromRole="FraAktørAktørPartner" />
+        <NavigationProperty Name="TilAktørAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_TilAktørAktør_FT_Domain_Models_AktørAktør_TilAktørAktørPartner" ToRole="TilAktørAktør" FromRole="TilAktørAktørPartner" />
+        <NavigationProperty Name="DokumentAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner" ToRole="DokumentAktør" FromRole="DokumentAktørPartner" />
+        <NavigationProperty Name="MødeAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_MødeAktør_FT_Domain_Models_MødeAktør_MødeAktørPartner" ToRole="MødeAktør" FromRole="MødeAktørPartner" />
+        <NavigationProperty Name="SagAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner" ToRole="SagAktør" FromRole="SagAktørPartner" />
+        <NavigationProperty Name="SagstrinAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner" ToRole="SagstrinAktør" FromRole="SagstrinAktørPartner" />
+        <NavigationProperty Name="Stemme" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_Stemme_FT_Domain_Models_Stemme_StemmePartner" ToRole="Stemme" FromRole="StemmePartner" />
+        <NavigationProperty Name="Aktørtype" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_Aktørtype_FT_Domain_Models_Aktørtype_AktørtypePartner" ToRole="Aktørtype" FromRole="AktørtypePartner" />
+        <NavigationProperty Name="Periode" Relationship="FT.Domain.Models.FT_Domain_Models_Aktør_Periode_FT_Domain_Models_Periode_PeriodePartner" ToRole="Periode" FromRole="PeriodePartner" />
+      </EntityType>
+      <EntityType Name="AktørAktør">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="fraaktørid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="tilaktørid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="startdato" Type="Edm.DateTime" />
+        <Property Name="slutdato" Type="Edm.DateTime" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="rolleid" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="FraAktør" Relationship="FT.Domain.Models.FT_Domain_Models_AktørAktør_FraAktør_FT_Domain_Models_Aktør_FraAktørPartner" ToRole="FraAktør" FromRole="FraAktørPartner" />
+        <NavigationProperty Name="TilAktør" Relationship="FT.Domain.Models.FT_Domain_Models_AktørAktør_TilAktør_FT_Domain_Models_Aktør_TilAktørPartner" ToRole="TilAktør" FromRole="TilAktørPartner" />
+        <NavigationProperty Name="AktørAktørRolle" Relationship="FT.Domain.Models.FT_Domain_Models_AktørAktør_AktørAktørRolle_FT_Domain_Models_AktørAktørRolle_AktørAktørRollePartner" ToRole="AktørAktørRolle" FromRole="AktørAktørRollePartner" />
+      </EntityType>
+      <EntityType Name="AktørAktørRolle">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="rolle" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="AktørAktør" Relationship="FT.Domain.Models.FT_Domain_Models_AktørAktørRolle_AktørAktør_FT_Domain_Models_AktørAktør_AktørAktørPartner" ToRole="AktørAktør" FromRole="AktørAktørPartner" />
+      </EntityType>
+      <EntityType Name="Aktørtype">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Aktør" Relationship="FT.Domain.Models.FT_Domain_Models_Aktørtype_Aktør_FT_Domain_Models_Aktør_AktørPartner" ToRole="Aktør" FromRole="AktørPartner" />
+      </EntityType>
+      <EntityType Name="Almdel">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategoriid" Type="Edm.Int32" />
+        <Property Name="statusid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="titelkort" Type="Edm.String" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="nummer" Type="Edm.String" />
+        <Property Name="nummerprefix" Type="Edm.String" />
+        <Property Name="nummernumerisk" Type="Edm.String" />
+        <Property Name="nummerpostfix" Type="Edm.String" />
+        <Property Name="resume" Type="Edm.String" />
+        <Property Name="afstemningskonklusion" Type="Edm.String" />
+        <Property Name="periodeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="afgørelsesresultatkode" Type="Edm.String" />
+        <Property Name="baggrundsmateriale" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="statsbudgetsag" Type="Edm.Boolean" />
+        <Property Name="begrundelse" Type="Edm.String" />
+        <Property Name="paragrafnummer" Type="Edm.Int32" />
+        <Property Name="paragraf" Type="Edm.String" />
+        <Property Name="afgørelsesdato" Type="Edm.DateTime" />
+        <Property Name="afgørelse" Type="Edm.String" />
+        <Property Name="rådsmødedato" Type="Edm.DateTime" />
+        <Property Name="lovnummer" Type="Edm.String" />
+        <Property Name="lovnummerdato" Type="Edm.DateTime" />
+        <Property Name="retsinformationsurl" Type="Edm.String" />
+        <Property Name="fremsatundersagid" Type="Edm.Int32" />
+        <Property Name="deltundersagid" Type="Edm.Int32" />
+      </EntityType>
+      <EntityType Name="Dagsordenspunkt">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kørebemærkning" Type="Edm.String" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="kommentar" Type="Edm.String" />
+        <Property Name="nummer" Type="Edm.String" />
+        <Property Name="forhandlingskode" Type="Edm.String" />
+        <Property Name="forhandling" Type="Edm.String" />
+        <Property Name="superid" Type="Edm.Int32" />
+        <Property Name="sagstrinid" Type="Edm.Int32" />
+        <Property Name="mødeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" />
+        <NavigationProperty Name="Dagsordenspunktdelti" Relationship="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_Dagsordenspunktdelti_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktdeltiPartner" ToRole="Dagsordenspunktdelti" FromRole="DagsordenspunktdeltiPartner" />
+        <NavigationProperty Name="DagsordenspunktDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_DagsordenspunktDokument_FT_Domain_Models_DagsordenspunktDokument_DagsordenspunktDokumentPartner" ToRole="DagsordenspunktDokument" FromRole="DagsordenspunktDokumentPartner" />
+        <NavigationProperty Name="DagsordenspunktSag" Relationship="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_DagsordenspunktSag_FT_Domain_Models_DagsordenspunktSag_DagsordenspunktSagPartner" ToRole="DagsordenspunktSag" FromRole="DagsordenspunktSagPartner" />
+        <NavigationProperty Name="DeltfraDagsordenspunkt" Relationship="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_DeltfraDagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DeltfraDagsordenspunktPartner" ToRole="DeltfraDagsordenspunkt" FromRole="DeltfraDagsordenspunktPartner" />
+        <NavigationProperty Name="Møde" Relationship="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_Møde_FT_Domain_Models_Møde_MødePartner" ToRole="Møde" FromRole="MødePartner" />
+        <NavigationProperty Name="Sagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner" ToRole="Sagstrin" FromRole="SagstrinPartner" />
+      </EntityType>
+      <EntityType Name="DagsordenspunktDokument">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dokumentid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dagsordenspunktid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="note" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Dagsordenspunkt" Relationship="FT.Domain.Models.FT_Domain_Models_DagsordenspunktDokument_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner" ToRole="Dagsordenspunkt" FromRole="DagsordenspunktPartner" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_DagsordenspunktDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+      </EntityType>
+      <EntityType Name="DagsordenspunktSag">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dagsordenspunktid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="sagid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Dagsordenspunkt" Relationship="FT.Domain.Models.FT_Domain_Models_DagsordenspunktSag_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner" ToRole="Dagsordenspunkt" FromRole="DagsordenspunktPartner" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_DagsordenspunktSag_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+      </EntityType>
+      <EntityType Name="Debat">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategoriid" Type="Edm.Int32" />
+        <Property Name="statusid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="titelkort" Type="Edm.String" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="nummer" Type="Edm.String" />
+        <Property Name="nummerprefix" Type="Edm.String" />
+        <Property Name="nummernumerisk" Type="Edm.String" />
+        <Property Name="nummerpostfix" Type="Edm.String" />
+        <Property Name="resume" Type="Edm.String" />
+        <Property Name="afstemningskonklusion" Type="Edm.String" />
+        <Property Name="periodeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="afgørelsesresultatkode" Type="Edm.String" />
+        <Property Name="baggrundsmateriale" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="statsbudgetsag" Type="Edm.Boolean" />
+        <Property Name="begrundelse" Type="Edm.String" />
+        <Property Name="paragrafnummer" Type="Edm.Int32" />
+        <Property Name="paragraf" Type="Edm.String" />
+        <Property Name="afgørelsesdato" Type="Edm.DateTime" />
+        <Property Name="afgørelse" Type="Edm.String" />
+        <Property Name="rådsmødedato" Type="Edm.DateTime" />
+        <Property Name="lovnummer" Type="Edm.String" />
+        <Property Name="lovnummerdato" Type="Edm.DateTime" />
+        <Property Name="retsinformationsurl" Type="Edm.String" />
+        <Property Name="fremsatundersagid" Type="Edm.Int32" />
+        <Property Name="deltundersagid" Type="Edm.Int32" />
+      </EntityType>
+      <EntityType Name="Dokument">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategoriid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="statusid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="dato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="modtagelsesdato" Type="Edm.DateTime" />
+        <Property Name="frigivelsesdato" Type="Edm.DateTime" />
+        <Property Name="paragraf" Type="Edm.String" />
+        <Property Name="paragrafnummer" Type="Edm.String" />
+        <Property Name="spørgsmålsordlyd" Type="Edm.String" />
+        <Property Name="spørgsmålstitel" Type="Edm.String" />
+        <Property Name="spørgsmålsid" Type="Edm.Int32" />
+        <Property Name="procedurenummer" Type="Edm.String" />
+        <Property Name="grundnotatstatus" Type="Edm.String" />
+        <Property Name="dagsordenudgavenummer" Type="Edm.Int16" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="DagsordenspunktDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_DagsordenspunktDokument_FT_Domain_Models_DagsordenspunktDokument_DagsordenspunktDokumentPartner" ToRole="DagsordenspunktDokument" FromRole="DagsordenspunktDokumentPartner" />
+        <NavigationProperty Name="SvarDokumenter" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_SvarDokumenter_FT_Domain_Models_Dokument_SvarDokumenterPartner" ToRole="SvarDokumenter" FromRole="SvarDokumenterPartner" />
+        <NavigationProperty Name="DokumentAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner" ToRole="DokumentAktør" FromRole="DokumentAktørPartner" />
+        <NavigationProperty Name="EmneordDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_EmneordDokument_FT_Domain_Models_EmneordDokument_EmneordDokumentPartner" ToRole="EmneordDokument" FromRole="EmneordDokumentPartner" />
+        <NavigationProperty Name="Fil" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_Fil_FT_Domain_Models_Fil_FilPartner" ToRole="Fil" FromRole="FilPartner" />
+        <NavigationProperty Name="Omtryk" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_Omtryk_FT_Domain_Models_Omtryk_OmtrykPartner" ToRole="Omtryk" FromRole="OmtrykPartner" />
+        <NavigationProperty Name="SagDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner" ToRole="SagDokument" FromRole="SagDokumentPartner" />
+        <NavigationProperty Name="SagstrinDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_SagstrinDokument_FT_Domain_Models_SagstrinDokument_SagstrinDokumentPartner" ToRole="SagstrinDokument" FromRole="SagstrinDokumentPartner" />
+        <NavigationProperty Name="SpørgsmålsDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_SpørgsmålsDokument_FT_Domain_Models_Dokument_SpørgsmålsDokumentPartner" ToRole="SpørgsmålsDokument" FromRole="SpørgsmålsDokumentPartner" />
+        <NavigationProperty Name="Dokumentkategori" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_Dokumentkategori_FT_Domain_Models_Dokumentkategori_DokumentkategoriPartner" ToRole="Dokumentkategori" FromRole="DokumentkategoriPartner" />
+        <NavigationProperty Name="Dokumentstatus" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_Dokumentstatus_FT_Domain_Models_Dokumentstatus_DokumentstatusPartner" ToRole="Dokumentstatus" FromRole="DokumentstatusPartner" />
+        <NavigationProperty Name="Dokumenttype" Relationship="FT.Domain.Models.FT_Domain_Models_Dokument_Dokumenttype_FT_Domain_Models_Dokumenttype_DokumenttypePartner" ToRole="Dokumenttype" FromRole="DokumenttypePartner" />
+      </EntityType>
+      <EntityType Name="DokumentAktør">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dokumentid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="aktørid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="rolleid" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Aktør" Relationship="FT.Domain.Models.FT_Domain_Models_DokumentAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner" ToRole="Aktør" FromRole="AktørPartner" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_DokumentAktør_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+        <NavigationProperty Name="DokumentAktørRolle" Relationship="FT.Domain.Models.FT_Domain_Models_DokumentAktør_DokumentAktørRolle_FT_Domain_Models_DokumentAktørRolle_DokumentAktørRollePartner" ToRole="DokumentAktørRolle" FromRole="DokumentAktørRollePartner" />
+      </EntityType>
+      <EntityType Name="DokumentAktørRolle">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="rolle" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="DokumentAktør" Relationship="FT.Domain.Models.FT_Domain_Models_DokumentAktørRolle_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner" ToRole="DokumentAktør" FromRole="DokumentAktørPartner" />
+      </EntityType>
+      <EntityType Name="Dokumentkategori">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategori" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dokumentkategori_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+      </EntityType>
+      <EntityType Name="Dokumenttype">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dokumenttype_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+      </EntityType>
+      <EntityType Name="Dokumentstatus">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="status" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_Dokumentstatus_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+      </EntityType>
+      <EntityType Name="Emneord">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="emneord" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="EmneordDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Emneord_EmneordDokument_FT_Domain_Models_EmneordDokument_EmneordDokumentPartner" ToRole="EmneordDokument" FromRole="EmneordDokumentPartner" />
+        <NavigationProperty Name="EmneordSag" Relationship="FT.Domain.Models.FT_Domain_Models_Emneord_EmneordSag_FT_Domain_Models_EmneordSag_EmneordSagPartner" ToRole="EmneordSag" FromRole="EmneordSagPartner" />
+        <NavigationProperty Name="Emneordstype" Relationship="FT.Domain.Models.FT_Domain_Models_Emneord_Emneordstype_FT_Domain_Models_Emneordstype_EmneordstypePartner" ToRole="Emneordstype" FromRole="EmneordstypePartner" />
+      </EntityType>
+      <EntityType Name="EmneordDokument">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="emneordid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dokumentid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_EmneordDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+        <NavigationProperty Name="Emneord" Relationship="FT.Domain.Models.FT_Domain_Models_EmneordDokument_Emneord_FT_Domain_Models_Emneord_EmneordPartner" ToRole="Emneord" FromRole="EmneordPartner" />
+      </EntityType>
+      <EntityType Name="EmneordSag">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="emneordid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="sagid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Emneord" Relationship="FT.Domain.Models.FT_Domain_Models_EmneordSag_Emneord_FT_Domain_Models_Emneord_EmneordPartner" ToRole="Emneord" FromRole="EmneordPartner" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_EmneordSag_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+      </EntityType>
+      <EntityType Name="Emneordstype">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Emneord" Relationship="FT.Domain.Models.FT_Domain_Models_Emneordstype_Emneord_FT_Domain_Models_Emneord_EmneordPartner" ToRole="Emneord" FromRole="EmneordPartner" />
+      </EntityType>
+      <EntityType Name="EUsag">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategoriid" Type="Edm.Int32" />
+        <Property Name="statusid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="titelkort" Type="Edm.String" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="nummer" Type="Edm.String" />
+        <Property Name="nummerprefix" Type="Edm.String" />
+        <Property Name="nummernumerisk" Type="Edm.String" />
+        <Property Name="nummerpostfix" Type="Edm.String" />
+        <Property Name="resume" Type="Edm.String" />
+        <Property Name="afstemningskonklusion" Type="Edm.String" />
+        <Property Name="periodeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="afgørelsesresultatkode" Type="Edm.String" />
+        <Property Name="baggrundsmateriale" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="statsbudgetsag" Type="Edm.Boolean" />
+        <Property Name="begrundelse" Type="Edm.String" />
+        <Property Name="paragrafnummer" Type="Edm.Int32" />
+        <Property Name="paragraf" Type="Edm.String" />
+        <Property Name="afgørelsesdato" Type="Edm.DateTime" />
+        <Property Name="afgørelse" Type="Edm.String" />
+        <Property Name="rådsmødedato" Type="Edm.DateTime" />
+        <Property Name="lovnummer" Type="Edm.String" />
+        <Property Name="lovnummerdato" Type="Edm.DateTime" />
+        <Property Name="retsinformationsurl" Type="Edm.String" />
+        <Property Name="fremsatundersagid" Type="Edm.Int32" />
+        <Property Name="deltundersagid" Type="Edm.Int32" />
+      </EntityType>
+      <EntityType Name="Forslag">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategoriid" Type="Edm.Int32" />
+        <Property Name="statusid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="titelkort" Type="Edm.String" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="nummer" Type="Edm.String" />
+        <Property Name="nummerprefix" Type="Edm.String" />
+        <Property Name="nummernumerisk" Type="Edm.String" />
+        <Property Name="nummerpostfix" Type="Edm.String" />
+        <Property Name="resume" Type="Edm.String" />
+        <Property Name="afstemningskonklusion" Type="Edm.String" />
+        <Property Name="periodeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="afgørelsesresultatkode" Type="Edm.String" />
+        <Property Name="baggrundsmateriale" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="statsbudgetsag" Type="Edm.Boolean" />
+        <Property Name="begrundelse" Type="Edm.String" />
+        <Property Name="paragrafnummer" Type="Edm.Int32" />
+        <Property Name="paragraf" Type="Edm.String" />
+        <Property Name="afgørelsesdato" Type="Edm.DateTime" />
+        <Property Name="afgørelse" Type="Edm.String" />
+        <Property Name="rådsmødedato" Type="Edm.DateTime" />
+        <Property Name="lovnummer" Type="Edm.String" />
+        <Property Name="lovnummerdato" Type="Edm.DateTime" />
+        <Property Name="retsinformationsurl" Type="Edm.String" />
+        <Property Name="fremsatundersagid" Type="Edm.Int32" />
+        <Property Name="deltundersagid" Type="Edm.Int32" />
+      </EntityType>
+      <EntityType Name="Fil">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dokumentid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="versionsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="filurl" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="variantkode" Type="Edm.String" />
+        <Property Name="format" Type="Edm.String" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_Fil_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+      </EntityType>
+      <EntityType Name="KolloneBeskrivelse">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="entitetnavn" Type="Edm.String" />
+        <Property Name="kollonenavn" Type="Edm.String" />
+        <Property Name="beskrivelse" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" />
+      </EntityType>
+      <EntityType Name="EntitetBeskrivelse">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="entitetnavn" Type="Edm.String" />
+        <Property Name="beskrivelse" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" />
+      </EntityType>
+      <EntityType Name="Møde">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="lokale" Type="Edm.String" />
+        <Property Name="nummer" Type="Edm.String" />
+        <Property Name="dagsordenurl" Type="Edm.String" />
+        <Property Name="starttidsbemærkning" Type="Edm.String" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="dato" Type="Edm.DateTime" />
+        <Property Name="statusid" Type="Edm.Int32" />
+        <Property Name="typeid" Type="Edm.Int32" />
+        <Property Name="periodeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Afstemning" Relationship="FT.Domain.Models.FT_Domain_Models_Møde_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner" ToRole="Afstemning" FromRole="AfstemningPartner" />
+        <NavigationProperty Name="Dagsordenspunkt" Relationship="FT.Domain.Models.FT_Domain_Models_Møde_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner" ToRole="Dagsordenspunkt" FromRole="DagsordenspunktPartner" />
+        <NavigationProperty Name="MødeAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Møde_MødeAktør_FT_Domain_Models_MødeAktør_MødeAktørPartner" ToRole="MødeAktør" FromRole="MødeAktørPartner" />
+        <NavigationProperty Name="Mødestatus" Relationship="FT.Domain.Models.FT_Domain_Models_Møde_Mødestatus_FT_Domain_Models_Mødestatus_MødestatusPartner" ToRole="Mødestatus" FromRole="MødestatusPartner" />
+        <NavigationProperty Name="Mødetype" Relationship="FT.Domain.Models.FT_Domain_Models_Møde_Mødetype_FT_Domain_Models_Mødetype_MødetypePartner" ToRole="Mødetype" FromRole="MødetypePartner" />
+        <NavigationProperty Name="Periode" Relationship="FT.Domain.Models.FT_Domain_Models_Møde_Periode_FT_Domain_Models_Periode_PeriodePartner" ToRole="Periode" FromRole="PeriodePartner" />
+      </EntityType>
+      <EntityType Name="MødeAktør">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="mødeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="aktørid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Aktør" Relationship="FT.Domain.Models.FT_Domain_Models_MødeAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner" ToRole="Aktør" FromRole="AktørPartner" />
+        <NavigationProperty Name="Møde" Relationship="FT.Domain.Models.FT_Domain_Models_MødeAktør_Møde_FT_Domain_Models_Møde_MødePartner" ToRole="Møde" FromRole="MødePartner" />
+      </EntityType>
+      <EntityType Name="Mødestatus">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="status" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Møde" Relationship="FT.Domain.Models.FT_Domain_Models_Mødestatus_Møde_FT_Domain_Models_Møde_MødePartner" ToRole="Møde" FromRole="MødePartner" />
+      </EntityType>
+      <EntityType Name="Mødetype">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Møde" Relationship="FT.Domain.Models.FT_Domain_Models_Mødetype_Møde_FT_Domain_Models_Møde_MødePartner" ToRole="Møde" FromRole="MødePartner" />
+      </EntityType>
+      <EntityType Name="Omtryk">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dokumentid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dato" Type="Edm.DateTime" />
+        <Property Name="begrundelse" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_Omtryk_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+      </EntityType>
+      <EntityType Name="Periode">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="startdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="slutdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="kode" Type="Edm.String" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Aktør" Relationship="FT.Domain.Models.FT_Domain_Models_Periode_Aktør_FT_Domain_Models_Aktør_AktørPartner" ToRole="Aktør" FromRole="AktørPartner" />
+        <NavigationProperty Name="Møde" Relationship="FT.Domain.Models.FT_Domain_Models_Periode_Møde_FT_Domain_Models_Møde_MødePartner" ToRole="Møde" FromRole="MødePartner" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_Periode_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+      </EntityType>
+      <EntityType Name="Sag">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategoriid" Type="Edm.Int32" />
+        <Property Name="statusid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="titelkort" Type="Edm.String" />
+        <Property Name="offentlighedskode" Type="Edm.String" />
+        <Property Name="nummer" Type="Edm.String" />
+        <Property Name="nummerprefix" Type="Edm.String" />
+        <Property Name="nummernumerisk" Type="Edm.String" />
+        <Property Name="nummerpostfix" Type="Edm.String" />
+        <Property Name="resume" Type="Edm.String" />
+        <Property Name="afstemningskonklusion" Type="Edm.String" />
+        <Property Name="periodeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="afgørelsesresultatkode" Type="Edm.String" />
+        <Property Name="baggrundsmateriale" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="statsbudgetsag" Type="Edm.Boolean" />
+        <Property Name="begrundelse" Type="Edm.String" />
+        <Property Name="paragrafnummer" Type="Edm.Int32" />
+        <Property Name="paragraf" Type="Edm.String" />
+        <Property Name="afgørelsesdato" Type="Edm.DateTime" />
+        <Property Name="afgørelse" Type="Edm.String" />
+        <Property Name="rådsmødedato" Type="Edm.DateTime" />
+        <Property Name="lovnummer" Type="Edm.String" />
+        <Property Name="lovnummerdato" Type="Edm.DateTime" />
+        <Property Name="retsinformationsurl" Type="Edm.String" />
+        <Property Name="fremsatundersagid" Type="Edm.Int32" />
+        <Property Name="deltundersagid" Type="Edm.Int32" />
+        <NavigationProperty Name="DagsordenspunktSag" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_DagsordenspunktSag_FT_Domain_Models_DagsordenspunktSag_DagsordenspunktSagPartner" ToRole="DagsordenspunktSag" FromRole="DagsordenspunktSagPartner" />
+        <NavigationProperty Name="EmneordSag" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_EmneordSag_FT_Domain_Models_EmneordSag_EmneordSagPartner" ToRole="EmneordSag" FromRole="EmneordSagPartner" />
+        <NavigationProperty Name="Sagerdelti" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_Sagerdelti_FT_Domain_Models_Sag_SagerdeltiPartner" ToRole="Sagerdelti" FromRole="SagerdeltiPartner" />
+        <NavigationProperty Name="Sagerfremsatunder" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_Sagerfremsatunder_FT_Domain_Models_Sag_SagerfremsatunderPartner" ToRole="Sagerfremsatunder" FromRole="SagerfremsatunderPartner" />
+        <NavigationProperty Name="SagAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner" ToRole="SagAktør" FromRole="SagAktørPartner" />
+        <NavigationProperty Name="SagDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner" ToRole="SagDokument" FromRole="SagDokumentPartner" />
+        <NavigationProperty Name="Sagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner" ToRole="Sagstrin" FromRole="SagstrinPartner" />
+        <NavigationProperty Name="Periode" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_Periode_FT_Domain_Models_Periode_PeriodePartner" ToRole="Periode" FromRole="PeriodePartner" />
+        <NavigationProperty Name="DeltfraSag" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_DeltfraSag_FT_Domain_Models_Sag_DeltfraSagPartner" ToRole="DeltfraSag" FromRole="DeltfraSagPartner" />
+        <NavigationProperty Name="FremsatunderSag" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_FremsatunderSag_FT_Domain_Models_Sag_FremsatunderSagPartner" ToRole="FremsatunderSag" FromRole="FremsatunderSagPartner" />
+        <NavigationProperty Name="Sagskategori" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_Sagskategori_FT_Domain_Models_Sagskategori_SagskategoriPartner" ToRole="Sagskategori" FromRole="SagskategoriPartner" />
+        <NavigationProperty Name="Sagsstatus" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_Sagsstatus_FT_Domain_Models_Sagsstatus_SagsstatusPartner" ToRole="Sagsstatus" FromRole="SagsstatusPartner" />
+        <NavigationProperty Name="Sagstype" Relationship="FT.Domain.Models.FT_Domain_Models_Sag_Sagstype_FT_Domain_Models_Sagstype_SagstypePartner" ToRole="Sagstype" FromRole="SagstypePartner" />
+      </EntityType>
+      <EntityType Name="SagAktør">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="aktørid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="sagid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="rolleid" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Aktør" Relationship="FT.Domain.Models.FT_Domain_Models_SagAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner" ToRole="Aktør" FromRole="AktørPartner" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_SagAktør_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+        <NavigationProperty Name="SagAktørRolle" Relationship="FT.Domain.Models.FT_Domain_Models_SagAktør_SagAktørRolle_FT_Domain_Models_SagAktørRolle_SagAktørRollePartner" ToRole="SagAktørRolle" FromRole="SagAktørRollePartner" />
+      </EntityType>
+      <EntityType Name="SagAktørRolle">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="rolle" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="SagAktør" Relationship="FT.Domain.Models.FT_Domain_Models_SagAktørRolle_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner" ToRole="SagAktør" FromRole="SagAktørPartner" />
+      </EntityType>
+      <EntityType Name="SagDokument">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="sagid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dokumentid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="bilagsnummer" Type="Edm.String" />
+        <Property Name="frigivelsesdato" Type="Edm.DateTime" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="rolleid" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_SagDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_SagDokument_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+        <NavigationProperty Name="SagDokumentRolle" Relationship="FT.Domain.Models.FT_Domain_Models_SagDokument_SagDokumentRolle_FT_Domain_Models_SagDokumentRolle_SagDokumentRollePartner" ToRole="SagDokumentRolle" FromRole="SagDokumentRollePartner" />
+      </EntityType>
+      <EntityType Name="SagDokumentRolle">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="rolle" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="SagDokument" Relationship="FT.Domain.Models.FT_Domain_Models_SagDokumentRolle_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner" ToRole="SagDokument" FromRole="SagDokumentPartner" />
+      </EntityType>
+      <EntityType Name="Sagskategori">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="kategori" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_Sagskategori_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+      </EntityType>
+      <EntityType Name="Sagsstatus">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="status" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_Sagsstatus_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+      </EntityType>
+      <EntityType Name="Sagstrin">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="titel" Type="Edm.String" />
+        <Property Name="dato" Type="Edm.DateTime" />
+        <Property Name="sagid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="folketingstidendeurl" Type="Edm.String" />
+        <Property Name="folketingstidende" Type="Edm.String" />
+        <Property Name="folketingstidendesidenummer" Type="Edm.String" />
+        <Property Name="statusid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Afstemning" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner" ToRole="Afstemning" FromRole="AfstemningPartner" />
+        <NavigationProperty Name="Dagsordenspunkt" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner" ToRole="Dagsordenspunkt" FromRole="DagsordenspunktPartner" />
+        <NavigationProperty Name="SagstrinAktør" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner" ToRole="SagstrinAktør" FromRole="SagstrinAktørPartner" />
+        <NavigationProperty Name="SagstrinDokument" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_SagstrinDokument_FT_Domain_Models_SagstrinDokument_SagstrinDokumentPartner" ToRole="SagstrinDokument" FromRole="SagstrinDokumentPartner" />
+        <NavigationProperty Name="Sambehandlinger_andetsagstrinid" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sambehandlinger__andetsagstrinid_FT_Domain_Models_Sambehandlinger_Sambehandlinger__andetsagstrinidPartner" ToRole="Sambehandlinger_andetsagstrinid" FromRole="Sambehandlinger_andetsagstrinidPartner" />
+        <NavigationProperty Name="Sambehandlinger_førstesagstrinid" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sambehandlinger__førstesagstrinid_FT_Domain_Models_Sambehandlinger_Sambehandlinger__førstesagstrinidPartner" ToRole="Sambehandlinger_førstesagstrinid" FromRole="Sambehandlinger_førstesagstrinidPartner" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+        <NavigationProperty Name="Sagstrinsstatus" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sagstrinsstatus_FT_Domain_Models_Sagstrinsstatus_SagstrinsstatusPartner" ToRole="Sagstrinsstatus" FromRole="SagstrinsstatusPartner" />
+        <NavigationProperty Name="Sagstrinstype" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sagstrinstype_FT_Domain_Models_Sagstrinstype_SagstrinstypePartner" ToRole="Sagstrinstype" FromRole="SagstrinstypePartner" />
+      </EntityType>
+      <EntityType Name="SagstrinAktør">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="sagstrinid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="aktørid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="rolleid" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Aktør" Relationship="FT.Domain.Models.FT_Domain_Models_SagstrinAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner" ToRole="Aktør" FromRole="AktørPartner" />
+        <NavigationProperty Name="Sagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_SagstrinAktør_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner" ToRole="Sagstrin" FromRole="SagstrinPartner" />
+        <NavigationProperty Name="SagstrinAktørRolle" Relationship="FT.Domain.Models.FT_Domain_Models_SagstrinAktør_SagstrinAktørRolle_FT_Domain_Models_SagstrinAktørRolle_SagstrinAktørRollePartner" ToRole="SagstrinAktørRolle" FromRole="SagstrinAktørRollePartner" />
+      </EntityType>
+      <EntityType Name="SagstrinAktørRolle">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="rolle" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="SagstrinAktør" Relationship="FT.Domain.Models.FT_Domain_Models_SagstrinAktørRolle_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner" ToRole="SagstrinAktør" FromRole="SagstrinAktørPartner" />
+      </EntityType>
+      <EntityType Name="Sambehandlinger">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="førstesagstrinid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="andetsagstrinid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="AndetSagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_Sambehandlinger_AndetSagstrin_FT_Domain_Models_Sagstrin_AndetSagstrinPartner" ToRole="AndetSagstrin" FromRole="AndetSagstrinPartner" />
+        <NavigationProperty Name="FørsteSagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_Sambehandlinger_FørsteSagstrin_FT_Domain_Models_Sagstrin_FørsteSagstrinPartner" ToRole="FørsteSagstrin" FromRole="FørsteSagstrinPartner" />
+      </EntityType>
+      <EntityType Name="SagstrinDokument">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="sagstrinid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="dokumentid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Dokument" Relationship="FT.Domain.Models.FT_Domain_Models_SagstrinDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner" ToRole="Dokument" FromRole="DokumentPartner" />
+        <NavigationProperty Name="Sagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_SagstrinDokument_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner" ToRole="Sagstrin" FromRole="SagstrinPartner" />
+      </EntityType>
+      <EntityType Name="Sagstrinsstatus">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="status" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Sagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrinsstatus_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner" ToRole="Sagstrin" FromRole="SagstrinPartner" />
+      </EntityType>
+      <EntityType Name="Sagstrinstype">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Sagstrin" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstrinstype_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner" ToRole="Sagstrin" FromRole="SagstrinPartner" />
+      </EntityType>
+      <EntityType Name="Sagstype">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Sag" Relationship="FT.Domain.Models.FT_Domain_Models_Sagstype_Sag_FT_Domain_Models_Sag_SagPartner" ToRole="Sag" FromRole="SagPartner" />
+      </EntityType>
+      <EntityType Name="Stemme">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="typeid" Type="Edm.Int32" />
+        <Property Name="afstemningid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="aktørid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Afstemning" Relationship="FT.Domain.Models.FT_Domain_Models_Stemme_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner" ToRole="Afstemning" FromRole="AfstemningPartner" />
+        <NavigationProperty Name="Aktør" Relationship="FT.Domain.Models.FT_Domain_Models_Stemme_Aktør_FT_Domain_Models_Aktør_AktørPartner" ToRole="Aktør" FromRole="AktørPartner" />
+        <NavigationProperty Name="Stemmetype" Relationship="FT.Domain.Models.FT_Domain_Models_Stemme_Stemmetype_FT_Domain_Models_Stemmetype_StemmetypePartner" ToRole="Stemmetype" FromRole="StemmetypePartner" />
+      </EntityType>
+      <EntityType Name="Stemmetype">
+        <Key>
+          <PropertyRef Name="id" />
+        </Key>
+        <Property Name="id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="type" Type="Edm.String" />
+        <Property Name="opdateringsdato" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Stemme" Relationship="FT.Domain.Models.FT_Domain_Models_Stemmetype_Stemme_FT_Domain_Models_Stemme_StemmePartner" ToRole="Stemme" FromRole="StemmePartner" />
+      </EntityType>
+      <Association Name="FT_Domain_Models_Afstemning_Stemme_FT_Domain_Models_Stemme_StemmePartner">
+        <End Type="FT.Domain.Models.Stemme" Role="Stemme" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Afstemning" Role="StemmePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Afstemning_Afstemningstype_FT_Domain_Models_Afstemningstype_AfstemningstypePartner">
+        <End Type="FT.Domain.Models.Afstemningstype" Role="Afstemningstype" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Afstemning" Role="AfstemningstypePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Afstemning_Møde_FT_Domain_Models_Møde_MødePartner">
+        <End Type="FT.Domain.Models.Møde" Role="Møde" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Afstemning" Role="MødePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Afstemning_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sagstrin" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Afstemning" Role="SagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Afstemningstype_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner">
+        <End Type="FT.Domain.Models.Afstemning" Role="Afstemning" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Afstemningstype" Role="AfstemningPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_FraAktørAktør_FT_Domain_Models_AktørAktør_FraAktørAktørPartner">
+        <End Type="FT.Domain.Models.AktørAktør" Role="FraAktørAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Aktør" Role="FraAktørAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_TilAktørAktør_FT_Domain_Models_AktørAktør_TilAktørAktørPartner">
+        <End Type="FT.Domain.Models.AktørAktør" Role="TilAktørAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Aktør" Role="TilAktørAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner">
+        <End Type="FT.Domain.Models.DokumentAktør" Role="DokumentAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Aktør" Role="DokumentAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_MødeAktør_FT_Domain_Models_MødeAktør_MødeAktørPartner">
+        <End Type="FT.Domain.Models.MødeAktør" Role="MødeAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Aktør" Role="MødeAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner">
+        <End Type="FT.Domain.Models.SagAktør" Role="SagAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Aktør" Role="SagAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner">
+        <End Type="FT.Domain.Models.SagstrinAktør" Role="SagstrinAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Aktør" Role="SagstrinAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_Stemme_FT_Domain_Models_Stemme_StemmePartner">
+        <End Type="FT.Domain.Models.Stemme" Role="Stemme" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Aktør" Role="StemmePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_Aktørtype_FT_Domain_Models_Aktørtype_AktørtypePartner">
+        <End Type="FT.Domain.Models.Aktørtype" Role="Aktørtype" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Aktør" Role="AktørtypePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktør_Periode_FT_Domain_Models_Periode_PeriodePartner">
+        <End Type="FT.Domain.Models.Periode" Role="Periode" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Aktør" Role="PeriodePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_AktørAktør_FraAktør_FT_Domain_Models_Aktør_FraAktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="FraAktør" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.AktørAktør" Role="FraAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_AktørAktør_TilAktør_FT_Domain_Models_Aktør_TilAktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="TilAktør" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.AktørAktør" Role="TilAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_AktørAktør_AktørAktørRolle_FT_Domain_Models_AktørAktørRolle_AktørAktørRollePartner">
+        <End Type="FT.Domain.Models.AktørAktørRolle" Role="AktørAktørRolle" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.AktørAktør" Role="AktørAktørRollePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_AktørAktørRolle_AktørAktør_FT_Domain_Models_AktørAktør_AktørAktørPartner">
+        <End Type="FT.Domain.Models.AktørAktør" Role="AktørAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.AktørAktørRolle" Role="AktørAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Aktørtype_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="Aktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Aktørtype" Role="AktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dagsordenspunkt_Dagsordenspunktdelti_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktdeltiPartner">
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="Dagsordenspunktdelti" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="DagsordenspunktdeltiPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dagsordenspunkt_DagsordenspunktDokument_FT_Domain_Models_DagsordenspunktDokument_DagsordenspunktDokumentPartner">
+        <End Type="FT.Domain.Models.DagsordenspunktDokument" Role="DagsordenspunktDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="DagsordenspunktDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dagsordenspunkt_DagsordenspunktSag_FT_Domain_Models_DagsordenspunktSag_DagsordenspunktSagPartner">
+        <End Type="FT.Domain.Models.DagsordenspunktSag" Role="DagsordenspunktSag" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="DagsordenspunktSagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dagsordenspunkt_DeltfraDagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DeltfraDagsordenspunktPartner">
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="DeltfraDagsordenspunkt" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="DeltfraDagsordenspunktPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dagsordenspunkt_Møde_FT_Domain_Models_Møde_MødePartner">
+        <End Type="FT.Domain.Models.Møde" Role="Møde" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="MødePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dagsordenspunkt_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sagstrin" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="SagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_DagsordenspunktDokument_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner">
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="Dagsordenspunkt" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.DagsordenspunktDokument" Role="DagsordenspunktPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_DagsordenspunktDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.DagsordenspunktDokument" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_DagsordenspunktSag_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner">
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="Dagsordenspunkt" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.DagsordenspunktSag" Role="DagsordenspunktPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_DagsordenspunktSag_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.DagsordenspunktSag" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_DagsordenspunktDokument_FT_Domain_Models_DagsordenspunktDokument_DagsordenspunktDokumentPartner">
+        <End Type="FT.Domain.Models.DagsordenspunktDokument" Role="DagsordenspunktDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokument" Role="DagsordenspunktDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_SvarDokumenter_FT_Domain_Models_Dokument_SvarDokumenterPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="SvarDokumenter" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokument" Role="SvarDokumenterPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner">
+        <End Type="FT.Domain.Models.DokumentAktør" Role="DokumentAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokument" Role="DokumentAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_EmneordDokument_FT_Domain_Models_EmneordDokument_EmneordDokumentPartner">
+        <End Type="FT.Domain.Models.EmneordDokument" Role="EmneordDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokument" Role="EmneordDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_Fil_FT_Domain_Models_Fil_FilPartner">
+        <End Type="FT.Domain.Models.Fil" Role="Fil" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokument" Role="FilPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_Omtryk_FT_Domain_Models_Omtryk_OmtrykPartner">
+        <End Type="FT.Domain.Models.Omtryk" Role="Omtryk" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokument" Role="OmtrykPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner">
+        <End Type="FT.Domain.Models.SagDokument" Role="SagDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokument" Role="SagDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_SagstrinDokument_FT_Domain_Models_SagstrinDokument_SagstrinDokumentPartner">
+        <End Type="FT.Domain.Models.SagstrinDokument" Role="SagstrinDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokument" Role="SagstrinDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_SpørgsmålsDokument_FT_Domain_Models_Dokument_SpørgsmålsDokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="SpørgsmålsDokument" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Dokument" Role="SpørgsmålsDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_Dokumentkategori_FT_Domain_Models_Dokumentkategori_DokumentkategoriPartner">
+        <End Type="FT.Domain.Models.Dokumentkategori" Role="Dokumentkategori" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Dokument" Role="DokumentkategoriPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_Dokumentstatus_FT_Domain_Models_Dokumentstatus_DokumentstatusPartner">
+        <End Type="FT.Domain.Models.Dokumentstatus" Role="Dokumentstatus" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Dokument" Role="DokumentstatusPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokument_Dokumenttype_FT_Domain_Models_Dokumenttype_DokumenttypePartner">
+        <End Type="FT.Domain.Models.Dokumenttype" Role="Dokumenttype" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Dokument" Role="DokumenttypePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_DokumentAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="Aktør" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.DokumentAktør" Role="AktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_DokumentAktør_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.DokumentAktør" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_DokumentAktør_DokumentAktørRolle_FT_Domain_Models_DokumentAktørRolle_DokumentAktørRollePartner">
+        <End Type="FT.Domain.Models.DokumentAktørRolle" Role="DokumentAktørRolle" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.DokumentAktør" Role="DokumentAktørRollePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_DokumentAktørRolle_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner">
+        <End Type="FT.Domain.Models.DokumentAktør" Role="DokumentAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.DokumentAktørRolle" Role="DokumentAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokumentkategori_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokumentkategori" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokumenttype_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokumenttype" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Dokumentstatus_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Dokumentstatus" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Emneord_EmneordDokument_FT_Domain_Models_EmneordDokument_EmneordDokumentPartner">
+        <End Type="FT.Domain.Models.EmneordDokument" Role="EmneordDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Emneord" Role="EmneordDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Emneord_EmneordSag_FT_Domain_Models_EmneordSag_EmneordSagPartner">
+        <End Type="FT.Domain.Models.EmneordSag" Role="EmneordSag" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Emneord" Role="EmneordSagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Emneord_Emneordstype_FT_Domain_Models_Emneordstype_EmneordstypePartner">
+        <End Type="FT.Domain.Models.Emneordstype" Role="Emneordstype" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Emneord" Role="EmneordstypePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_EmneordDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.EmneordDokument" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_EmneordDokument_Emneord_FT_Domain_Models_Emneord_EmneordPartner">
+        <End Type="FT.Domain.Models.Emneord" Role="Emneord" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.EmneordDokument" Role="EmneordPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_EmneordSag_Emneord_FT_Domain_Models_Emneord_EmneordPartner">
+        <End Type="FT.Domain.Models.Emneord" Role="Emneord" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.EmneordSag" Role="EmneordPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_EmneordSag_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.EmneordSag" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Emneordstype_Emneord_FT_Domain_Models_Emneord_EmneordPartner">
+        <End Type="FT.Domain.Models.Emneord" Role="Emneord" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Emneordstype" Role="EmneordPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Fil_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Fil" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Møde_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner">
+        <End Type="FT.Domain.Models.Afstemning" Role="Afstemning" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Møde" Role="AfstemningPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Møde_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner">
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="Dagsordenspunkt" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Møde" Role="DagsordenspunktPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Møde_MødeAktør_FT_Domain_Models_MødeAktør_MødeAktørPartner">
+        <End Type="FT.Domain.Models.MødeAktør" Role="MødeAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Møde" Role="MødeAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Møde_Mødestatus_FT_Domain_Models_Mødestatus_MødestatusPartner">
+        <End Type="FT.Domain.Models.Mødestatus" Role="Mødestatus" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Møde" Role="MødestatusPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Møde_Mødetype_FT_Domain_Models_Mødetype_MødetypePartner">
+        <End Type="FT.Domain.Models.Mødetype" Role="Mødetype" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Møde" Role="MødetypePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Møde_Periode_FT_Domain_Models_Periode_PeriodePartner">
+        <End Type="FT.Domain.Models.Periode" Role="Periode" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Møde" Role="PeriodePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_MødeAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="Aktør" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.MødeAktør" Role="AktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_MødeAktør_Møde_FT_Domain_Models_Møde_MødePartner">
+        <End Type="FT.Domain.Models.Møde" Role="Møde" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.MødeAktør" Role="MødePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Mødestatus_Møde_FT_Domain_Models_Møde_MødePartner">
+        <End Type="FT.Domain.Models.Møde" Role="Møde" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Mødestatus" Role="MødePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Mødetype_Møde_FT_Domain_Models_Møde_MødePartner">
+        <End Type="FT.Domain.Models.Møde" Role="Møde" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Mødetype" Role="MødePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Omtryk_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Omtryk" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Periode_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="Aktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Periode" Role="AktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Periode_Møde_FT_Domain_Models_Møde_MødePartner">
+        <End Type="FT.Domain.Models.Møde" Role="Møde" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Periode" Role="MødePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Periode_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Periode" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_DagsordenspunktSag_FT_Domain_Models_DagsordenspunktSag_DagsordenspunktSagPartner">
+        <End Type="FT.Domain.Models.DagsordenspunktSag" Role="DagsordenspunktSag" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sag" Role="DagsordenspunktSagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_EmneordSag_FT_Domain_Models_EmneordSag_EmneordSagPartner">
+        <End Type="FT.Domain.Models.EmneordSag" Role="EmneordSag" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sag" Role="EmneordSagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_Sagerdelti_FT_Domain_Models_Sag_SagerdeltiPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sagerdelti" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sag" Role="SagerdeltiPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_Sagerfremsatunder_FT_Domain_Models_Sag_SagerfremsatunderPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sagerfremsatunder" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sag" Role="SagerfremsatunderPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner">
+        <End Type="FT.Domain.Models.SagAktør" Role="SagAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sag" Role="SagAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner">
+        <End Type="FT.Domain.Models.SagDokument" Role="SagDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sag" Role="SagDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sagstrin" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sag" Role="SagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_Periode_FT_Domain_Models_Periode_PeriodePartner">
+        <End Type="FT.Domain.Models.Periode" Role="Periode" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sag" Role="PeriodePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_DeltfraSag_FT_Domain_Models_Sag_DeltfraSagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="DeltfraSag" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sag" Role="DeltfraSagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_FremsatunderSag_FT_Domain_Models_Sag_FremsatunderSagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="FremsatunderSag" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sag" Role="FremsatunderSagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_Sagskategori_FT_Domain_Models_Sagskategori_SagskategoriPartner">
+        <End Type="FT.Domain.Models.Sagskategori" Role="Sagskategori" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sag" Role="SagskategoriPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_Sagsstatus_FT_Domain_Models_Sagsstatus_SagsstatusPartner">
+        <End Type="FT.Domain.Models.Sagsstatus" Role="Sagsstatus" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sag" Role="SagsstatusPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sag_Sagstype_FT_Domain_Models_Sagstype_SagstypePartner">
+        <End Type="FT.Domain.Models.Sagstype" Role="Sagstype" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sag" Role="SagstypePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="Aktør" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagAktør" Role="AktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagAktør_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagAktør" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagAktør_SagAktørRolle_FT_Domain_Models_SagAktørRolle_SagAktørRollePartner">
+        <End Type="FT.Domain.Models.SagAktørRolle" Role="SagAktørRolle" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagAktør" Role="SagAktørRollePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagAktørRolle_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner">
+        <End Type="FT.Domain.Models.SagAktør" Role="SagAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.SagAktørRolle" Role="SagAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagDokument" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagDokument_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagDokument" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagDokument_SagDokumentRolle_FT_Domain_Models_SagDokumentRolle_SagDokumentRollePartner">
+        <End Type="FT.Domain.Models.SagDokumentRolle" Role="SagDokumentRolle" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagDokument" Role="SagDokumentRollePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagDokumentRolle_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner">
+        <End Type="FT.Domain.Models.SagDokument" Role="SagDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.SagDokumentRolle" Role="SagDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagskategori_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagskategori" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagsstatus_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagsstatus" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner">
+        <End Type="FT.Domain.Models.Afstemning" Role="Afstemning" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="AfstemningPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner">
+        <End Type="FT.Domain.Models.Dagsordenspunkt" Role="Dagsordenspunkt" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="DagsordenspunktPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner">
+        <End Type="FT.Domain.Models.SagstrinAktør" Role="SagstrinAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="SagstrinAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_SagstrinDokument_FT_Domain_Models_SagstrinDokument_SagstrinDokumentPartner">
+        <End Type="FT.Domain.Models.SagstrinDokument" Role="SagstrinDokument" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="SagstrinDokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_Sambehandlinger__andetsagstrinid_FT_Domain_Models_Sambehandlinger_Sambehandlinger__andetsagstrinidPartner">
+        <End Type="FT.Domain.Models.Sambehandlinger" Role="Sambehandlinger_andetsagstrinid" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sambehandlinger_andetsagstrinidPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_Sambehandlinger__førstesagstrinid_FT_Domain_Models_Sambehandlinger_Sambehandlinger__førstesagstrinidPartner">
+        <End Type="FT.Domain.Models.Sambehandlinger" Role="Sambehandlinger_førstesagstrinid" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sambehandlinger_førstesagstrinidPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_Sagstrinsstatus_FT_Domain_Models_Sagstrinsstatus_SagstrinsstatusPartner">
+        <End Type="FT.Domain.Models.Sagstrinsstatus" Role="Sagstrinsstatus" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="SagstrinsstatusPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrin_Sagstrinstype_FT_Domain_Models_Sagstrinstype_SagstrinstypePartner">
+        <End Type="FT.Domain.Models.Sagstrinstype" Role="Sagstrinstype" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sagstrin" Role="SagstrinstypePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagstrinAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="Aktør" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagstrinAktør" Role="AktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagstrinAktør_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sagstrin" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagstrinAktør" Role="SagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagstrinAktør_SagstrinAktørRolle_FT_Domain_Models_SagstrinAktørRolle_SagstrinAktørRollePartner">
+        <End Type="FT.Domain.Models.SagstrinAktørRolle" Role="SagstrinAktørRolle" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagstrinAktør" Role="SagstrinAktørRollePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagstrinAktørRolle_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner">
+        <End Type="FT.Domain.Models.SagstrinAktør" Role="SagstrinAktør" Multiplicity="*" />
+        <End Type="FT.Domain.Models.SagstrinAktørRolle" Role="SagstrinAktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sambehandlinger_AndetSagstrin_FT_Domain_Models_Sagstrin_AndetSagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="AndetSagstrin" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sambehandlinger" Role="AndetSagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sambehandlinger_FørsteSagstrin_FT_Domain_Models_Sagstrin_FørsteSagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="FørsteSagstrin" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Sambehandlinger" Role="FørsteSagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagstrinDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+        <End Type="FT.Domain.Models.Dokument" Role="Dokument" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagstrinDokument" Role="DokumentPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_SagstrinDokument_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sagstrin" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.SagstrinDokument" Role="SagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrinsstatus_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sagstrin" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstrinsstatus" Role="SagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstrinstype_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+        <End Type="FT.Domain.Models.Sagstrin" Role="Sagstrin" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstrinstype" Role="SagstrinPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Sagstype_Sag_FT_Domain_Models_Sag_SagPartner">
+        <End Type="FT.Domain.Models.Sag" Role="Sag" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Sagstype" Role="SagPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Stemme_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner">
+        <End Type="FT.Domain.Models.Afstemning" Role="Afstemning" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Stemme" Role="AfstemningPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Stemme_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+        <End Type="FT.Domain.Models.Aktør" Role="Aktør" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Stemme" Role="AktørPartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Stemme_Stemmetype_FT_Domain_Models_Stemmetype_StemmetypePartner">
+        <End Type="FT.Domain.Models.Stemmetype" Role="Stemmetype" Multiplicity="0..1" />
+        <End Type="FT.Domain.Models.Stemme" Role="StemmetypePartner" Multiplicity="0..1" />
+      </Association>
+      <Association Name="FT_Domain_Models_Stemmetype_Stemme_FT_Domain_Models_Stemme_StemmePartner">
+        <End Type="FT.Domain.Models.Stemme" Role="Stemme" Multiplicity="*" />
+        <End Type="FT.Domain.Models.Stemmetype" Role="StemmePartner" Multiplicity="0..1" />
+      </Association>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityContainer Name="Container" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Afstemning" EntityType="FT.Domain.Models.Afstemning" />
+        <EntitySet Name="Afstemningstype" EntityType="FT.Domain.Models.Afstemningstype" />
+        <EntitySet Name="Aktstykke" EntityType="FT.Domain.Models.Aktstykke" />
+        <EntitySet Name="Aktør" EntityType="FT.Domain.Models.Aktør" />
+        <EntitySet Name="AktørAktør" EntityType="FT.Domain.Models.AktørAktør" />
+        <EntitySet Name="AktørAktørRolle" EntityType="FT.Domain.Models.AktørAktørRolle" />
+        <EntitySet Name="Aktørtype" EntityType="FT.Domain.Models.Aktørtype" />
+        <EntitySet Name="Almdel" EntityType="FT.Domain.Models.Almdel" />
+        <EntitySet Name="Dagsordenspunkt" EntityType="FT.Domain.Models.Dagsordenspunkt" />
+        <EntitySet Name="DagsordenspunktDokument" EntityType="FT.Domain.Models.DagsordenspunktDokument" />
+        <EntitySet Name="DagsordenspunktSag" EntityType="FT.Domain.Models.DagsordenspunktSag" />
+        <EntitySet Name="Debat" EntityType="FT.Domain.Models.Debat" />
+        <EntitySet Name="Dokument" EntityType="FT.Domain.Models.Dokument" />
+        <EntitySet Name="DokumentAktør" EntityType="FT.Domain.Models.DokumentAktør" />
+        <EntitySet Name="DokumentAktørRolle" EntityType="FT.Domain.Models.DokumentAktørRolle" />
+        <EntitySet Name="Dokumentkategori" EntityType="FT.Domain.Models.Dokumentkategori" />
+        <EntitySet Name="Dokumenttype" EntityType="FT.Domain.Models.Dokumenttype" />
+        <EntitySet Name="Dokumentstatus" EntityType="FT.Domain.Models.Dokumentstatus" />
+        <EntitySet Name="Emneord" EntityType="FT.Domain.Models.Emneord" />
+        <EntitySet Name="EmneordDokument" EntityType="FT.Domain.Models.EmneordDokument" />
+        <EntitySet Name="EmneordSag" EntityType="FT.Domain.Models.EmneordSag" />
+        <EntitySet Name="Emneordstype" EntityType="FT.Domain.Models.Emneordstype" />
+        <EntitySet Name="EUsag" EntityType="FT.Domain.Models.EUsag" />
+        <EntitySet Name="Forslag" EntityType="FT.Domain.Models.Forslag" />
+        <EntitySet Name="Fil" EntityType="FT.Domain.Models.Fil" />
+        <EntitySet Name="KolloneBeskrivelse" EntityType="FT.Domain.Models.KolloneBeskrivelse" />
+        <EntitySet Name="EntitetBeskrivelse" EntityType="FT.Domain.Models.EntitetBeskrivelse" />
+        <EntitySet Name="Møde" EntityType="FT.Domain.Models.Møde" />
+        <EntitySet Name="MødeAktør" EntityType="FT.Domain.Models.MødeAktør" />
+        <EntitySet Name="Mødestatus" EntityType="FT.Domain.Models.Mødestatus" />
+        <EntitySet Name="Mødetype" EntityType="FT.Domain.Models.Mødetype" />
+        <EntitySet Name="Omtryk" EntityType="FT.Domain.Models.Omtryk" />
+        <EntitySet Name="Periode" EntityType="FT.Domain.Models.Periode" />
+        <EntitySet Name="Sag" EntityType="FT.Domain.Models.Sag" />
+        <EntitySet Name="SagAktør" EntityType="FT.Domain.Models.SagAktør" />
+        <EntitySet Name="SagAktørRolle" EntityType="FT.Domain.Models.SagAktørRolle" />
+        <EntitySet Name="SagDokument" EntityType="FT.Domain.Models.SagDokument" />
+        <EntitySet Name="SagDokumentRolle" EntityType="FT.Domain.Models.SagDokumentRolle" />
+        <EntitySet Name="Sagskategori" EntityType="FT.Domain.Models.Sagskategori" />
+        <EntitySet Name="Sagsstatus" EntityType="FT.Domain.Models.Sagsstatus" />
+        <EntitySet Name="Sagstrin" EntityType="FT.Domain.Models.Sagstrin" />
+        <EntitySet Name="SagstrinAktør" EntityType="FT.Domain.Models.SagstrinAktør" />
+        <EntitySet Name="SagstrinAktørRolle" EntityType="FT.Domain.Models.SagstrinAktørRolle" />
+        <EntitySet Name="Sambehandlinger" EntityType="FT.Domain.Models.Sambehandlinger" />
+        <EntitySet Name="SagstrinDokument" EntityType="FT.Domain.Models.SagstrinDokument" />
+        <EntitySet Name="Sagstrinsstatus" EntityType="FT.Domain.Models.Sagstrinsstatus" />
+        <EntitySet Name="Sagstrinstype" EntityType="FT.Domain.Models.Sagstrinstype" />
+        <EntitySet Name="Sagstype" EntityType="FT.Domain.Models.Sagstype" />
+        <EntitySet Name="Stemme" EntityType="FT.Domain.Models.Stemme" />
+        <EntitySet Name="Stemmetype" EntityType="FT.Domain.Models.Stemmetype" />
+        <AssociationSet Name="FT_Domain_Models_Afstemning_Stemme_FT_Domain_Models_Stemme_StemmePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Afstemning_Stemme_FT_Domain_Models_Stemme_StemmePartner">
+          <End Role="StemmePartner" EntitySet="Afstemning" />
+          <End Role="Stemme" EntitySet="Stemme" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Afstemning_Afstemningstype_FT_Domain_Models_Afstemningstype_AfstemningstypePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Afstemning_Afstemningstype_FT_Domain_Models_Afstemningstype_AfstemningstypePartner">
+          <End Role="AfstemningstypePartner" EntitySet="Afstemning" />
+          <End Role="Afstemningstype" EntitySet="Afstemningstype" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Afstemning_Møde_FT_Domain_Models_Møde_MødePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Afstemning_Møde_FT_Domain_Models_Møde_MødePartner">
+          <End Role="MødePartner" EntitySet="Afstemning" />
+          <End Role="Møde" EntitySet="Møde" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Afstemning_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Afstemning_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+          <End Role="SagstrinPartner" EntitySet="Afstemning" />
+          <End Role="Sagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Afstemningstype_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Afstemningstype_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner">
+          <End Role="AfstemningPartner" EntitySet="Afstemningstype" />
+          <End Role="Afstemning" EntitySet="Afstemning" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_FraAktørAktør_FT_Domain_Models_AktørAktør_FraAktørAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_FraAktørAktør_FT_Domain_Models_AktørAktør_FraAktørAktørPartner">
+          <End Role="FraAktørAktørPartner" EntitySet="Aktør" />
+          <End Role="FraAktørAktør" EntitySet="AktørAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_TilAktørAktør_FT_Domain_Models_AktørAktør_TilAktørAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_TilAktørAktør_FT_Domain_Models_AktørAktør_TilAktørAktørPartner">
+          <End Role="TilAktørAktørPartner" EntitySet="Aktør" />
+          <End Role="TilAktørAktør" EntitySet="AktørAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner">
+          <End Role="DokumentAktørPartner" EntitySet="Aktør" />
+          <End Role="DokumentAktør" EntitySet="DokumentAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_MødeAktør_FT_Domain_Models_MødeAktør_MødeAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_MødeAktør_FT_Domain_Models_MødeAktør_MødeAktørPartner">
+          <End Role="MødeAktørPartner" EntitySet="Aktør" />
+          <End Role="MødeAktør" EntitySet="MødeAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner">
+          <End Role="SagAktørPartner" EntitySet="Aktør" />
+          <End Role="SagAktør" EntitySet="SagAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner">
+          <End Role="SagstrinAktørPartner" EntitySet="Aktør" />
+          <End Role="SagstrinAktør" EntitySet="SagstrinAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_Stemme_FT_Domain_Models_Stemme_StemmePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_Stemme_FT_Domain_Models_Stemme_StemmePartner">
+          <End Role="StemmePartner" EntitySet="Aktør" />
+          <End Role="Stemme" EntitySet="Stemme" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_Aktørtype_FT_Domain_Models_Aktørtype_AktørtypePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_Aktørtype_FT_Domain_Models_Aktørtype_AktørtypePartner">
+          <End Role="AktørtypePartner" EntitySet="Aktør" />
+          <End Role="Aktørtype" EntitySet="Aktørtype" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktør_Periode_FT_Domain_Models_Periode_PeriodePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktør_Periode_FT_Domain_Models_Periode_PeriodePartner">
+          <End Role="PeriodePartner" EntitySet="Aktør" />
+          <End Role="Periode" EntitySet="Periode" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_AktørAktør_FraAktør_FT_Domain_Models_Aktør_FraAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_AktørAktør_FraAktør_FT_Domain_Models_Aktør_FraAktørPartner">
+          <End Role="FraAktørPartner" EntitySet="AktørAktør" />
+          <End Role="FraAktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_AktørAktør_TilAktør_FT_Domain_Models_Aktør_TilAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_AktørAktør_TilAktør_FT_Domain_Models_Aktør_TilAktørPartner">
+          <End Role="TilAktørPartner" EntitySet="AktørAktør" />
+          <End Role="TilAktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_AktørAktør_AktørAktørRolle_FT_Domain_Models_AktørAktørRolle_AktørAktørRollePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_AktørAktør_AktørAktørRolle_FT_Domain_Models_AktørAktørRolle_AktørAktørRollePartner">
+          <End Role="AktørAktørRollePartner" EntitySet="AktørAktør" />
+          <End Role="AktørAktørRolle" EntitySet="AktørAktørRolle" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_AktørAktørRolle_AktørAktør_FT_Domain_Models_AktørAktør_AktørAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_AktørAktørRolle_AktørAktør_FT_Domain_Models_AktørAktør_AktørAktørPartner">
+          <End Role="AktørAktørPartner" EntitySet="AktørAktørRolle" />
+          <End Role="AktørAktør" EntitySet="AktørAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Aktørtype_Aktør_FT_Domain_Models_Aktør_AktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Aktørtype_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+          <End Role="AktørPartner" EntitySet="Aktørtype" />
+          <End Role="Aktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dagsordenspunkt_Dagsordenspunktdelti_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktdeltiPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_Dagsordenspunktdelti_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktdeltiPartner">
+          <End Role="DagsordenspunktdeltiPartner" EntitySet="Dagsordenspunkt" />
+          <End Role="Dagsordenspunktdelti" EntitySet="Dagsordenspunkt" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dagsordenspunkt_DagsordenspunktDokument_FT_Domain_Models_DagsordenspunktDokument_DagsordenspunktDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_DagsordenspunktDokument_FT_Domain_Models_DagsordenspunktDokument_DagsordenspunktDokumentPartner">
+          <End Role="DagsordenspunktDokumentPartner" EntitySet="Dagsordenspunkt" />
+          <End Role="DagsordenspunktDokument" EntitySet="DagsordenspunktDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dagsordenspunkt_DagsordenspunktSag_FT_Domain_Models_DagsordenspunktSag_DagsordenspunktSagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_DagsordenspunktSag_FT_Domain_Models_DagsordenspunktSag_DagsordenspunktSagPartner">
+          <End Role="DagsordenspunktSagPartner" EntitySet="Dagsordenspunkt" />
+          <End Role="DagsordenspunktSag" EntitySet="DagsordenspunktSag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dagsordenspunkt_DeltfraDagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DeltfraDagsordenspunktPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_DeltfraDagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DeltfraDagsordenspunktPartner">
+          <End Role="DeltfraDagsordenspunktPartner" EntitySet="Dagsordenspunkt" />
+          <End Role="DeltfraDagsordenspunkt" EntitySet="Dagsordenspunkt" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dagsordenspunkt_Møde_FT_Domain_Models_Møde_MødePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_Møde_FT_Domain_Models_Møde_MødePartner">
+          <End Role="MødePartner" EntitySet="Dagsordenspunkt" />
+          <End Role="Møde" EntitySet="Møde" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dagsordenspunkt_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dagsordenspunkt_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+          <End Role="SagstrinPartner" EntitySet="Dagsordenspunkt" />
+          <End Role="Sagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_DagsordenspunktDokument_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_DagsordenspunktDokument_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner">
+          <End Role="DagsordenspunktPartner" EntitySet="DagsordenspunktDokument" />
+          <End Role="Dagsordenspunkt" EntitySet="Dagsordenspunkt" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_DagsordenspunktDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_DagsordenspunktDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="DagsordenspunktDokument" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_DagsordenspunktSag_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_DagsordenspunktSag_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner">
+          <End Role="DagsordenspunktPartner" EntitySet="DagsordenspunktSag" />
+          <End Role="Dagsordenspunkt" EntitySet="Dagsordenspunkt" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_DagsordenspunktSag_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_DagsordenspunktSag_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="DagsordenspunktSag" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_DagsordenspunktDokument_FT_Domain_Models_DagsordenspunktDokument_DagsordenspunktDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_DagsordenspunktDokument_FT_Domain_Models_DagsordenspunktDokument_DagsordenspunktDokumentPartner">
+          <End Role="DagsordenspunktDokumentPartner" EntitySet="Dokument" />
+          <End Role="DagsordenspunktDokument" EntitySet="DagsordenspunktDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_SvarDokumenter_FT_Domain_Models_Dokument_SvarDokumenterPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_SvarDokumenter_FT_Domain_Models_Dokument_SvarDokumenterPartner">
+          <End Role="SvarDokumenterPartner" EntitySet="Dokument" />
+          <End Role="SvarDokumenter" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner">
+          <End Role="DokumentAktørPartner" EntitySet="Dokument" />
+          <End Role="DokumentAktør" EntitySet="DokumentAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_EmneordDokument_FT_Domain_Models_EmneordDokument_EmneordDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_EmneordDokument_FT_Domain_Models_EmneordDokument_EmneordDokumentPartner">
+          <End Role="EmneordDokumentPartner" EntitySet="Dokument" />
+          <End Role="EmneordDokument" EntitySet="EmneordDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_Fil_FT_Domain_Models_Fil_FilPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_Fil_FT_Domain_Models_Fil_FilPartner">
+          <End Role="FilPartner" EntitySet="Dokument" />
+          <End Role="Fil" EntitySet="Fil" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_Omtryk_FT_Domain_Models_Omtryk_OmtrykPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_Omtryk_FT_Domain_Models_Omtryk_OmtrykPartner">
+          <End Role="OmtrykPartner" EntitySet="Dokument" />
+          <End Role="Omtryk" EntitySet="Omtryk" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner">
+          <End Role="SagDokumentPartner" EntitySet="Dokument" />
+          <End Role="SagDokument" EntitySet="SagDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_SagstrinDokument_FT_Domain_Models_SagstrinDokument_SagstrinDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_SagstrinDokument_FT_Domain_Models_SagstrinDokument_SagstrinDokumentPartner">
+          <End Role="SagstrinDokumentPartner" EntitySet="Dokument" />
+          <End Role="SagstrinDokument" EntitySet="SagstrinDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_SpørgsmålsDokument_FT_Domain_Models_Dokument_SpørgsmålsDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_SpørgsmålsDokument_FT_Domain_Models_Dokument_SpørgsmålsDokumentPartner">
+          <End Role="SpørgsmålsDokumentPartner" EntitySet="Dokument" />
+          <End Role="SpørgsmålsDokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_Dokumentkategori_FT_Domain_Models_Dokumentkategori_DokumentkategoriPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_Dokumentkategori_FT_Domain_Models_Dokumentkategori_DokumentkategoriPartner">
+          <End Role="DokumentkategoriPartner" EntitySet="Dokument" />
+          <End Role="Dokumentkategori" EntitySet="Dokumentkategori" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_Dokumentstatus_FT_Domain_Models_Dokumentstatus_DokumentstatusPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_Dokumentstatus_FT_Domain_Models_Dokumentstatus_DokumentstatusPartner">
+          <End Role="DokumentstatusPartner" EntitySet="Dokument" />
+          <End Role="Dokumentstatus" EntitySet="Dokumentstatus" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokument_Dokumenttype_FT_Domain_Models_Dokumenttype_DokumenttypePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokument_Dokumenttype_FT_Domain_Models_Dokumenttype_DokumenttypePartner">
+          <End Role="DokumenttypePartner" EntitySet="Dokument" />
+          <End Role="Dokumenttype" EntitySet="Dokumenttype" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_DokumentAktør_Aktør_FT_Domain_Models_Aktør_AktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_DokumentAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+          <End Role="AktørPartner" EntitySet="DokumentAktør" />
+          <End Role="Aktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_DokumentAktør_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_DokumentAktør_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="DokumentAktør" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_DokumentAktør_DokumentAktørRolle_FT_Domain_Models_DokumentAktørRolle_DokumentAktørRollePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_DokumentAktør_DokumentAktørRolle_FT_Domain_Models_DokumentAktørRolle_DokumentAktørRollePartner">
+          <End Role="DokumentAktørRollePartner" EntitySet="DokumentAktør" />
+          <End Role="DokumentAktørRolle" EntitySet="DokumentAktørRolle" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_DokumentAktørRolle_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_DokumentAktørRolle_DokumentAktør_FT_Domain_Models_DokumentAktør_DokumentAktørPartner">
+          <End Role="DokumentAktørPartner" EntitySet="DokumentAktørRolle" />
+          <End Role="DokumentAktør" EntitySet="DokumentAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokumentkategori_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokumentkategori_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="Dokumentkategori" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokumenttype_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokumenttype_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="Dokumenttype" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Dokumentstatus_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Dokumentstatus_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="Dokumentstatus" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Emneord_EmneordDokument_FT_Domain_Models_EmneordDokument_EmneordDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Emneord_EmneordDokument_FT_Domain_Models_EmneordDokument_EmneordDokumentPartner">
+          <End Role="EmneordDokumentPartner" EntitySet="Emneord" />
+          <End Role="EmneordDokument" EntitySet="EmneordDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Emneord_EmneordSag_FT_Domain_Models_EmneordSag_EmneordSagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Emneord_EmneordSag_FT_Domain_Models_EmneordSag_EmneordSagPartner">
+          <End Role="EmneordSagPartner" EntitySet="Emneord" />
+          <End Role="EmneordSag" EntitySet="EmneordSag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Emneord_Emneordstype_FT_Domain_Models_Emneordstype_EmneordstypePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Emneord_Emneordstype_FT_Domain_Models_Emneordstype_EmneordstypePartner">
+          <End Role="EmneordstypePartner" EntitySet="Emneord" />
+          <End Role="Emneordstype" EntitySet="Emneordstype" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_EmneordDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_EmneordDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="EmneordDokument" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_EmneordDokument_Emneord_FT_Domain_Models_Emneord_EmneordPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_EmneordDokument_Emneord_FT_Domain_Models_Emneord_EmneordPartner">
+          <End Role="EmneordPartner" EntitySet="EmneordDokument" />
+          <End Role="Emneord" EntitySet="Emneord" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_EmneordSag_Emneord_FT_Domain_Models_Emneord_EmneordPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_EmneordSag_Emneord_FT_Domain_Models_Emneord_EmneordPartner">
+          <End Role="EmneordPartner" EntitySet="EmneordSag" />
+          <End Role="Emneord" EntitySet="Emneord" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_EmneordSag_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_EmneordSag_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="EmneordSag" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Emneordstype_Emneord_FT_Domain_Models_Emneord_EmneordPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Emneordstype_Emneord_FT_Domain_Models_Emneord_EmneordPartner">
+          <End Role="EmneordPartner" EntitySet="Emneordstype" />
+          <End Role="Emneord" EntitySet="Emneord" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Fil_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Fil_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="Fil" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Møde_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Møde_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner">
+          <End Role="AfstemningPartner" EntitySet="Møde" />
+          <End Role="Afstemning" EntitySet="Afstemning" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Møde_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Møde_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner">
+          <End Role="DagsordenspunktPartner" EntitySet="Møde" />
+          <End Role="Dagsordenspunkt" EntitySet="Dagsordenspunkt" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Møde_MødeAktør_FT_Domain_Models_MødeAktør_MødeAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Møde_MødeAktør_FT_Domain_Models_MødeAktør_MødeAktørPartner">
+          <End Role="MødeAktørPartner" EntitySet="Møde" />
+          <End Role="MødeAktør" EntitySet="MødeAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Møde_Mødestatus_FT_Domain_Models_Mødestatus_MødestatusPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Møde_Mødestatus_FT_Domain_Models_Mødestatus_MødestatusPartner">
+          <End Role="MødestatusPartner" EntitySet="Møde" />
+          <End Role="Mødestatus" EntitySet="Mødestatus" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Møde_Mødetype_FT_Domain_Models_Mødetype_MødetypePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Møde_Mødetype_FT_Domain_Models_Mødetype_MødetypePartner">
+          <End Role="MødetypePartner" EntitySet="Møde" />
+          <End Role="Mødetype" EntitySet="Mødetype" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Møde_Periode_FT_Domain_Models_Periode_PeriodePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Møde_Periode_FT_Domain_Models_Periode_PeriodePartner">
+          <End Role="PeriodePartner" EntitySet="Møde" />
+          <End Role="Periode" EntitySet="Periode" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_MødeAktør_Aktør_FT_Domain_Models_Aktør_AktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_MødeAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+          <End Role="AktørPartner" EntitySet="MødeAktør" />
+          <End Role="Aktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_MødeAktør_Møde_FT_Domain_Models_Møde_MødePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_MødeAktør_Møde_FT_Domain_Models_Møde_MødePartner">
+          <End Role="MødePartner" EntitySet="MødeAktør" />
+          <End Role="Møde" EntitySet="Møde" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Mødestatus_Møde_FT_Domain_Models_Møde_MødePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Mødestatus_Møde_FT_Domain_Models_Møde_MødePartner">
+          <End Role="MødePartner" EntitySet="Mødestatus" />
+          <End Role="Møde" EntitySet="Møde" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Mødetype_Møde_FT_Domain_Models_Møde_MødePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Mødetype_Møde_FT_Domain_Models_Møde_MødePartner">
+          <End Role="MødePartner" EntitySet="Mødetype" />
+          <End Role="Møde" EntitySet="Møde" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Omtryk_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Omtryk_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="Omtryk" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Periode_Aktør_FT_Domain_Models_Aktør_AktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Periode_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+          <End Role="AktørPartner" EntitySet="Periode" />
+          <End Role="Aktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Periode_Møde_FT_Domain_Models_Møde_MødePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Periode_Møde_FT_Domain_Models_Møde_MødePartner">
+          <End Role="MødePartner" EntitySet="Periode" />
+          <End Role="Møde" EntitySet="Møde" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Periode_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Periode_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="Periode" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_DagsordenspunktSag_FT_Domain_Models_DagsordenspunktSag_DagsordenspunktSagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_DagsordenspunktSag_FT_Domain_Models_DagsordenspunktSag_DagsordenspunktSagPartner">
+          <End Role="DagsordenspunktSagPartner" EntitySet="Sag" />
+          <End Role="DagsordenspunktSag" EntitySet="DagsordenspunktSag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_EmneordSag_FT_Domain_Models_EmneordSag_EmneordSagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_EmneordSag_FT_Domain_Models_EmneordSag_EmneordSagPartner">
+          <End Role="EmneordSagPartner" EntitySet="Sag" />
+          <End Role="EmneordSag" EntitySet="EmneordSag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_Sagerdelti_FT_Domain_Models_Sag_SagerdeltiPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_Sagerdelti_FT_Domain_Models_Sag_SagerdeltiPartner">
+          <End Role="SagerdeltiPartner" EntitySet="Sag" />
+          <End Role="Sagerdelti" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_Sagerfremsatunder_FT_Domain_Models_Sag_SagerfremsatunderPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_Sagerfremsatunder_FT_Domain_Models_Sag_SagerfremsatunderPartner">
+          <End Role="SagerfremsatunderPartner" EntitySet="Sag" />
+          <End Role="Sagerfremsatunder" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner">
+          <End Role="SagAktørPartner" EntitySet="Sag" />
+          <End Role="SagAktør" EntitySet="SagAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner">
+          <End Role="SagDokumentPartner" EntitySet="Sag" />
+          <End Role="SagDokument" EntitySet="SagDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+          <End Role="SagstrinPartner" EntitySet="Sag" />
+          <End Role="Sagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_Periode_FT_Domain_Models_Periode_PeriodePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_Periode_FT_Domain_Models_Periode_PeriodePartner">
+          <End Role="PeriodePartner" EntitySet="Sag" />
+          <End Role="Periode" EntitySet="Periode" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_DeltfraSag_FT_Domain_Models_Sag_DeltfraSagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_DeltfraSag_FT_Domain_Models_Sag_DeltfraSagPartner">
+          <End Role="DeltfraSagPartner" EntitySet="Sag" />
+          <End Role="DeltfraSag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_FremsatunderSag_FT_Domain_Models_Sag_FremsatunderSagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_FremsatunderSag_FT_Domain_Models_Sag_FremsatunderSagPartner">
+          <End Role="FremsatunderSagPartner" EntitySet="Sag" />
+          <End Role="FremsatunderSag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_Sagskategori_FT_Domain_Models_Sagskategori_SagskategoriPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_Sagskategori_FT_Domain_Models_Sagskategori_SagskategoriPartner">
+          <End Role="SagskategoriPartner" EntitySet="Sag" />
+          <End Role="Sagskategori" EntitySet="Sagskategori" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_Sagsstatus_FT_Domain_Models_Sagsstatus_SagsstatusPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_Sagsstatus_FT_Domain_Models_Sagsstatus_SagsstatusPartner">
+          <End Role="SagsstatusPartner" EntitySet="Sag" />
+          <End Role="Sagsstatus" EntitySet="Sagsstatus" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sag_Sagstype_FT_Domain_Models_Sagstype_SagstypePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sag_Sagstype_FT_Domain_Models_Sagstype_SagstypePartner">
+          <End Role="SagstypePartner" EntitySet="Sag" />
+          <End Role="Sagstype" EntitySet="Sagstype" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagAktør_Aktør_FT_Domain_Models_Aktør_AktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+          <End Role="AktørPartner" EntitySet="SagAktør" />
+          <End Role="Aktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagAktør_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagAktør_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="SagAktør" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagAktør_SagAktørRolle_FT_Domain_Models_SagAktørRolle_SagAktørRollePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagAktør_SagAktørRolle_FT_Domain_Models_SagAktørRolle_SagAktørRollePartner">
+          <End Role="SagAktørRollePartner" EntitySet="SagAktør" />
+          <End Role="SagAktørRolle" EntitySet="SagAktørRolle" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagAktørRolle_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagAktørRolle_SagAktør_FT_Domain_Models_SagAktør_SagAktørPartner">
+          <End Role="SagAktørPartner" EntitySet="SagAktørRolle" />
+          <End Role="SagAktør" EntitySet="SagAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="SagDokument" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagDokument_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagDokument_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="SagDokument" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagDokument_SagDokumentRolle_FT_Domain_Models_SagDokumentRolle_SagDokumentRollePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagDokument_SagDokumentRolle_FT_Domain_Models_SagDokumentRolle_SagDokumentRollePartner">
+          <End Role="SagDokumentRollePartner" EntitySet="SagDokument" />
+          <End Role="SagDokumentRolle" EntitySet="SagDokumentRolle" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagDokumentRolle_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagDokumentRolle_SagDokument_FT_Domain_Models_SagDokument_SagDokumentPartner">
+          <End Role="SagDokumentPartner" EntitySet="SagDokumentRolle" />
+          <End Role="SagDokument" EntitySet="SagDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagskategori_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagskategori_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="Sagskategori" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagsstatus_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagsstatus_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="Sagsstatus" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner">
+          <End Role="AfstemningPartner" EntitySet="Sagstrin" />
+          <End Role="Afstemning" EntitySet="Afstemning" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_Dagsordenspunkt_FT_Domain_Models_Dagsordenspunkt_DagsordenspunktPartner">
+          <End Role="DagsordenspunktPartner" EntitySet="Sagstrin" />
+          <End Role="Dagsordenspunkt" EntitySet="Dagsordenspunkt" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner">
+          <End Role="SagstrinAktørPartner" EntitySet="Sagstrin" />
+          <End Role="SagstrinAktør" EntitySet="SagstrinAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_SagstrinDokument_FT_Domain_Models_SagstrinDokument_SagstrinDokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_SagstrinDokument_FT_Domain_Models_SagstrinDokument_SagstrinDokumentPartner">
+          <End Role="SagstrinDokumentPartner" EntitySet="Sagstrin" />
+          <End Role="SagstrinDokument" EntitySet="SagstrinDokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_Sambehandlinger__andetsagstrinid_FT_Domain_Models_Sambehandlinger_Sambehandlinger__andetsagstrinidPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sambehandlinger__andetsagstrinid_FT_Domain_Models_Sambehandlinger_Sambehandlinger__andetsagstrinidPartner">
+          <End Role="Sambehandlinger_andetsagstrinidPartner" EntitySet="Sagstrin" />
+          <End Role="Sambehandlinger_andetsagstrinid" EntitySet="Sambehandlinger" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_Sambehandlinger__førstesagstrinid_FT_Domain_Models_Sambehandlinger_Sambehandlinger__førstesagstrinidPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sambehandlinger__førstesagstrinid_FT_Domain_Models_Sambehandlinger_Sambehandlinger__førstesagstrinidPartner">
+          <End Role="Sambehandlinger_førstesagstrinidPartner" EntitySet="Sagstrin" />
+          <End Role="Sambehandlinger_førstesagstrinid" EntitySet="Sambehandlinger" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="Sagstrin" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_Sagstrinsstatus_FT_Domain_Models_Sagstrinsstatus_SagstrinsstatusPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sagstrinsstatus_FT_Domain_Models_Sagstrinsstatus_SagstrinsstatusPartner">
+          <End Role="SagstrinsstatusPartner" EntitySet="Sagstrin" />
+          <End Role="Sagstrinsstatus" EntitySet="Sagstrinsstatus" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrin_Sagstrinstype_FT_Domain_Models_Sagstrinstype_SagstrinstypePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrin_Sagstrinstype_FT_Domain_Models_Sagstrinstype_SagstrinstypePartner">
+          <End Role="SagstrinstypePartner" EntitySet="Sagstrin" />
+          <End Role="Sagstrinstype" EntitySet="Sagstrinstype" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagstrinAktør_Aktør_FT_Domain_Models_Aktør_AktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagstrinAktør_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+          <End Role="AktørPartner" EntitySet="SagstrinAktør" />
+          <End Role="Aktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagstrinAktør_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagstrinAktør_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+          <End Role="SagstrinPartner" EntitySet="SagstrinAktør" />
+          <End Role="Sagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagstrinAktør_SagstrinAktørRolle_FT_Domain_Models_SagstrinAktørRolle_SagstrinAktørRollePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagstrinAktør_SagstrinAktørRolle_FT_Domain_Models_SagstrinAktørRolle_SagstrinAktørRollePartner">
+          <End Role="SagstrinAktørRollePartner" EntitySet="SagstrinAktør" />
+          <End Role="SagstrinAktørRolle" EntitySet="SagstrinAktørRolle" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagstrinAktørRolle_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagstrinAktørRolle_SagstrinAktør_FT_Domain_Models_SagstrinAktør_SagstrinAktørPartner">
+          <End Role="SagstrinAktørPartner" EntitySet="SagstrinAktørRolle" />
+          <End Role="SagstrinAktør" EntitySet="SagstrinAktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sambehandlinger_AndetSagstrin_FT_Domain_Models_Sagstrin_AndetSagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sambehandlinger_AndetSagstrin_FT_Domain_Models_Sagstrin_AndetSagstrinPartner">
+          <End Role="AndetSagstrinPartner" EntitySet="Sambehandlinger" />
+          <End Role="AndetSagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sambehandlinger_FørsteSagstrin_FT_Domain_Models_Sagstrin_FørsteSagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sambehandlinger_FørsteSagstrin_FT_Domain_Models_Sagstrin_FørsteSagstrinPartner">
+          <End Role="FørsteSagstrinPartner" EntitySet="Sambehandlinger" />
+          <End Role="FørsteSagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagstrinDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagstrinDokument_Dokument_FT_Domain_Models_Dokument_DokumentPartner">
+          <End Role="DokumentPartner" EntitySet="SagstrinDokument" />
+          <End Role="Dokument" EntitySet="Dokument" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_SagstrinDokument_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_SagstrinDokument_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+          <End Role="SagstrinPartner" EntitySet="SagstrinDokument" />
+          <End Role="Sagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrinsstatus_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrinsstatus_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+          <End Role="SagstrinPartner" EntitySet="Sagstrinsstatus" />
+          <End Role="Sagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstrinstype_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstrinstype_Sagstrin_FT_Domain_Models_Sagstrin_SagstrinPartner">
+          <End Role="SagstrinPartner" EntitySet="Sagstrinstype" />
+          <End Role="Sagstrin" EntitySet="Sagstrin" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Sagstype_Sag_FT_Domain_Models_Sag_SagPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Sagstype_Sag_FT_Domain_Models_Sag_SagPartner">
+          <End Role="SagPartner" EntitySet="Sagstype" />
+          <End Role="Sag" EntitySet="Sag" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Stemme_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Stemme_Afstemning_FT_Domain_Models_Afstemning_AfstemningPartner">
+          <End Role="AfstemningPartner" EntitySet="Stemme" />
+          <End Role="Afstemning" EntitySet="Afstemning" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Stemme_Aktør_FT_Domain_Models_Aktør_AktørPartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Stemme_Aktør_FT_Domain_Models_Aktør_AktørPartner">
+          <End Role="AktørPartner" EntitySet="Stemme" />
+          <End Role="Aktør" EntitySet="Aktør" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Stemme_Stemmetype_FT_Domain_Models_Stemmetype_StemmetypePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Stemme_Stemmetype_FT_Domain_Models_Stemmetype_StemmetypePartner">
+          <End Role="StemmetypePartner" EntitySet="Stemme" />
+          <End Role="Stemmetype" EntitySet="Stemmetype" />
+        </AssociationSet>
+        <AssociationSet Name="FT_Domain_Models_Stemmetype_Stemme_FT_Domain_Models_Stemme_StemmePartnerSet" Association="FT.Domain.Models.FT_Domain_Models_Stemmetype_Stemme_FT_Domain_Models_Stemme_StemmePartner">
+          <End Role="StemmePartner" EntitySet="Stemmetype" />
+          <End Role="Stemme" EntitySet="Stemme" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
