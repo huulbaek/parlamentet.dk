@@ -63,8 +63,11 @@
   "dependencies": {
     "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
+    "@nuxt/ui": "^2.11.0",
     "@prisma/client": "^5.1.0",
     "@typoas/runtime": "^3.1.1",
+    "node-fetch": "^3.3.2",
+    "node-html-parser": "^6.1.11",
     "winston": "^3.11.0"
   }
 }

@@ -1,0 +1,541 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Aktoer {
+  id                                            Int            @id(map: "idx_39447_PK_Aktør")
+  typeid                                        Int
+  gruppenavnkort                                String?
+  navn                                          String?
+  fornavn                                       String?
+  efternavn                                     String?
+  biografi                                      String?
+  periodeid                                     Int?
+  opdateringsdato                               DateTime       @db.Timestamptz(6)
+  startdato                                     DateTime?      @db.Timestamptz(6)
+  slutdato                                      DateTime?      @db.Timestamptz(6)
+  AktoerAktoer_AktoerAktoer_fraaktoeridToAktoer AktoerAktoer[] @relation("AktoerAktoer_fraaktoeridToAktoer")
+  AktoerAktoer_AktoerAktoer_tilaktoeridToAktoer AktoerAktoer[] @relation("AktoerAktoer_tilaktoeridToAktoer")
+
+  @@map("Aktoer")
+}
+
+model AktoerAktoer {
+  id                                      BigInt    @id(map: "idx_39453_PK_AktørAktør") @default(autoincrement())
+  fraaktoerid                             Int
+  tilaktoerid                             Int
+  startdato                               DateTime? @db.Timestamptz(6)
+  slutdato                                DateTime? @db.Timestamptz(6)
+  opdateringsdato                         DateTime  @db.Timestamptz(6)
+  rolleid                                 Int
+  Aktoer_AktoerAktoer_fraaktoeridToAktoer Aktoer    @relation("AktoerAktoer_fraaktoeridToAktoer", fields: [fraaktoerid], references: [id])
+  Aktoer_AktoerAktoer_tilaktoeridToAktoer Aktoer    @relation("AktoerAktoer_tilaktoeridToAktoer", fields: [tilaktoerid], references: [id])
+
+  @@map("AktoerAktoer")
+}
+
+model AktoerAktoerRolle {
+  id              Int      @id(map: "idx_39457_PK_AktørAktørRolle")
+  rolle           String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("AktoerAktoerRolle")
+}
+
+model Aktoertype {
+  id              Int      @id(map: "idx_39462_PK_Aktørtype")
+  type            String?
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("Aktoertype")
+}
+
+model DokumentAktoer {
+  id              BigInt   @id(map: "idx_39490_PK_DokumentAktør") @default(autoincrement())
+  dokumentid      Int
+  aktoerid        Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+  rolleid         Int
+
+  @@map("DokumentAktoer")
+}
+
+model DokumentAktoerRolle {
+  id              Int      @id(map: "idx_39494_PK_DokumentAktørRolle")
+  rolle           String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("DokumentAktoerRolle")
+}
+
+model Moede {
+  id                   Int       @id(map: "idx_39558_PK_Møde")
+  titel                String
+  lokale               String?
+  nummer               String?
+  dagsordenurl         String?
+  starttidsbemaerkning String?
+  offentlighedskode    String
+  dato                 DateTime? @db.Timestamptz(6)
+  statusid             Int?
+  typeid               Int?
+  periodeid            Int
+  opdateringsdato      DateTime  @db.Timestamptz(6)
+
+  @@map("Moede")
+}
+
+model MoedeAktoer {
+  id              BigInt   @id(map: "idx_39564_PK_MødeAktør") @default(autoincrement())
+  moedeid         Int
+  aktoerid        Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("MoedeAktoer")
+}
+
+model Moedestatus {
+  id              Int      @id(map: "idx_39568_PK_Mødestatus")
+  status          String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("Moedestatus")
+}
+
+model Moedetype {
+  id              Int      @id(map: "idx_39573_PK_Mødetype")
+  type            String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("Moedetype")
+}
+
+model SagAktoer {
+  id              BigInt   @id(map: "idx_39594_PK_Sagaktør") @default(autoincrement())
+  aktoerid        Int
+  sagid           Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+  rolleid         Int
+
+  @@map("SagAktoer")
+}
+
+model SagAktoerRolle {
+  id              Int      @id(map: "idx_39598_PK_SagAktørRolle")
+  rolle           String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("SagAktoerRolle")
+}
+
+model SagstrinAktoer {
+  id              BigInt   @id(map: "idx_39631_PK_Sagstrinaktør") @default(autoincrement())
+  sagstrinid      Int
+  aktoerid        Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+  rolleid         Int
+
+  @@map("SagstrinAktoer")
+}
+
+model SagstrinAktoerRolle {
+  id              Int      @id(map: "idx_39635_PK_SagstrinAktørRolle")
+  rolle           String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("SagstrinAktoerRolle")
+}
+
+model refactorlog {
+  operationkey String @id(map: "idx_39434_pk____refact__d3aeffdbad8cba18") @db.Uuid
+
+  @@map("__refactorlog")
+}
+
+model Afstemning {
+  id              Int      @id(map: "idx_39437_pk_afstemning")
+  nummer          Int
+  konklusion      String?
+  vedtaget        Boolean
+  kommentar       String?
+  moedeid         Int
+  typeid          Int
+  sagstrinid      Int?
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("afstemning")
+}
+
+model Afstemningstype {
+  id              Int      @id(map: "idx_39442_pk_afstemningstype")
+  type            String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("afstemningstype")
+}
+
+model Dagsordenspunkt {
+  id                Int       @id(map: "idx_39467_pk_dagsordenspunkt")
+  koerebemaerkning  String?
+  titel             String?
+  kommentar         String?
+  nummer            String?
+  forhandlingskode  String?
+  forhandling       String?
+  superid           Int?
+  sagstrinid        Int?
+  moedeid           Int
+  offentlighedskode String
+  opdateringsdato   DateTime? @db.Timestamptz(6)
+
+  @@map("dagsordenspunkt")
+}
+
+model DagsordenspunktDokument {
+  id                BigInt   @id(map: "idx_39473_pk_dagsordenspunktdokument") @default(autoincrement())
+  dokumentid        Int
+  dagsordenspunktid Int
+  note              String?
+  opdateringsdato   DateTime @db.Timestamptz(6)
+
+  @@map("dagsordenspunktdokument")
+}
+
+model DagsordenspunktSag {
+  id                BigInt   @id(map: "idx_39480_pk_dagsordenspunktsag") @default(autoincrement())
+  dagsordenspunktid Int
+  sagid             Int
+  opdateringsdato   DateTime @db.Timestamptz(6)
+
+  @@map("dagsordenspunktsag")
+}
+
+model Dokument {
+  id                    Int       @id(map: "idx_39484_pk_dokument")
+  typeid                Int
+  kategoriid            Int
+  statusid              Int
+  offentlighedskode     String
+  titel                 String
+  dato                  DateTime  @db.Timestamptz(6)
+  modtagelsesdato       DateTime? @db.Timestamptz(6)
+  frigivelsesdato       DateTime? @db.Timestamptz(6)
+  paragraf              String?
+  paragrafnummer        String?
+  spoergsmaalsordlyd    String?
+  spoergsmaalstitel     String?
+  spoergsmaalsid        Int?
+  procedurenummer       String?
+  grundnotatstatus      String?
+  dagsordenudgavenummer Int?      @db.SmallInt
+  opdateringsdato       DateTime  @db.Timestamptz(6)
+
+  @@map("dokument")
+}
+
+model Dokumentkategori {
+  id              Int      @id(map: "idx_39499_pk_dokumentkategori")
+  kategori        String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("dokumentkategori")
+}
+
+model Dokumentstatus {
+  id              Int      @id(map: "idx_39504_pk_dokumentstatus")
+  status          String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("dokumentstatus")
+}
+
+model Dokumenttype {
+  id              Int      @id(map: "idx_39509_pk_dokumenttype")
+  type            String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("dokumenttype")
+}
+
+model Emneord {
+  id              Int      @id(map: "idx_39514_pk_emneord")
+  typeid          Int
+  emneord         String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@index([typeid], map: "idx_39514_ix_fk_emneord_emneordstype")
+  @@map("emneord")
+}
+
+model EmneordDokument {
+  id              BigInt   @id(map: "idx_39520_pk_emneorddokument") @default(autoincrement())
+  emneordid       Int
+  dokumentid      Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("emneorddokument")
+}
+
+model EmneordSag {
+  id              BigInt   @id(map: "idx_39525_pk_emneordsag") @default(autoincrement())
+  emneordid       Int
+  sagid           Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("emneordsag")
+}
+
+model Emneordstype {
+  id              Int      @id(map: "idx_39529_pk_emneordstype")
+  type            String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("emneordstype")
+}
+
+model EntitetBeskrivelse {
+  id              BigInt    @id(map: "idx_39535_pk_entitetbeskrivelse") @default(autoincrement())
+  entitetnavn     String?
+  beskrivelse     String?
+  opdateringsdato DateTime? @db.Timestamptz(6)
+
+  @@map("entitetbeskrivelse")
+}
+
+model Fil {
+  id              Int      @id(map: "idx_39541_pk_fil")
+  dokumentid      Int
+  titel           String?
+  versionsdato    DateTime @db.Timestamptz(6)
+  filurl          String
+  opdateringsdato DateTime @db.Timestamptz(6)
+  variantkode     String
+  format          String
+
+  @@map("fil")
+}
+
+model idmap {
+  id         Int
+  originalid String
+  entity     String
+
+  @@id([id, entity], map: "idx_39546_pk_idmap")
+  @@unique([originalid, entity], map: "idx_39546_ix_idmap_originalid_entity")
+}
+
+model KolloneBeskrivelse {
+  id              BigInt    @id(map: "idx_39552_pk_kollonebeskrivelse") @default(autoincrement())
+  entitetnavn     String?
+  kollonenavn     String?
+  beskrivelse     String?
+  opdateringsdato DateTime? @db.Timestamptz(6)
+
+  @@map("kollonebeskrivelse")
+}
+
+model Omtryk {
+  id              Int       @id(map: "idx_39578_pk_omtryk")
+  dokumentid      Int
+  dato            DateTime? @db.Timestamptz(6)
+  begrundelse     String
+  opdateringsdato DateTime  @db.Timestamptz(6)
+
+  @@map("omtryk")
+}
+
+model Periode {
+  id              Int      @id(map: "idx_39583_pk_periode")
+  startdato       DateTime @db.Timestamptz(6)
+  slutdato        DateTime @db.Timestamptz(6)
+  type            String
+  kode            String
+  titel           String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("periode")
+}
+
+model Sag {
+  id                      Int       @id(map: "idx_39588_pk_sag")
+  typeid                  Int
+  kategoriid              Int?
+  statusid                Int
+  titel                   String
+  titelkort               String
+  offentlighedskode       String
+  nummer                  String?
+  nummerprefix            String?
+  nummernumerisk          String?
+  nummerpostfix           String?
+  resume                  String?
+  afstemningskonklusion   String?
+  periodeid               Int
+  afgoerelsesresultatkode String?
+  baggrundsmateriale      String?
+  opdateringsdato         DateTime  @db.Timestamptz(6)
+  statsbudgetsag          Boolean?
+  begrundelse             String?
+  paragrafnummer          Int?
+  paragraf                String?
+  afgoerelsesdato         DateTime? @db.Timestamptz(6)
+  afgoerelse              String?
+  raadsmoededato          DateTime? @db.Timestamptz(6)
+  lovnummer               String?
+  lovnummerdato           DateTime? @db.Timestamptz(6)
+  retsinformationsurl     String?
+  fremsatundersagid       Int?
+  deltundersagid          Int?
+
+  @@index([deltundersagid], map: "idx_39588_ix_fk_deltundersag_sag")
+  @@index([fremsatundersagid], map: "idx_39588_ix_fk_fremsatundersag_sag")
+  @@index([kategoriid], map: "idx_39588_ix_fk_sag_sagskategori")
+  @@index([statusid], map: "idx_39588_ix_fk_sag_sagsstatus")
+  @@index([typeid], map: "idx_39588_ix_fk_sag_sagstype")
+  @@map("sag")
+}
+
+model SagDokument {
+  id              BigInt    @id(map: "idx_39604_pk_sagdokument") @default(autoincrement())
+  sagid           Int
+  dokumentid      Int
+  bilagsnummer    String?
+  frigivelsesdato DateTime? @db.Timestamptz(6)
+  opdateringsdato DateTime  @db.Timestamptz(6)
+  rolleid         Int
+
+  @@map("sagdokument")
+}
+
+model SagDokumentRolle {
+  id              Int      @id(map: "idx_39610_pk_sagdokumentrolle")
+  rolle           String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("sagdokumentrolle")
+}
+
+model Sagskategori {
+  id              Int      @id(map: "idx_39615_pk_sagskategoriset")
+  kategori        String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("sagskategori")
+}
+
+model Sagsstatus {
+  id              Int      @id(map: "idx_39620_pk_sagsstatus")
+  status          String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("sagsstatus")
+}
+
+model Sagstrin {
+  id                          Int       @id(map: "idx_39625_pk_sagstrin")
+  titel                       String
+  dato                        DateTime? @db.Timestamptz(6)
+  sagid                       Int
+  typeid                      Int
+  folketingstidendeurl        String?
+  folketingstidende           String?
+  folketingstidendesidenummer String?
+  statusid                    Int
+  opdateringsdato             DateTime  @db.Timestamptz(6)
+
+  @@index([sagid], map: "idx_39625_ix_fk_sagstrin_sag")
+  @@index([statusid], map: "idx_39625_ix_fk_sagstrin_sagstrinsstatus")
+  @@index([typeid], map: "idx_39625_ix_fk_sagstrin_sagstrinstype")
+  @@map("sagstrin")
+}
+
+model SagstrinDokument {
+  id              BigInt   @id(map: "idx_39641_pk_sagstrindokument") @default(autoincrement())
+  sagstrinid      Int
+  dokumentid      Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("sagstrindokument")
+}
+
+model Sagstrinsstatus {
+  id              Int      @id(map: "idx_39645_pk_sagstrinsstatus")
+  status          String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("sagstrinsstatus")
+}
+
+model Sagstrinstype {
+  id              Int      @id(map: "idx_39650_pk_sagstrinstypeset")
+  type            String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("sagstrinstype")
+}
+
+model Sagstype {
+  id              Int      @id(map: "idx_39655_pk_sagstypeset")
+  type            String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("sagstype")
+}
+
+model Sambehandlinger {
+  id                BigInt   @id(map: "idx_39661_pk_sagstrinsagstrin") @default(autoincrement())
+  foerstesagstrinid Int
+  andetsagstrinid   Int
+  opdateringsdato   DateTime @db.Timestamptz(6)
+
+  @@map("sambehandlinger")
+}
+
+model Slettet {
+  id              BigInt   @id(map: "idx_39666_pk_slettet") @default(autoincrement())
+  slettetmapid    Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+  objektid        Int
+
+  @@map("slettet")
+}
+
+model slettetmap {
+  id              BigInt   @id(map: "idx_39671_pk_slettetmap") @default(autoincrement())
+  datatype        String
+  opdateringsdato DateTime @db.Timestamptz(6)
+}
+
+model Stemme {
+  id              BigInt   @id(map: "idx_39678_pk_stemmer") @default(autoincrement())
+  typeid          Int?
+  afstemningid    Int
+  aktoerid        Int
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@unique([afstemningid, aktoerid], map: "idx_39678_AfstemningAktør")
+  @@map("stemme")
+}
+
+model Stemmetype {
+  id              BigInt   @id(map: "idx_39683_pk_stemmetype") @default(autoincrement())
+  type            String
+  opdateringsdato DateTime @db.Timestamptz(6)
+
+  @@map("stemmetype")
+}
+
+model synclogger {
+  id              BigInt    @id(map: "idx_39690_pk_mqalog") @default(autoincrement())
+  entitet         String
+  internid        Int
+  eksternid       String
+  opdateringsdato DateTime  @db.Timestamptz(6)
+  antal           Int
+  godkendtdato    DateTime? @db.Timestamptz(6)
+}

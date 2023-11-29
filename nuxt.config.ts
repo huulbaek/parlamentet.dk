@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
-  modules: ['@pinia/nuxt', '@vueuse/nuxt'],
+  modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxt/ui'],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -18,6 +18,6 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/tailwind.css'],
-
-  devtools: true,
+  preference: 'light',
+  devtools: {enabled: true},
 })

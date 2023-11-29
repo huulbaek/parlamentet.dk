@@ -1,0 +1,246 @@
+model Afstemning {
+  Stemme          Stemme[]
+  Afstemningstype Afstemningstype? @relation(map: "Afstemning_Afstemningstype_fkey", fields: [typeid], references: [id])
+  Moede           Moede?           @relation(map: "Afstemning_Moede_fkey", fields: [moedeid], references: [id])
+  Sagstrin        Sagstrin?        @relation(map: "Afstemning_Sagstrin_fkey", fields: [sagstrinid], references: [id])
+}
+
+model Afstemningstype {
+  Afstemning Afstemning[]
+}
+
+model Aktoer {
+  FraAktoerAktoer AktoerAktoer[]   @relation("FraAktoerToAktoerAktoer")
+  TilAktoerAktoer AktoerAktoer[]   @relation("TilAktoerToAktoerAktoer")
+  DokumentAktoer  DokumentAktoer[]
+  MoedeAktoer     MoedeAktoer[]
+  SagAktoer       SagAktoer[]
+  SagstrinAktoer  SagstrinAktoer[]
+  Stemme          Stemme[]
+  Aktoertype      Aktoertype?      @relation(fields: [typeid], references: [id])
+  Periode         Periode?         @relation(fields: [periodeid], references: [id])
+}
+
+model AktoerAktoer {
+  FraAktoer         Aktoer?            @relation("FraAktoerToAktoerAktoer", fields: [fraaktoerid], references: [id])
+  TilAktoer         Aktoer?            @relation("TilAktoerToAktoerAktoer", fields: [tilaktoerid], references: [id])
+  AktoerAktoerRolle AktoerAktoerRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model AktoerAktoerRolle {
+  AktoerAktoer AktoerAktoer[]
+}
+
+model Aktoertype {
+  Aktoer Aktoer[]
+}
+
+model Dagsordenspunkt {
+  Dagsordenspunktdelti    Dagsordenspunkt[]         @relation("DagsordenspunktHierarchy")
+  DagsordenspunktDokument DagsordenspunktDokument[]
+  DagsordenspunktSag      DagsordenspunktSag[]
+  DeltfraDagsordenspunkt  Dagsordenspunkt?          @relation("DagsordenspunktHierarchy", fields: [superid], references: [id])
+  Moede                   Moede?                    @relation(fields: [moedeid], references: [id])
+  Sagstrin                Sagstrin?                 @relation(fields: [sagstrinid], references: [id])
+}
+
+model DagsordenspunktDokument {
+  Dagsordenspunkt Dagsordenspunkt? @relation(fields: [dagsordenspunktid], references: [id])
+  Dokument        Dokument?        @relation(fields: [dokumentid], references: [id])
+}
+
+model DagsordenspunktSag {
+  Dagsordenspunkt Dagsordenspunkt? @relation(fields: [dagsordenspunktid], references: [id])
+  Sag             Sag?             @relation(fields: [sagid], references: [id])
+}
+
+model Dokument {
+  DagsordenspunktDokument DagsordenspunktDokument[]
+  SvarDokumenter          Dokument[]                @relation("SvarSpoergsmaalRelation")
+  SpoergsmaalsDokument    Dokument?                 @relation("SvarSpoergsmaalRelation", fields: [spoergsmaalsid], references: [id])
+  DokumentAktoer          DokumentAktoer[]
+  EmneordDokument         EmneordDokument[]
+  Fil                     Fil[]
+  Omtryk                  Omtryk[]
+  SagDokument             SagDokument[]
+  SagstrinDokument        SagstrinDokument[]
+  Dokumentkategori        Dokumentkategori?         @relation(fields: [kategoriid], references: [id])
+  Dokumentstatus          Dokumentstatus?           @relation(fields: [statusid], references: [id])
+  Dokumenttype            Dokumenttype?             @relation(fields: [typeid], references: [id])
+}
+
+model DokumentAktoer {
+  Aktoer              Aktoer?              @relation(fields: [aktoerid], references: [id])
+  Dokument            Dokument?            @relation(fields: [dokumentid], references: [id])
+  DokumentAktoerRolle DokumentAktoerRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model DokumentAktoerRolle {
+  DokumentAktoer DokumentAktoer[]
+}
+
+model Dokumentkategori {
+  Dokument Dokument[]
+}
+
+model Dokumenttype {
+  Dokument Dokument[]
+}
+
+model Dokumentstatus {
+  Dokument Dokument[]
+}
+
+model Emneord {
+  EmneordDokument EmneordDokument[]
+  EmneordSag      EmneordSag[]
+  Emneordstype    Emneordstype?     @relation(fields: [typeid], references: [id])
+}
+
+model EmneordDokument {
+  Dokument Dokument? @relation(fields: [dokumentid], references: [id])
+  Emneord  Emneord?  @relation(fields: [emneordid], references: [id])
+}
+
+model EmneordSag {
+  Emneord Emneord? @relation(fields: [emneordid], references: [id])
+  Sag     Sag?     @relation(fields: [sagid], references: [id])
+}
+
+model Emneordstype {
+  Emneord Emneord[]
+}
+
+model Fil {
+  Dokument Dokument? @relation(fields: [dokumentid], references: [id])
+}
+
+model Moede {
+  Afstemning      Afstemning[]
+  Dagsordenspunkt Dagsordenspunkt[]
+  MoedeAktoer     MoedeAktoer[]
+  Moedestatus     Moedestatus?      @relation(fields: [statusid], references: [id])
+  Moedetype       Moedetype?        @relation(fields: [typeid], references: [id])
+  Periode         Periode?          @relation(fields: [periodeid], references: [id])
+}
+
+model MoedeAktoer {
+  Aktoer Aktoer? @relation(fields: [aktoerid], references: [id])
+  Moede  Moede?  @relation(fields: [moedeid], references: [id])
+}
+
+model Moedestatus {
+  Moede Moede[]
+}
+
+model Moedetype {
+  Moede Moede[]
+}
+
+model Omtryk {
+  Dokument Dokument? @relation(fields: [dokumentid], references: [id])
+}
+
+model Periode {
+  Aktoer Aktoer[]
+  Moede  Moede[]
+  Sag    Sag[]
+}
+
+model Sag {
+  DagsordenspunktSag DagsordenspunktSag[]
+  EmneordSag         EmneordSag[]
+  Sagerdelti         Sag[]                @relation("SagerdeltiRelation")
+  Sagerfremsatunder  Sag[]                @relation("SagerfremsatunderRelation")
+  DeltfraSag         Sag?                 @relation("SagerdeltiRelation", fields: [deltundersagid], references: [id])
+  FremsatunderSag    Sag?                 @relation("SagerfremsatunderRelation", fields: [fremsatundersagid], references: [id])
+  SagAktoer          SagAktoer[]
+  SagDokument        SagDokument[]
+  Sagstrin           Sagstrin[]
+  Periode            Periode?             @relation(fields: [periodeid], references: [id])
+  Sagskategori       Sagskategori?        @relation(fields: [kategoriid], references: [id])
+  Sagsstatus         Sagsstatus?          @relation(fields: [statusid], references: [id])
+  Sagstype           Sagstype?            @relation(fields: [typeid], references: [id])
+}
+
+model SagAktoer {
+  Aktoer         Aktoer?         @relation(fields: [aktoerid], references: [id])
+  Sag            Sag?            @relation(fields: [sagid], references: [id])
+  SagAktoerRolle SagAktoerRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model SagAktoerRolle {
+  SagAktoer SagAktoer[]
+}
+
+model SagDokument {
+  Dokument         Dokument?         @relation(fields: [dokumentid], references: [id])
+  Sag              Sag?              @relation(fields: [sagid], references: [id])
+  SagDokumentRolle SagDokumentRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model SagDokumentRolle {
+  SagDokument SagDokument[]
+}
+
+model Sagskategori {
+  Sag Sag[]
+}
+
+model Sagsstatus {
+  Sag Sag[]
+}
+
+model Sagstrin {
+  Afstemning                        Afstemning[]
+  Dagsordenspunkt                   Dagsordenspunkt[]
+  SagstrinAktoer                    SagstrinAktoer[]
+  SagstrinDokument                  SagstrinDokument[]
+  Sambehandlinger_foerstesagstrinid Sambehandlinger[]  @relation("FoersteSagstrin", map: "FoersteSagstrin_fkey")
+  Sambehandlinger_andetsagstrinid   Sambehandlinger[]  @relation("AndetSagstrin", map: "AndetSagstrin_fkey")
+  Sag                               Sag?               @relation(fields: [sagid], references: [id])
+  Sagstrinsstatus                   Sagstrinsstatus?   @relation(fields: [statusid], references: [id])
+  Sagstrinstype                     Sagstrinstype?     @relation(fields: [typeid], references: [id])
+}
+
+model SagstrinAktoer {
+  Aktoer              Aktoer?              @relation(fields: [aktoerid], references: [id])
+  Sagstrin            Sagstrin?            @relation(fields: [sagstrinid], references: [id])
+  SagstrinAktoerRolle SagstrinAktoerRolle? @relation(fields: [rolleid], references: [id])
+}
+
+model SagstrinAktoerRolle {
+  SagstrinAktoer SagstrinAktoer[]
+}
+
+model Sambehandlinger {
+  FoersteSagstrin Sagstrin? @relation(name: "FoersteSagstrin", fields: [foerstesagstrinid], references: [id])
+  AndetSagstrin   Sagstrin? @relation(name: "AndetSagstrin", fields: [andetsagstrinid], references: [id])
+}
+
+model SagstrinDokument {
+  Dokument Dokument? @relation(fields: [dokumentid], references: [id], map: "SagsstrinDokument_Dokument_fkey")
+  Sagstrin Sagstrin? @relation(fields: [sagstrinid], references: [id], map: "SagstrinDokument_Sagstrin_fkey")
+}
+
+model Sagstrinsstatus {
+  Sagstrin Sagstrin[]
+}
+
+model Sagstrinstype {
+  Sagstrin Sagstrin[]
+}
+
+model Sagstype {
+  Sag Sag[]
+}
+
+model Stemme {
+  Afstemning Afstemning? @relation(fields: [afstemningid], references: [id])
+  Aktoer     Aktoer?     @relation(fields: [aktoerid], references: [id])
+  // Stemmetype Stemmetype? @relation(fields: [typeid], references: [id])
+}
+
+model Stemmetype {
+  // Stemme Stemme[]
+}

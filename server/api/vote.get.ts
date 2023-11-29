@@ -1,4 +1,4 @@
-import prisma from '../../prisma/client'
+import prisma from '../../automatic_prisma_almost/old_prisma/client'
 
 // Fix for faulty bigint serialization
 ;(BigInt.prototype as any).toJSON = function () {

@@ -30,6 +30,7 @@
                 </div>
               </div>
             </div>
+            <ColorModeButton />
             <div class="hidden md:block">
               <div class="ml-4 flex items-center md:ml-6">
                 <a href="https://github.com/huulbaek/parlamentet.dk">
@@ -92,7 +93,7 @@ const mainStore = useMainStore()
 const navigation = [
   { name: 'Om Parlamentet', href: '/' },
   { name: 'Valgtest', href: '/folketingsvalg-2022-valgtest' },
-  { name: 'Aktuelt', href: '/aktuelt' },
+  { name: 'Lovforslag', href: '/lovforslag' },
 ]
 </script>
 

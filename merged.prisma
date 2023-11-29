@@ -17,7 +17,7 @@ model Aktoer {
   Stemme          Stemme[]
   Aktoertype      Aktoertype?      @relation(fields: [typeid], references: [id])
   Periode         Periode?         @relation(fields: [periodeid], references: [id])
-  id              Int              @id(map: "idx_109161_PK_Aktør")
+  id              Int              @id(map: "idx_69257_PK_Aktør")
   typeid          Int
   gruppenavnkort  String?
   navn            String?
@@ -34,7 +34,7 @@ model AktoerAktoer {
   FraAktoer         Aktoer?            @relation("FraAktoerToAktoerAktoer", fields: [fraaktoerid], references: [id])
   TilAktoer         Aktoer?            @relation("TilAktoerToAktoerAktoer", fields: [tilaktoerid], references: [id])
   AktoerAktoerRolle AktoerAktoerRolle? @relation(fields: [rolleid], references: [id])
-  id                BigInt             @id(map: "idx_109167_PK_AktørAktør") @default(autoincrement())
+  id                BigInt             @id(map: "idx_69263_PK_AktørAktør") @default(autoincrement())
   fraaktoerid       Int
   tilaktoerid       Int
   startdato         DateTime?          @db.Timestamptz(6)
@@ -45,14 +45,14 @@ model AktoerAktoer {
 
 model AktoerAktoerRolle {
   AktoerAktoer    AktoerAktoer[]
-  id              Int            @id(map: "idx_109171_PK_AktørAktørRolle")
+  id              Int            @id(map: "idx_69267_PK_AktørAktørRolle")
   rolle           String
   opdateringsdato DateTime       @db.Timestamptz(6)
 }
 
 model Aktoertype {
   Aktoer          Aktoer[]
-  id              Int      @id(map: "idx_109176_PK_Aktørtype")
+  id              Int      @id(map: "idx_69272_PK_Aktørtype")
   type            String?
   opdateringsdato DateTime @db.Timestamptz(6)
 }
@@ -61,7 +61,7 @@ model DokumentAktoer {
   Aktoer              Aktoer?              @relation(fields: [aktoerid], references: [id])
   Dokument            Dokument?            @relation(fields: [dokumentid], references: [id])
   DokumentAktoerRolle DokumentAktoerRolle? @relation(fields: [rolleid], references: [id])
-  id                  BigInt               @id(map: "idx_109204_PK_DokumentAktør") @default(autoincrement())
+  id                  BigInt               @id(map: "idx_69300_PK_DokumentAktør") @default(autoincrement())
   dokumentid          Int
   aktoerid            Int
   opdateringsdato     DateTime             @db.Timestamptz(6)
@@ -70,7 +70,7 @@ model DokumentAktoer {
 
 model DokumentAktoerRolle {
   DokumentAktoer  DokumentAktoer[]
-  id              Int              @id(map: "idx_109208_PK_DokumentAktørRolle")
+  id              Int              @id(map: "idx_69304_PK_DokumentAktørRolle")
   rolle           String
   opdateringsdato DateTime         @db.Timestamptz(6)
 }
@@ -82,7 +82,7 @@ model Moede {
   Moedestatus          Moedestatus?      @relation(fields: [statusid], references: [id])
   Moedetype            Moedetype?        @relation(fields: [typeid], references: [id])
   Periode              Periode?          @relation(fields: [periodeid], references: [id])
-  id                   Int               @id(map: "idx_109272_PK_Møde")
+  id                   Int               @id(map: "idx_69368_PK_Møde")
   titel                String
   lokale               String?
   nummer               String?
@@ -99,7 +99,7 @@ model Moede {
 model MoedeAktoer {
   Aktoer          Aktoer?  @relation(fields: [aktoerid], references: [id])
   Moede           Moede?   @relation(fields: [moedeid], references: [id])
-  id              BigInt   @id(map: "idx_109278_PK_MødeAktør") @default(autoincrement())
+  id              BigInt   @id(map: "idx_69374_PK_MødeAktør") @default(autoincrement())
   moedeid         Int
   aktoerid        Int
   opdateringsdato DateTime @db.Timestamptz(6)
@@ -107,14 +107,14 @@ model MoedeAktoer {
 
 model Moedestatus {
   Moede           Moede[]
-  id              Int      @id(map: "idx_109282_PK_Mødestatus")
+  id              Int      @id(map: "idx_69378_PK_Mødestatus")
   status          String
   opdateringsdato DateTime @db.Timestamptz(6)
 }
 
 model Moedetype {
   Moede           Moede[]
-  id              Int      @id(map: "idx_109287_PK_Mødetype")
+  id              Int      @id(map: "idx_69383_PK_Mødetype")
   type            String
   opdateringsdato DateTime @db.Timestamptz(6)
 }
@@ -123,7 +123,7 @@ model SagAktoer {
   Aktoer          Aktoer?         @relation(fields: [aktoerid], references: [id])
   Sag             Sag?            @relation(fields: [sagid], references: [id])
   SagAktoerRolle  SagAktoerRolle? @relation(fields: [rolleid], references: [id])
-  id              BigInt          @id(map: "idx_109308_PK_Sagaktør") @default(autoincrement())
+  id              BigInt          @id(map: "idx_69404_PK_Sagaktør") @default(autoincrement())
   aktoerid        Int
   sagid           Int
   opdateringsdato DateTime        @db.Timestamptz(6)
@@ -132,7 +132,7 @@ model SagAktoer {
 
 model SagAktoerRolle {
   SagAktoer       SagAktoer[]
-  id              Int         @id(map: "idx_109312_PK_SagAktørRolle")
+  id              Int         @id(map: "idx_69408_PK_SagAktørRolle")
   rolle           String
   opdateringsdato DateTime    @db.Timestamptz(6)
 }
@@ -141,7 +141,7 @@ model SagstrinAktoer {
   Aktoer              Aktoer?              @relation(fields: [aktoerid], references: [id])
   Sagstrin            Sagstrin?            @relation(fields: [sagstrinid], references: [id])
   SagstrinAktoerRolle SagstrinAktoerRolle? @relation(fields: [rolleid], references: [id])
-  id                  BigInt               @id(map: "idx_109345_PK_Sagstrinaktør") @default(autoincrement())
+  id                  BigInt               @id(map: "idx_69441_PK_Sagstrinaktør") @default(autoincrement())
   sagstrinid          Int
   aktoerid            Int
   opdateringsdato     DateTime             @db.Timestamptz(6)
@@ -150,13 +150,13 @@ model SagstrinAktoer {
 
 model SagstrinAktoerRolle {
   SagstrinAktoer  SagstrinAktoer[]
-  id              Int              @id(map: "idx_109349_PK_SagstrinAktørRolle")
+  id              Int              @id(map: "idx_69445_PK_SagstrinAktørRolle")
   rolle           String
   opdateringsdato DateTime         @db.Timestamptz(6)
 }
 
 model refactorlog {
-  operationkey String @id(map: "idx_109148_pk____refact__d3aeffdbad8cba18") @db.Uuid
+  operationkey String @id(map: "idx_69244_pk____refact__d3aeffdbad8cba18") @db.Uuid
 
   @@map("__refactorlog")
 }
@@ -166,7 +166,7 @@ model Afstemning {
   Afstemningstype Afstemningstype? @relation(map: "Afstemning_Afstemningstype_fkey", fields: [typeid], references: [id])
   Moede           Moede?           @relation(map: "Afstemning_Moede_fkey", fields: [moedeid], references: [id])
   Sagstrin        Sagstrin?        @relation(map: "Afstemning_Sagstrin_fkey", fields: [sagstrinid], references: [id])
-  id              Int              @id(map: "idx_109151_pk_afstemning")
+  id              Int              @id(map: "idx_69247_pk_afstemning")
   nummer          Int
   konklusion      String?
   vedtaget        Boolean
@@ -181,7 +181,7 @@ model Afstemning {
 
 model Afstemningstype {
   Afstemning      Afstemning[]
-  id              Int          @id(map: "idx_109156_pk_afstemningstype")
+  id              Int          @id(map: "idx_69252_pk_afstemningstype")
   type            String
   opdateringsdato DateTime     @db.Timestamptz(6)
 
@@ -195,7 +195,7 @@ model Dagsordenspunkt {
   DeltfraDagsordenspunkt  Dagsordenspunkt?          @relation("DagsordenspunktHierarchy", fields: [superid], references: [id])
   Moede                   Moede?                    @relation(fields: [moedeid], references: [id])
   Sagstrin                Sagstrin?                 @relation(fields: [sagstrinid], references: [id])
-  id                      Int                       @id(map: "idx_109181_pk_dagsordenspunkt")
+  id                      Int                       @id(map: "idx_69277_pk_dagsordenspunkt")
   koerebemaerkning        String?
   titel                   String?
   kommentar               String?
@@ -214,7 +214,7 @@ model Dagsordenspunkt {
 model DagsordenspunktDokument {
   Dagsordenspunkt   Dagsordenspunkt? @relation(fields: [dagsordenspunktid], references: [id])
   Dokument          Dokument?        @relation(fields: [dokumentid], references: [id])
-  id                BigInt           @id(map: "idx_109187_pk_dagsordenspunktdokument") @default(autoincrement())
+  id                BigInt           @id(map: "idx_69283_pk_dagsordenspunktdokument") @default(autoincrement())
   dokumentid        Int
   dagsordenspunktid Int
   note              String?
@@ -226,7 +226,7 @@ model DagsordenspunktDokument {
 model DagsordenspunktSag {
   Dagsordenspunkt   Dagsordenspunkt? @relation(fields: [dagsordenspunktid], references: [id])
   Sag               Sag?             @relation(fields: [sagid], references: [id])
-  id                BigInt           @id(map: "idx_109194_pk_dagsordenspunktsag") @default(autoincrement())
+  id                BigInt           @id(map: "idx_69290_pk_dagsordenspunktsag") @default(autoincrement())
   dagsordenspunktid Int
   sagid             Int
   opdateringsdato   DateTime         @db.Timestamptz(6)
@@ -247,7 +247,7 @@ model Dokument {
   Dokumentkategori        Dokumentkategori?         @relation(fields: [kategoriid], references: [id])
   Dokumentstatus          Dokumentstatus?           @relation(fields: [statusid], references: [id])
   Dokumenttype            Dokumenttype?             @relation(fields: [typeid], references: [id])
-  id                      Int                       @id(map: "idx_109198_pk_dokument")
+  id                      Int                       @id(map: "idx_69294_pk_dokument")
   typeid                  Int
   kategoriid              Int
   statusid                Int
@@ -271,7 +271,7 @@ model Dokument {
 
 model Dokumentkategori {
   Dokument        Dokument[]
-  id              Int        @id(map: "idx_109213_pk_dokumentkategori")
+  id              Int        @id(map: "idx_69309_pk_dokumentkategori")
   kategori        String
   opdateringsdato DateTime   @db.Timestamptz(6)
 
@@ -280,7 +280,7 @@ model Dokumentkategori {
 
 model Dokumentstatus {
   Dokument        Dokument[]
-  id              Int        @id(map: "idx_109218_pk_dokumentstatus")
+  id              Int        @id(map: "idx_69314_pk_dokumentstatus")
   status          String
   opdateringsdato DateTime   @db.Timestamptz(6)
 
@@ -289,7 +289,7 @@ model Dokumentstatus {
 
 model Dokumenttype {
   Dokument        Dokument[]
-  id              Int        @id(map: "idx_109223_pk_dokumenttype")
+  id              Int        @id(map: "idx_69319_pk_dokumenttype")
   type            String
   opdateringsdato DateTime   @db.Timestamptz(6)
 
@@ -300,19 +300,19 @@ model Emneord {
   EmneordDokument EmneordDokument[]
   EmneordSag      EmneordSag[]
   Emneordstype    Emneordstype?     @relation(fields: [typeid], references: [id])
-  id              Int               @id(map: "idx_109228_pk_emneord")
+  id              Int               @id(map: "idx_69324_pk_emneord")
   typeid          Int
   emneord         String
   opdateringsdato DateTime          @db.Timestamptz(6)
 
-  @@index([typeid], map: "idx_109228_ix_fk_emneord_emneordstype")
+  @@index([typeid], map: "idx_69324_ix_fk_emneord_emneordstype")
   @@map("emneord")
 }
 
 model EmneordDokument {
   Dokument        Dokument? @relation(fields: [dokumentid], references: [id])
   Emneord         Emneord?  @relation(fields: [emneordid], references: [id])
-  id              BigInt    @id(map: "idx_109234_pk_emneorddokument") @default(autoincrement())
+  id              BigInt    @id(map: "idx_69330_pk_emneorddokument") @default(autoincrement())
   emneordid       Int
   dokumentid      Int
   opdateringsdato DateTime  @db.Timestamptz(6)
@@ -323,7 +323,7 @@ model EmneordDokument {
 model EmneordSag {
   Emneord         Emneord? @relation(fields: [emneordid], references: [id])
   Sag             Sag?     @relation(fields: [sagid], references: [id])
-  id              BigInt   @id(map: "idx_109239_pk_emneordsag") @default(autoincrement())
+  id              BigInt   @id(map: "idx_69335_pk_emneordsag") @default(autoincrement())
   emneordid       Int
   sagid           Int
   opdateringsdato DateTime @db.Timestamptz(6)
@@ -333,7 +333,7 @@ model EmneordSag {
 
 model Emneordstype {
   Emneord         Emneord[]
-  id              Int       @id(map: "idx_109243_pk_emneordstype")
+  id              Int       @id(map: "idx_69339_pk_emneordstype")
   type            String
   opdateringsdato DateTime  @db.Timestamptz(6)
 
@@ -341,21 +341,20 @@ model Emneordstype {
 }
 
 model entitetbeskrivelse {
-  id              BigInt    @id(map: "idx_109249_pk_entitetbeskrivelse") @default(autoincrement())
+  id              BigInt    @id(map: "idx_69345_pk_entitetbeskrivelse") @default(autoincrement())
   entitetnavn     String?
   beskrivelse     String?
   opdateringsdato DateTime? @db.Timestamptz(6)
 }
 
 model Fil {
-  FilContent      FilContent[]
-  Dokument        Dokument?    @relation(fields: [dokumentid], references: [id])
-  id              Int          @id(map: "idx_109255_pk_fil")
+  Dokument        Dokument? @relation(fields: [dokumentid], references: [id])
+  id              Int       @id(map: "idx_69351_pk_fil")
   dokumentid      Int
   titel           String?
-  versionsdato    DateTime     @db.Timestamptz(6)
+  versionsdato    DateTime  @db.Timestamptz(6)
   filurl          String
-  opdateringsdato DateTime     @db.Timestamptz(6)
+  opdateringsdato DateTime  @db.Timestamptz(6)
   variantkode     String
   format          String
 
@@ -367,12 +366,12 @@ model idmap {
   originalid String
   entity     String
 
-  @@id([id, entity], map: "idx_109260_pk_idmap")
-  @@unique([originalid, entity], map: "idx_109260_ix_idmap_originalid_entity")
+  @@id([id, entity], map: "idx_69356_pk_idmap")
+  @@unique([originalid, entity], map: "idx_69356_ix_idmap_originalid_entity")
 }
 
 model kollonebeskrivelse {
-  id              BigInt    @id(map: "idx_109266_pk_kollonebeskrivelse") @default(autoincrement())
+  id              BigInt    @id(map: "idx_69362_pk_kollonebeskrivelse") @default(autoincrement())
   entitetnavn     String?
   kollonenavn     String?
   beskrivelse     String?
@@ -381,7 +380,7 @@ model kollonebeskrivelse {
 
 model Omtryk {
   Dokument        Dokument? @relation(fields: [dokumentid], references: [id])
-  id              Int       @id(map: "idx_109292_pk_omtryk")
+  id              Int       @id(map: "idx_69388_pk_omtryk")
   dokumentid      Int
   dato            DateTime? @db.Timestamptz(6)
   begrundelse     String
@@ -394,7 +393,7 @@ model Periode {
   Aktoer          Aktoer[]
   Moede           Moede[]
   Sag             Sag[]
-  id              Int      @id(map: "idx_109297_pk_periode")
+  id              Int      @id(map: "idx_69393_pk_periode")
   startdato       DateTime @db.Timestamptz(6)
   slutdato        DateTime @db.Timestamptz(6)
   type            String
@@ -419,7 +418,7 @@ model Sag {
   Sagskategori            Sagskategori?        @relation(fields: [kategoriid], references: [id])
   Sagsstatus              Sagsstatus?          @relation(fields: [statusid], references: [id])
   Sagstype                Sagstype?            @relation(fields: [typeid], references: [id])
-  id                      Int                  @id(map: "idx_109302_pk_sag")
+  id                      Int                  @id(map: "idx_69398_pk_sag")
   typeid                  Int
   kategoriid              Int?
   statusid                Int
@@ -449,11 +448,11 @@ model Sag {
   fremsatundersagid       Int?
   deltundersagid          Int?
 
-  @@index([deltundersagid], map: "idx_109302_ix_fk_deltundersag_sag")
-  @@index([fremsatundersagid], map: "idx_109302_ix_fk_fremsatundersag_sag")
-  @@index([kategoriid], map: "idx_109302_ix_fk_sag_sagskategori")
-  @@index([statusid], map: "idx_109302_ix_fk_sag_sagsstatus")
-  @@index([typeid], map: "idx_109302_ix_fk_sag_sagstype")
+  @@index([deltundersagid], map: "idx_69398_ix_fk_deltundersag_sag")
+  @@index([fremsatundersagid], map: "idx_69398_ix_fk_fremsatundersag_sag")
+  @@index([kategoriid], map: "idx_69398_ix_fk_sag_sagskategori")
+  @@index([statusid], map: "idx_69398_ix_fk_sag_sagsstatus")
+  @@index([typeid], map: "idx_69398_ix_fk_sag_sagstype")
   @@map("sag")
 }
 
@@ -461,7 +460,7 @@ model SagDokument {
   Dokument         Dokument?         @relation(fields: [dokumentid], references: [id])
   Sag              Sag?              @relation(fields: [sagid], references: [id])
   SagDokumentRolle SagDokumentRolle? @relation(fields: [rolleid], references: [id])
-  id               BigInt            @id(map: "idx_109318_pk_sagdokument") @default(autoincrement())
+  id               BigInt            @id(map: "idx_69414_pk_sagdokument") @default(autoincrement())
   sagid            Int
   dokumentid       Int
   bilagsnummer     String?
@@ -474,7 +473,7 @@ model SagDokument {
 
 model SagDokumentRolle {
   SagDokument     SagDokument[]
-  id              Int           @id(map: "idx_109324_pk_sagdokumentrolle")
+  id              Int           @id(map: "idx_69420_pk_sagdokumentrolle")
   rolle           String
   opdateringsdato DateTime      @db.Timestamptz(6)
 
@@ -483,7 +482,7 @@ model SagDokumentRolle {
 
 model Sagskategori {
   Sag             Sag[]
-  id              Int      @id(map: "idx_109329_pk_sagskategoriset")
+  id              Int      @id(map: "idx_69425_pk_sagskategoriset")
   kategori        String
   opdateringsdato DateTime @db.Timestamptz(6)
 
@@ -492,7 +491,7 @@ model Sagskategori {
 
 model Sagsstatus {
   Sag             Sag[]
-  id              Int      @id(map: "idx_109334_pk_sagsstatus")
+  id              Int      @id(map: "idx_69430_pk_sagsstatus")
   status          String
   opdateringsdato DateTime @db.Timestamptz(6)
 
@@ -509,7 +508,7 @@ model Sagstrin {
   Sag                               Sag?               @relation(fields: [sagid], references: [id])
   Sagstrinsstatus                   Sagstrinsstatus?   @relation(fields: [statusid], references: [id])
   Sagstrinstype                     Sagstrinstype?     @relation(fields: [typeid], references: [id])
-  id                                Int                @id(map: "idx_109339_pk_sagstrin")
+  id                                Int                @id(map: "idx_69435_pk_sagstrin")
   titel                             String
   dato                              DateTime?          @db.Timestamptz(6)
   sagid                             Int
@@ -520,16 +519,16 @@ model Sagstrin {
   statusid                          Int
   opdateringsdato                   DateTime           @db.Timestamptz(6)
 
-  @@index([sagid], map: "idx_109339_ix_fk_sagstrin_sag")
-  @@index([statusid], map: "idx_109339_ix_fk_sagstrin_sagstrinsstatus")
-  @@index([typeid], map: "idx_109339_ix_fk_sagstrin_sagstrinstype")
+  @@index([sagid], map: "idx_69435_ix_fk_sagstrin_sag")
+  @@index([statusid], map: "idx_69435_ix_fk_sagstrin_sagstrinsstatus")
+  @@index([typeid], map: "idx_69435_ix_fk_sagstrin_sagstrinstype")
   @@map("sagstrin")
 }
 
 model SagstrinDokument {
   Dokument        Dokument? @relation(fields: [dokumentid], references: [id], map: "SagsstrinDokument_Dokument_fkey")
   Sagstrin        Sagstrin? @relation(fields: [sagstrinid], references: [id], map: "SagstrinDokument_Sagstrin_fkey")
-  id              BigInt    @id(map: "idx_109355_pk_sagstrindokument") @default(autoincrement())
+  id              BigInt    @id(map: "idx_69451_pk_sagstrindokument") @default(autoincrement())
   sagstrinid      Int
   dokumentid      Int
   opdateringsdato DateTime  @db.Timestamptz(6)
@@ -539,7 +538,7 @@ model SagstrinDokument {
 
 model Sagstrinsstatus {
   Sagstrin        Sagstrin[]
-  id              Int        @id(map: "idx_109359_pk_sagstrinsstatus")
+  id              Int        @id(map: "idx_69455_pk_sagstrinsstatus")
   status          String
   opdateringsdato DateTime   @db.Timestamptz(6)
 
@@ -548,7 +547,7 @@ model Sagstrinsstatus {
 
 model Sagstrinstype {
   Sagstrin        Sagstrin[]
-  id              Int        @id(map: "idx_109364_pk_sagstrinstypeset")
+  id              Int        @id(map: "idx_69460_pk_sagstrinstypeset")
   type            String
   opdateringsdato DateTime   @db.Timestamptz(6)
 
@@ -557,7 +556,7 @@ model Sagstrinstype {
 
 model Sagstype {
   Sag             Sag[]
-  id              Int      @id(map: "idx_109369_pk_sagstypeset")
+  id              Int      @id(map: "idx_69465_pk_sagstypeset")
   type            String
   opdateringsdato DateTime @db.Timestamptz(6)
 
@@ -567,7 +566,7 @@ model Sagstype {
 model Sambehandlinger {
   FoersteSagstrin   Sagstrin? @relation(name: "FoersteSagstrin", fields: [foerstesagstrinid], references: [id])
   AndetSagstrin     Sagstrin? @relation(name: "AndetSagstrin", fields: [andetsagstrinid], references: [id])
-  id                BigInt    @id(map: "idx_109375_pk_sagstrinsagstrin") @default(autoincrement())
+  id                BigInt    @id(map: "idx_69471_pk_sagstrinsagstrin") @default(autoincrement())
   foerstesagstrinid Int
   andetsagstrinid   Int
   opdateringsdato   DateTime  @db.Timestamptz(6)
@@ -576,14 +575,14 @@ model Sambehandlinger {
 }
 
 model slettet {
-  id              BigInt   @id(map: "idx_109380_pk_slettet") @default(autoincrement())
+  id              BigInt   @id(map: "idx_69476_pk_slettet") @default(autoincrement())
   slettetmapid    Int
   opdateringsdato DateTime @db.Timestamptz(6)
   objektid        Int
 }
 
 model slettetmap {
-  id              BigInt   @id(map: "idx_109385_pk_slettetmap") @default(autoincrement())
+  id              BigInt   @id(map: "idx_69481_pk_slettetmap") @default(autoincrement())
   datatype        String
   opdateringsdato DateTime @db.Timestamptz(6)
 }
@@ -591,20 +590,20 @@ model slettetmap {
 model Stemme {
   Afstemning      Afstemning? @relation(fields: [afstemningid], references: [id])
   Aktoer          Aktoer?     @relation(fields: [aktoerid], references: [id])
-  // Stemmetype Stemmetype? @relation(fields: [typeid], references: [id])
-  id              BigInt      @id(map: "idx_109392_pk_stemmer") @default(autoincrement())
+  // Stemmetype      Stemmetype? @relation(fields: [typeid], references: [id])
+  id              BigInt      @id(map: "idx_69488_pk_stemmer") @default(autoincrement())
   typeid          Int?
   afstemningid    Int
   aktoerid        Int
   opdateringsdato DateTime    @db.Timestamptz(6)
 
-  @@unique([afstemningid, aktoerid], map: "idx_109392_AfstemningAktør")
+  @@unique([afstemningid, aktoerid], map: "idx_69488_AfstemningAktør")
   @@map("stemme")
 }
 
 model Stemmetype {
-  // Stemme Stemme[]
-  id              BigInt   @id(map: "idx_109397_pk_stemmetype") @default(autoincrement())
+  // Stemme          Stemme[]
+  id              BigInt   @id(map: "idx_69493_pk_stemmetype") @default(autoincrement())
   type            String
   opdateringsdato DateTime @db.Timestamptz(6)
 
@@ -612,22 +611,11 @@ model Stemmetype {
 }
 
 model synclogger {
-  id              BigInt    @id(map: "idx_109404_pk_mqalog") @default(autoincrement())
+  id              BigInt    @id(map: "idx_69500_pk_mqalog") @default(autoincrement())
   entitet         String
   internid        Int
   eksternid       String
   opdateringsdato DateTime  @db.Timestamptz(6)
   antal           Int
   godkendtdato    DateTime? @db.Timestamptz(6)
-}
-
-// Here begins own modeling
-
-model FilContent {
-  id              Int      @id() @default(autoincrement())
-  filid           Int
-  filurl          String
-  content         String
-  opdateringsdato DateTime @default(now()) @db.Timestamptz(6)
-  Fil             Fil      @relation(fields: [filid], references: [id])
 }

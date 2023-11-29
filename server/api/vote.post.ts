@@ -1,4 +1,4 @@
-import prisma from '../../prisma/client'
+import prisma from '../../automatic_prisma_almost/old_prisma/client'
 
 export default defineEventHandler(async (event) => {
   const body = await useBody(event)
