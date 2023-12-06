@@ -1,7 +1,21 @@
 #!/bin/zsh
 
 case $1 in
-  oda)
+  oda_create)
+    python3 download_oda_bak.py
+    # Create a MSSQL docker database
+    docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourStrong!Passw0rd' \
+    -p 1433:1433 --name sql_server -d mcr.microsoft.com/mssql/server:2019-latest
+
+    # Wait for the SQL Server to come up
+    echo "Waiting for SQL Server to come up"
+    sleep 30
+
+    # Import the .bak file
+    docker exec -it sql_server /opt/mssql-tools/bin/sqlcmd \
+    -S localhost -U SA -P 'YourStrong!Passw0rd' \
+    -Q 'RESTORE DATABASE OdaDB FROM DISK = "/var/opt/mssql/backup/oda.bak" WITH MOVE "OdaDB" TO "/var/opt/mssql/data/OdaDB.mdf", MOVE "OdaDB_log" TO "/var/opt/mssql/data/OdaDB_log.ldf"'
+  oda_migrate)
     # Drop the oda database in postgres
     PGPASSWORD=root psql -h localhost -U postgres -c "DROP DATABASE IF EXISTS oda;"
     PGPASSWORD=root psql -h localhost -U postgres -c "DROP DATABASE IF EXISTS oda_fresh;"

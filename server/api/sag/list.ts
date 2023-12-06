@@ -1,30 +1,23 @@
-// server/api/fetchSag.ts
 import { defineEventHandler } from 'h3'
 import logger from '../../../utils/logger'
-import prisma from '../../../automatic_prisma_almost/old_prisma/client'
-import { query } from 'winston'
+import prisma from '../../../prisma/client'
 
 export default defineEventHandler(async (event) => {
- const query = getQuery(event)
-  // if (!periodeid) {
-  //   throw createError(
-  //     {
-  //       statusCode: 400,
-  //       statusMessage: 'Periodeid is not defined'
-  //     }
-  //   )
-  // }
-  // Create a where object with the properties that are always present
+  const query = getQuery(event)
+  const periodeid = parseInt(query.periodeid, 10) || null
+  const page = parseInt(query.page) || 1
+  const pageSize = parseInt(query.pageSize) || 10
+
   const where = {
     typeid: 3,
   }
 
-  // Conditionally add periodeid to the where object
   if (query.periodeid) {
-    where.periodeid = query.periodeid
+    where.periodeid = periodeid
   }
 
   try {
+    const skip = (page - 1) * pageSize
     const sagList = await prisma.sag.findMany({
       select: {
         id: true,
@@ -37,7 +30,8 @@ export default defineEventHandler(async (event) => {
       },
       where,
       orderBy: { opdateringsdato: 'desc' },
-      take: 10,
+      take: pageSize,
+      skip,
     })
 
     return sagList || []

@@ -1,4 +1,4 @@
-import prisma from '../../automatic_prisma_almost/old_prisma/client'
+import prisma from '../../prisma/client'
 
 export default defineEventHandler(async () => {
   const count = await prisma.quiz.count()

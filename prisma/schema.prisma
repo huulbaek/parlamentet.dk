@@ -348,14 +348,14 @@ model entitetbeskrivelse {
 }
 
 model Fil {
-  FilContent      FilContent[]
-  Dokument        Dokument?    @relation(fields: [dokumentid], references: [id])
-  id              Int          @id(map: "idx_109255_pk_fil")
+  // FilContent      FilContent[]
+  Dokument        Dokument? @relation(fields: [dokumentid], references: [id])
+  id              Int       @id(map: "idx_109255_pk_fil")
   dokumentid      Int
   titel           String?
-  versionsdato    DateTime     @db.Timestamptz(6)
+  versionsdato    DateTime  @db.Timestamptz(6)
   filurl          String
-  opdateringsdato DateTime     @db.Timestamptz(6)
+  opdateringsdato DateTime  @db.Timestamptz(6)
   variantkode     String
   format          String
 
@@ -623,11 +623,11 @@ model synclogger {
 
 // Here begins own modeling
 
-model FilContent {
-  id              Int      @id() @default(autoincrement())
-  filid           Int
-  filurl          String
-  content         String
-  opdateringsdato DateTime @default(now()) @db.Timestamptz(6)
-  Fil             Fil      @relation(fields: [filid], references: [id])
-}
+// model FilContent {
+//   id              Int      @id() @default(autoincrement())
+//   filid           Int
+//   filurl          String
+//   content         String
+//   opdateringsdato DateTime @default(now()) @db.Timestamptz(6)
+//   Fil             Fil      @relation(fields: [filid], references: [id])
+// }

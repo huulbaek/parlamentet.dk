@@ -1,7 +1,5 @@
-// server/api/fetchSag.ts
 import { defineEventHandler } from 'h3'
-import logger from '../../../utils/logger'
-import prisma from '../../../automatic_prisma_almost/old_prisma/client'
+import prisma from '../../../prisma/client'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -14,7 +12,7 @@ export default defineEventHandler(async (event) => {
       },
       // where: { typeid: 2 },
       orderBy: { opdateringsdato: 'desc' },
-      // take: 10,
+      take: 10,
     })
 
     return sagList || []

@@ -1,7 +1,7 @@
 // server/api/fetchSag.ts
 import { defineEventHandler } from 'h3'
 import logger from '../../../utils/logger'
-import prisma from '../../../automatic_prisma_almost/old_prisma/client'
+import prisma from '../../../prisma/client'
 
 export default defineEventHandler(async (event) => {
     const id = parseInt(event.context.params.id, 10)
@@ -69,20 +69,24 @@ export default defineEventHandler(async (event) => {
                                 SagstrinAktoerRolle: true,
                             },
                         },
-                        SagstrinDokument: {
-                            include: {
-                                Dokument: {
-                                    include: {
-                                        Fil: true,
-                                    }
-                                },
-                            },
-                        },
+                        // SagstrinDokument: {
+                        //     include: {
+                        //         Dokument: {
+                        //             include: {
+                        //                 Fil: true,
+                        //             }
+                        //         },
+                        //     },
+                        // },
                     },
                 },
                 SagDokument: {
                     include: {
-                        Dokument: true,
+                        Dokument: {
+                            include: {
+                                Fil: true
+                            }
+                        },
                         SagDokumentRolle: true,
                     },
                 },
@@ -92,34 +96,34 @@ export default defineEventHandler(async (event) => {
                             include: {
                                 Aktoertype: true,
                                 Periode: true,
-                                FraAktoerAktoer: {
-                                    include: {
-                                        TilAktoer: true,
-                                        AktoerAktoerRolle: true,
-                                    },
-                                },
-                                TilAktoerAktoer: {
-                                    include: {
-                                        FraAktoer: true,
-                                        AktoerAktoerRolle: true,
-                                    },
-                                },
-                                DokumentAktoer: {
-                                    include: {
-                                        Dokument: true,
-                                        DokumentAktoerRolle: true,
-                                    },
-                                },
-                                MoedeAktoer: {
-                                    include: {
-                                        Moede: true,
-                                    },
-                                },
-                                Stemme: {
-                                    include: {
-                                        Afstemning: true,
-                                    },
-                                },
+                                // FraAktoerAktoer: {
+                                //     include: {
+                                //         TilAktoer: true,
+                                //         AktoerAktoerRolle: true,
+                                //     },
+                                // },
+                                // TilAktoerAktoer: {
+                                //     include: {
+                                //         FraAktoer: true,
+                                //         AktoerAktoerRolle: true,
+                                //     },
+                                // },
+                                // DokumentAktoer: {
+                                //     include: {
+                                //         Dokument: true,
+                                //         DokumentAktoerRolle: true,
+                                //     },
+                                // },
+                                // MoedeAktoer: {
+                                //     include: {
+                                //         Moede: true,
+                                //     },
+                                // },
+                                // Stemme: {
+                                //     include: {
+                                //         Afstemning: true,
+                                //     },
+                                // },
                             },
                         },
                         SagAktoerRolle: true,
@@ -130,7 +134,7 @@ export default defineEventHandler(async (event) => {
 
 
 
-        return { sag } || null
+        return  sag  || null
     } catch (error) {
         // Handle the error appropriately
         if (error instanceof Error) {

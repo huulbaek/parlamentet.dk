@@ -1,5 +1,5 @@
-// server/api/sagFiles.ts
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../prisma/client'
+
 import { defineEventHandler } from 'h3'
 import { parse } from 'node-html-parser';
 import fetch from 'node-fetch'
@@ -33,17 +33,16 @@ function convertPdfUrlToHtmlUrl(pdfUrl: string): string {
   return pdfUrl.replace('.pdf', '/index.htm');
 }
 
-const prisma = new PrismaClient()
-
 export default defineEventHandler(async (event) => {
-  const sagId = parseInt(event.context.params.id, 10)
+  const query = getQuery(event)
+
+  const sagId = parseInt(query.id, 10)
 
 
   // Fetch related SagDokument and SagstrinDokument, selecting only 2 of each
   const sagDocuments = await prisma.sagDokument.findMany({
     where: { sagid: sagId },
     include: { Dokument: { include: { Fil: true } } },
-    take: 3
   })
 
   // const sagstrinDocuments = await prisma.sagstrinDokument.findMany({

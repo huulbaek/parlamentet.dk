@@ -1,4 +1,4 @@
-import prisma from '../../automatic_prisma_almost/old_prisma/client.js'
+import prisma from '../../prisma/client.js'
 import {
   createContext,
   sagGet,
